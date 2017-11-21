@@ -10,7 +10,7 @@ if mouth_cascade.empty():
     raise IOError('Unable to load the  mouth cascade classifier xml files')
 
 cap = cv2.VideoCapture(0)
-scaling_factor = 0.5
+scaling_factor = 0.9
 
 while True:
     ret, frame = cap.read()
