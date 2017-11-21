@@ -29,8 +29,9 @@ while True:
 
     # Draw a rectangle around the faces
     for (x, y, w, h) in body:
-        frame_roi = frame[y+100:y+h+100,x:x+w]
-        body_mask_small = cv2.resize(body_mask,(w,h),interpolation = cv2.INTER_AREA)
+        x = x-75
+        frame_roi = frame[y+100:y+500,x:x+250]
+        body_mask_small = cv2.resize(body_mask,(400,400),interpolation = cv2.INTER_AREA)
         gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)
         ret, mask = cv2.threshold(gray_mask, 50,255, cv2.THRESH_BINARY_INV)
         mask_inv = cv2.bitwise_not(mask)
@@ -38,8 +39,13 @@ while True:
         print(body.shape)
         masked_body = cv2.bitwise_and(body_mask_small,body_mask_small, mask = mask)
         masked_frame = cv2.bitwise_and(frame_roi, frame_roi, mask=mask_inv)
-        frame[y+100:y+h+100,x:x+w] = cv2.add(masked_body, masked_frame)
-        cv2.rectangle(frame, (x, y+100), (x+w, y+h+100), (0, 255, 0), 2)    
+        frame[y+100:y+500,x:x+250] = cv2.add(masked_body, masked_frame)
+        cv2.rectangle(frame, (x, y+100), (x+400 ,y+500), (0, 255, 0), 2)
+
+    for (x, y, w, h) in body:
+        cv2.rectangle(frame, (x, y+400), (x+w, y+h+500), (0, 255, 0), 3)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+                 break
 
     cv2.imshow('Video', frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
