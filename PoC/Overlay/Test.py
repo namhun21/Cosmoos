@@ -20,10 +20,10 @@ while True:
     mouth_rects = mouth_cascade.detectMultiScale(gray,1.3,5)
     if len(mouth_rects) > 0:
         (x,y,w,h) = mouth_rects[0]
-        h,w = int(0.6*h), int(1.2*w)
+        h,w = int(50), int(70)
         x = x - int(0.05*w)
         y = y - int(0.55*h)
-        frame_roi = frame[y:y+h,x:x+w]
+        frame_roi = frame[y:y+50,x:x+70]
         moustache_mask_small = cv2.resize(moustache_mask,(w,h),interpolation = cv2.INTER_AREA)
         gray_mask = cv2.cvtColor(moustache_mask_small, cv2.COLOR_BGR2GRAY)
         ret, mask = cv2.threshold(gray_mask, 50,255, cv2.THRESH_BINARY_INV)
