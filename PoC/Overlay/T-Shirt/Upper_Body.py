@@ -4,7 +4,7 @@ import numpy as np
 
 #cascPath = sys.argv[0]
 bodyCascade = cv2.CascadeClassifier('haarcascade_mcs_upperbody.xml')
-body_mask = cv2.imread('Cloth.png')
+body_mask = cv2.imread('T-Shirt.png')
 h_mask, w_mask = body_mask.shape[:2]
 
 if bodyCascade.empty():
@@ -21,7 +21,6 @@ while True:
     body = bodyCascade.detectMultiScale(
         gray,
         scaleFactor=1.5,
-        minNeighbors=5,
         minSize=(100,200),
         flags=cv2.CASCADE_SCALE_IMAGE
     )
@@ -29,9 +28,9 @@ while True:
 
     # Draw a rectangle around the faces
     for (x, y, w, h) in body:
-        x = x-75
-        frame_roi = frame[y+100:y+500,x:x+400]
-        body_mask_small = cv2.resize(body_mask,(400,400),interpolation = cv2.INTER_AREA)
+        #x = x-75
+        frame_roi = frame[y+150:y+450,x:x+300]
+        body_mask_small = cv2.resize(body_mask,(300,300),interpolation = cv2.INTER_AREA)
         gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)
         ret, mask = cv2.threshold(gray_mask, 50,255, cv2.THRESH_BINARY_INV)
         mask_inv = cv2.bitwise_not(mask)
@@ -39,11 +38,11 @@ while True:
         print(body.shape)
         masked_body = cv2.bitwise_and(body_mask_small,body_mask_small, mask = mask)
         masked_frame = cv2.bitwise_and(frame_roi, frame_roi, mask=mask_inv)
-        frame[y+100:y+500,x:x+400] = cv2.add(masked_body, masked_frame)
-        cv2.rectangle(frame, (x, y+100), (x+400 ,y+500), (0, 255, 0), 2)
+        frame[y+150:y+450,x:x+300] = cv2.add(masked_body, masked_frame)
+        cv2.rectangle(frame, (x, y+150), (x+300 ,y+450), (0, 255, 0), 2)
 
     for (x, y, w, h) in body:
-        cv2.rectangle(frame, (x, y+400), (x+w, y+h+500), (0, 255, 0), 3)
+        #cv2.rectangle(frame, (x, y+400), (x+w, y+h+500), (0, 255, 0), 3)
         if cv2.waitKey(1) & 0xFF == ord('q'):
                  break
 
