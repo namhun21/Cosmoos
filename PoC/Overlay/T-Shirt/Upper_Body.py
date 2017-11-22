@@ -30,7 +30,7 @@ while True:
     # Draw a rectangle around the faces
     for (x, y, w, h) in body:
         x = x-75
-        frame_roi = frame[y+100:y+500,x:x+250]
+        frame_roi = frame[y+100:y+500,x:x+400]
         body_mask_small = cv2.resize(body_mask,(400,400),interpolation = cv2.INTER_AREA)
         gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)
         ret, mask = cv2.threshold(gray_mask, 50,255, cv2.THRESH_BINARY_INV)
@@ -39,7 +39,7 @@ while True:
         print(body.shape)
         masked_body = cv2.bitwise_and(body_mask_small,body_mask_small, mask = mask)
         masked_frame = cv2.bitwise_and(frame_roi, frame_roi, mask=mask_inv)
-        frame[y+100:y+500,x:x+250] = cv2.add(masked_body, masked_frame)
+        frame[y+100:y+500,x:x+400] = cv2.add(masked_body, masked_frame)
         cv2.rectangle(frame, (x, y+100), (x+400 ,y+500), (0, 255, 0), 2)
 
     for (x, y, w, h) in body:
