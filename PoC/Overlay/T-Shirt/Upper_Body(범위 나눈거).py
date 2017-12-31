@@ -9,7 +9,7 @@ os.system('sudo modprobe bcm2835-v4l2')
 
 #cascPath = sys.argv[0]
 bodyCascade = cv2.CascadeClassifier('haarcascade_mcs_upperbody.xml') #학습데이터 읽어오기
-body_mask = cv2.imread('T-Shirt.png')#이미지 읽어오기
+body_mask = cv2.imread('hoodT1.png')#이미지 읽어오기
 h_mask, w_mask = body_mask.shape[:2] 
 
 if bodyCascade.empty(): 
@@ -33,11 +33,13 @@ while True:
 
     # Draw a rectangle around the faces
     for (x, y, w, h) in body:
-        #x = x-75
+        x = x-40        
         frame_roi = frame[y+150:y+450,x:x+300]
         body_mask_small = cv2.resize(body_mask,(300,300),interpolation = cv2.INTER_AREA)
         gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)
-        ret, mask = cv2.threshold(gray_mask, 50,255, cv2.THRESH_BINARY_INV)
+        # ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY_INV) # whitout white
+        ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY) # only white 
+
         mask_inv = cv2.bitwise_not(mask)
         print(body_mask.shape)
         print(body.shape)
@@ -48,7 +50,7 @@ while True:
         else:
             masked_body = cv2.bitwise_and(body_mask_small,body_mask_small, mask = mask)
         
-            masked_frame = cv2.bitwise_and(frame_roi, frame_roi, mask=mask_inv)
+            masked_frame = cv2.bitwise_and(frame_roi, frame_roi, mask = mask_inv)
         
             frame[y+150:y+450,x:x+300] = cv2.add(masked_body, masked_frame)
         

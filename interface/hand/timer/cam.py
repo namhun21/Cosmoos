@@ -18,16 +18,16 @@ while True:
             if((int)((2*x+w)/2)> 450 & (int)((2*x+w)/2) < 600 & (int)((2*y+h)/2) > 50 & (int)((2*y+h)/2) < 200):
                 count = count + 1
                 print (count)
-                if(count>20):
-                    cv2.rectangle(frame, (0,0), (100,100),(0,0,255),3)
-                    count = 0
+                                 
                     
                     
         cv2.imshow('image', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
-                 break
+            break
+    if(count>20):
+        break
+
+    
 
 cap.release()
 cv2.destroyAllWindows()    
-
-
