@@ -63,7 +63,12 @@ def Intro(i):
             frame_roi = frame[y+150:y+450,x:x+300]
             body_mask_small = cv2.resize(body_mask,(300,300),interpolation = cv2.INTER_AREA)
             gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)
-            ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY_INV)
+            if(i==0):
+                ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY_INV)
+            elif(i==1):
+                ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY)
+            elif(i==2):
+                ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY_INV)
             mask_inv = cv2.bitwise_not(mask)
             print(body_mask.shape)
             print(body.shape)
