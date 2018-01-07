@@ -12,10 +12,14 @@ count1 = 0
 count2 = 0
 scaling_factor = 1.5 #윈도우 크기설정
 num = 0
+i=0
+
+    
+    
+
 
 while True:
-    if num == 0 :
-        
+    if num == 0 :                    #초기화면 옷 선택 화면
         while True:
             ret, frame1 = cap.read()
             #frame1 = cv2.resize(frame1,None,fx=scaling_factor,fy=scaling_factor,interpolation = cv2.INTER_AREA)
@@ -77,7 +81,7 @@ while True:
         while True:
             # Capture frame-by-frame
             ret, frame = cap.read()
-            #frame = cv2.resize(frame,None,fx=scaling_factor,fy=scaling_factor,interpolation = cv2.INTER_AREA)
+            frame = cv2.resize(frame,None,fx=scaling_factor,fy=scaling_factor,interpolation = cv2.INTER_AREA)
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
             body = bodyCascade.detectMultiScale(
@@ -159,7 +163,7 @@ while True:
         while True:
             # Capture frame-by-frame
             ret, frame = cap.read()
-            #frame = cv2.resize(frame,None,fx=scaling_factor,fy=scaling_factor,interpolation = cv2.INTER_AREA)
+            frame = cv2.resize(frame,None,fx=scaling_factor,fy=scaling_factor,interpolation = cv2.INTER_AREA)
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
             body = bodyCascade.detectMultiScale(
