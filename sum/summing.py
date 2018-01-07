@@ -26,17 +26,17 @@ while True:
 
 
             for (x, y, w, h) in faceList:
-                if(w>30 & h>10):            
+                if(w>30 and h>25):            
                     cv2.rectangle(frame1, (x, y), (x+w, y+h), (0, 255, 0), 3)
                     #print(x,y,w,h)
                     
                     
                 
-                    if(x > 80 & x < 100 & y > 55 & y < 75):
+                    if((int)((2*x+w)/2)> 50 and (int)((2*x+w)/2) < 200 and (int)((2*y+h)/2) > 50 and (int)((2*y+h)/2) < 150):
                         count1 = count1 + 1
                         
 
-                    elif(x> 470 & x < 490 & y > 55 & y < 75):
+                    elif((int)((2*x+w)/2)> 400 and (int)((2*x+w)/2) < 600 and (int)((2*y+h)/2) > 50 and (int)((2*y+h)/2) < 150):
                         count2 = count2 + 1
 
                     print(count1, count2)
@@ -44,7 +44,7 @@ while True:
                     
                     
             cv2.imshow('image', frame1)
-            if cv2.waitKey(1) & 0xFF == ord('q'):
+            if cv2.waitKey(1) and 0xFF == ord('q'):
                 break
             if(count1>20):
                 num = 1
@@ -77,7 +77,7 @@ while True:
         while True:
             # Capture frame-by-frame
             ret, frame = cap.read()
-            frame = cv2.resize(frame,None,fx=scaling_factor,fy=scaling_factor,interpolation = cv2.INTER_AREA)
+            #frame = cv2.resize(frame,None,fx=scaling_factor,fy=scaling_factor,interpolation = cv2.INTER_AREA)
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
             body = bodyCascade.detectMultiScale(
@@ -110,12 +110,12 @@ while True:
                     masked_frame = cv2.bitwise_and(frame_roi, frame_roi, mask = mask_inv)
         
                     frame[y+150:y+450,x:x+300] = cv2.add(masked_body, masked_frame)
-        
+                    
                     cv2.rectangle(frame, (x, y+150), (x+300 ,y+450), (0, 0, 255), 2)
 
             for (x, y, w, h) in body:
                 #cv2.rectangle(frame, (x, y+400), (x+w, y+h+500), (0, 255, 0), 3)
-                if cv2.waitKey(1) & 0xFF == ord('q'):
+                if cv2.waitKey(1) and 0xFF == ord('q'):
                      break
 
             
@@ -124,16 +124,16 @@ while True:
             cv2.rectangle(frame, (100, 150), (200, 250), (255, 0, 0), 3)
 
             for (x, y, w, h) in faceList:
-                if(w>30 & h>10):            
+                if(w>30 and h>25):            
                     cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 3)
-                    if((int)((2*x+w)/2)> 100 & (int)((2*x+w)/2) < 200 & (int)((2*y+h)/2) > 150 & (int)((2*y+h)/2) < 250):
+                    if((int)((2*x+w)/2)> 100 and (int)((2*x+w)/2) < 200 and (int)((2*y+h)/2) > 150 and (int)((2*y+h)/2) < 250):
                         count = count + 1
                         print (count)
                                  
                     
                     
             cv2.imshow('Video1', frame)
-            if cv2.waitKey(1) & 0xFF == ord('q'):
+            if cv2.waitKey(1) and 0xFF == ord('q'):
                 break
             
             if(count>20):
@@ -159,7 +159,7 @@ while True:
         while True:
             # Capture frame-by-frame
             ret, frame = cap.read()
-            frame = cv2.resize(frame,None,fx=scaling_factor,fy=scaling_factor,interpolation = cv2.INTER_AREA)
+            #frame = cv2.resize(frame,None,fx=scaling_factor,fy=scaling_factor,interpolation = cv2.INTER_AREA)
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
             body = bodyCascade.detectMultiScale(
@@ -197,7 +197,7 @@ while True:
 
             for (x, y, w, h) in body:
                 #cv2.rectangle(frame, (x, y+400), (x+w, y+h+500), (0, 255, 0), 3)
-                if cv2.waitKey(1) & 0xFF == ord('q'):
+                if cv2.waitKey(1) and 0xFF == ord('q'):
                      break
 
             
@@ -206,16 +206,16 @@ while True:
             cv2.rectangle(frame, (100, 150), (200, 250), (255, 0, 0), 3)
 
             for (x, y, w, h) in faceList:
-                if(w>30 & h>10):            
+                if(w>30 and h>25):            
                     cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 3)
-                    if((int)((2*x+w)/2)> 100 & (int)((2*x+w)/2) < 200 & (int)((2*y+h)/2) > 150 & (int)((2*y+h)/2) < 250):
+                    if((int)((2*x+w)/2)> 100 and (int)((2*x+w)/2) < 200 and (int)((2*y+h)/2) > 150 and (int)((2*y+h)/2) < 250):
                         count = count + 1
                         print (count)
                                  
                     
                     
             cv2.imshow('Video2', frame)
-            if cv2.waitKey(1) & 0xFF == ord('q'):
+            if cv2.waitKey(1) and 0xFF == ord('q'):
                 break
             
             if(count>20):
