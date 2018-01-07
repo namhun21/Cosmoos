@@ -15,7 +15,7 @@ num = 0
 
 while True:
     if num == 0 :
-    
+        
         while True:
             ret, frame1 = cap.read()
             #frame1 = cv2.resize(frame1,None,fx=scaling_factor,fy=scaling_factor,interpolation = cv2.INTER_AREA)
