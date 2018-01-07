@@ -6,7 +6,7 @@ import os
 
 cap = cv2.VideoCapture(0)
 
-face_pattern = cv2.CascadeClassifier('fist.xml')    #학습데이터 읽어오기
+fist_pattern = cv2.CascadeClassifier('fist.xml')    #학습데이터 읽어오기
 scaling_factor = 1.5            #윈도우 크기설정
 num = 0                         #화면 전환에 필요한 변수
 count1 = 0                      #1번 옷을 선택할때 사용하는 변수
@@ -81,12 +81,14 @@ def overlay(i):                 #i 번째 옷 오버레이하는 정의 함수
 
             
 
-        faceList = face_pattern.detectMultiScale(gray, 1.5)
+        fistList = fist_pattern.detectMultiScale(gray, 1.5)
         cv2.rectangle(frame, (100, 150), (200, 250), (255, 0, 0), 3)
 
-        for (x, y, w, h) in faceList:       #주먹 인식해서 해당 네모에 있을때 초기화면으로 감 변수명 신경 안써도됨
-            if(w>30 and h>25):            
-                cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 3)
+        for (x, y, w, h) in fistList:       #주먹 인식해서 해당 네모에 있을때 초기화면으로 감 변수명 신경 안써도됨
+            if(w>30 and h>25):
+                if ((x>450 and y>50) and (x<600 and y<150)) or ((x>50 and y>50) and (x<200 and y<150)): # 주먹이 사각형 범위 안에 있을때만 검출
+                    cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 3)
+
                 if((int)((2*x+w)/2)> 100 and (int)((2*x+w)/2) < 200 and (int)((2*y+h)/2) > 150 and (int)((2*y+h)/2) < 250):
                     count = count + 1
                     print (count)
@@ -110,14 +112,15 @@ while True:
             ret, frame1 = cap.read()
             frame1 = cv2.resize(frame1,None,fx=scaling_factor,fy=scaling_factor,interpolation = cv2.INTER_AREA)
             gray1 = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
-            faceList = face_pattern.detectMultiScale(gray1, 1.5)
+            fistList = fist_pattern.detectMultiScale(gray1, 1.5)
             cv2.rectangle(frame1, (450, 50), (600, 150), (255, 0, 0), 3)
             cv2.rectangle(frame1, (50, 50), (200, 150), (255, 0, 0), 3)
+            
 
-
-            for (x, y, w, h) in faceList:
-                if(w>30 and h>25):            
-                    cv2.rectangle(frame1, (x, y), (x+w, y+h), (0, 255, 0), 3)
+            for (x, y, w, h) in fistList:
+                if(w>30 and h>25):
+                    if ((x>450 and y>50) and (x<600 and y<150)) or ((x>50 and y>50) and (x<200 and y<150)): # 주먹이 사각형 범위 안에 있을때만 검출
+                        cv2.rectangle(frame1, (x, y), (x+w, y+h), (0, 255, 0), 3)
                     #print(x,y,w,h)
                     
                     
