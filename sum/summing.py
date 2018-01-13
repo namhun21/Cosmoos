@@ -27,17 +27,17 @@ def overlay(i):                 #i 번째 옷 오버레이하는 정의 함수
     #cascPath = sys.argv[0]
     bodyCascade = cv2.CascadeClassifier('haarcascade_mcs_upperbody.xml')    #학습데이터 읽어오기
     body_mask = cv2.imread(T_Shirt[i-1])                                    #T_Shirt배열 i 번째 이미지 읽어오기
-    h_mask, w_mask = body_mask.shape[:2] 
+    h_mask, w_mask = body_mask.shape[:2] #이미지 영역
 
-    if bodyCascade.empty(): 
+    if bodyCascade.empty(): #학습데이터 없을시 에러메세지
         raise IOError('Unable to load the mouth cascade classifier xml files')
 
     #cap = cv2.VideoCapture(0) #내장 카메라 
     while True:
         # Capture frame-by-frame
-        ret, frame = cap.read()
+        ret, frame = cap.read() # 비디오 설정
         frame = cv2.resize(frame,None,fx=scaling_factor,fy=scaling_factor,interpolation = cv2.INTER_AREA)
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) # BGR-> Gray
 
         body = bodyCascade.detectMultiScale(
             gray,
@@ -51,8 +51,8 @@ def overlay(i):                 #i 번째 옷 오버레이하는 정의 함수
         for (x, y, w, h) in body:
             x = x-40        
             frame_roi = frame[y+150:y+450,x:x+300]
-            body_mask_small = cv2.resize(body_mask,(300,300),interpolation = cv2.INTER_AREA)
-            gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)
+            body_mask_small = cv2.resize(body_mask,(300,300),interpolation = cv2.INTER_AREA) # 옷이미지 키우기
+            gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)#키운 이미지에 대한 mask (BGR->Gray)
             if(i==2):
                 ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY_INV) # 흰옷이 아닌경우
             elif(i==1):
@@ -66,11 +66,11 @@ def overlay(i):                 #i 번째 옷 오버레이하는 정의 함수
             if(x<50 or x>660 or y>270):     #영역 벗어나는거 제외
                 continue
             else:
-                masked_body = cv2.bitwise_and(body_mask_small,body_mask_small, mask = mask)
+                masked_body = cv2.bitwise_and(body_mask_small,body_mask_small, mask = mask) # 오버레이되는 부분만 남게된다.
         
-                masked_frame = cv2.bitwise_and(frame_roi, frame_roi, mask = mask_inv)
+                masked_frame = cv2.bitwise_and(frame_roi, frame_roi, mask = mask_inv) #배경만 남게된다
         
-                frame[y+150:y+450,x:x+300] = cv2.add(masked_body, masked_frame)
+                frame[y+150:y+450,x:x+300] = cv2.add(masked_body, masked_frame) # 화면에 이미지 오버레이
                     
                 cv2.rectangle(frame, (x, y+150), (x+300 ,y+450), (0, 0, 255), 2)
 
