@@ -12,7 +12,7 @@ fist_pattern = cv2.CascadeClassifier('fist.xml')
 T_Shirt1 = 'T-Shirt.png'
 T_Shirt2 = 'T-Shirt2.png'
 T_Shirt3 = 'T-Shirt3.png'
-T_Shirt = [T_Shirt1,T_Shirt2,T_Shirt3]
+T_Shirt = [T_Shirt1, T_Shirt2, T_Shirt3]
 number = 0 # T-Shirt 배열 인덱스
 
 def Intro(i):
@@ -45,16 +45,22 @@ def Intro(i):
             minSize=(30,30),
             flags=cv2.CASCADE_SCALE_IMAGE
             )
-        cv2.rectangle(frame, (450, 50), (600, 200), (255, 0, 0), 3)
+        cv2.rectangle(frame, (450, 50), (600, 150), (255, 0, 0), 3)
+        cv2.rectangle(frame, (50, 50), (200, 150), (255, 0, 0), 3)
 
         for (x, y, w, h) in fistList:           
             cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 3)
-            if((int)((2*x+w)/2)> 450 & (int)((2*x+w)/2) < 600 & (int)((2*y+h)/2) > 50 & (int)((2*y+h)/2) < 200):
+            if ((int)((2 * x + w) / 2) > 50 and (int)((2 * x + w) / 2) < 200 and (int)((2 * y + h) / 2) > 50 and (int)((2 * y + h) / 2) < 150):
                 count = count + 1
                 print (count)
                 if(count>20):
-                    #cv2.rectangle(frame, (0,0), (100,100),(0,0,255),3)
                     i = i+1
+                    count = 0
+            elif ((int)((2 * x + w) / 2) > 400 and (int)((2 * x + w) / 2) < 600 and (int)((2 * y + h) / 2) > 50 and (int)((2 * y + h) / 2) < 150):
+                count = count - 1
+                print (count)
+                if(count<-20):
+                    i = i-1
                     count = 0
                     
         # Draw a rectangle around the faces
@@ -63,11 +69,11 @@ def Intro(i):
             frame_roi = frame[y+150:y+450,x:x+300]
             body_mask_small = cv2.resize(body_mask,(300,300),interpolation = cv2.INTER_AREA)
             gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)
-            if(i==0):
+            if(i==0 or i== -3):
                 ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY_INV)
-            elif(i==1):
+            elif(i==1 or i== -2):
                 ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY)
-            elif(i==2):
+            elif(i==2 or i== -1):
                 ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY_INV)
             mask_inv = cv2.bitwise_not(mask)
             print(body_mask.shape)
