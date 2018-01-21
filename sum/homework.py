@@ -18,22 +18,20 @@ def overlay(i):                 #i 번째 옷 오버레이하는 정의 함수
     count = 0                   #오버레이 화면에서 빠져나올때 사용하는 변수
 
     T_Shirt=Read_TS()
-    #cascPath = sys.argv[0]
-    bodyCascade = cv2.CascadeClassifier('haarcascade_mcs_upperbody.xml')    #학습데이터 읽어오기
     body_mask = cv2.imread(T_Shirt[i-1])                                    #T_Shirt배열 i 번째 이미지 읽어오기
     h_mask, w_mask = body_mask.shape[:2] #이미지 영역
 
     if bodyCascade.empty(): #학습데이터 없을시 에러메세지
         raise IOError('Unable to load the mouth cascade classifier xml files')
 
-    #cap = cv2.VideoCapture(0) #내장 카메라 
     while True:
         # Capture frame-by-frame
         frame,body,gray=Capture_Frame()
-
+        cv2.imshow('origin',frame)
+        cv2.imshow('gray',gray)
         # Draw a rectangle around the faces
         Operation(body,frame,body_mask,i)
-          
+        
 
         fistList = fist_pattern.detectMultiScale(gray, 1.5)
         cv2.rectangle(frame, (100, 150), (200, 250), (255, 0, 0), 3)
@@ -69,11 +67,16 @@ def Operation(body,frame,body_mask,i):
         x = x-40        
         frame_roi = frame[y+150:y+450,x:x+300]
         body_mask_small = cv2.resize(body_mask,(300,300),interpolation = cv2.INTER_AREA) # 옷이미지 키우기
+        cv2.imshow('imag',body_mask_small)
         gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)#키운 이미지에 대한 mask (BGR->Gray)
+        cv2.imshow('gray_mask',gray_mask)
         if(i==2):
             ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY_INV) # 흰옷이 아닌경우
+            cv2.imshow('mask',mask)
+            
         elif(i==1):
-            ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY) # 흰옷일때 
+            ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY) # 흰옷일때
+            cv2.imshow('mask',mask)
 
         mask_inv = cv2.bitwise_not(mask)
 
@@ -81,9 +84,12 @@ def Operation(body,frame,body_mask,i):
             continue
         else:
             masked_body = cv2.bitwise_and(body_mask_small,body_mask_small, mask = mask) # 오버레이되는 부분만 남게된다.
+            
             masked_frame = cv2.bitwise_and(frame_roi, frame_roi, mask = mask_inv) #배경만 남게된다
+            cv2.imshow('m_f',masked_frame)
             frame[y+150:y+450,x:x+300] = cv2.add(masked_body, masked_frame) # 화면에 이미지 오버레이
             cv2.rectangle(frame, (x, y+150), (x+300 ,y+450), (0, 0, 255), 2)
+            
 
  
 def draw_Fist(x,y,w,h,frame,count):
@@ -141,6 +147,7 @@ while True:
             
             if cv2.waitKey(1) and 0xFF == ord('q'):
                 break
+            
             if(count1>20):          #1번 옷으로 이동함
                 num = 1
                 count1 = 0
@@ -157,10 +164,17 @@ while True:
     elif num == 1:      #1번 옷 오버레이 화면
         overlay(num)
         num = 0
+        if cv2.waitKey(1) and 0xFF == ord('q'):
+            break
 
 
     elif num == 2:      #2번 옷 오버레이 화면
         overlay(num)
         num = 0
+        if cv2.waitKey(1) and 0xFF == ord('q'):
+            break
 
+    if cv2.waitKey(1) and 0xFF == ord('q'):
+        break
+            
 cap.release()
