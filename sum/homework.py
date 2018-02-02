@@ -5,62 +5,18 @@ import time
 import os
 
 
-def Read_TS(): 
+def Read_TS():    #티셔츠 이미지 저장을 위한 함수
     T_Shirt1 = 'hoodT1.png'         #흰 티셔츠
     T_Shirt2 = 'T-Shirt.png'        #검은 티셔츠
     T_Shirt = [T_Shirt1, T_Shirt2]  #티셔츠 배열
     return T_Shirt
 
-
-def overlay(i):                 #i 번째 옷 오버레이하는 정의 함수
-    # clothes - 1 overlay 
-    os.system('sudo modprobe bcm2835-v4l2') 
-    count = 0                   #오버레이 화면에서 빠져나올때 사용하는 변수
-
-    T_Shirt=Read_TS()
-    body_mask = cv2.imread(T_Shirt[i-1])                                    #T_Shirt배열 i 번째 이미지 읽어오기
-    h_mask, w_mask = body_mask.shape[:2] #이미지 영역
-
-    if bodyCascade.empty(): #학습데이터 없을시 에러메세지
-        raise IOError('Unable to load the mouth cascade classifier xml files')
-
-    while True:
-        # Capture frame-by-frame
-        frame,body,gray=Capture_Frame()
-        cv2.imshow('origin',frame)
-        cv2.imshow('gray',gray)
-        # Draw a rectangle around the faces
-        Operation(body,frame,body_mask,i)
-        
-
-        fistList = fist_pattern.detectMultiScale(gray, 1.5)
-        cv2.rectangle(frame, (100, 150), (200, 250), (255, 0, 0), 3)
-
-        for (x, y, w, h) in fistList:       #주먹 인식해서 해당 네모에 있을때 초기화면으로 감 변수명 신경 안써도됨
-            draw_Fist(x,y,w,h,frame,count)
-                                 
-                                     
-        cv2.imshow('Video1', frame)
-        if cv2.waitKey(1) and 0xFF == ord('q'):
-            break
-            
-        if(count>20):
-            break
-    
-    cv2.destroyAllWindows()
-    
-def Capture_Frame():
-    ret, frame = cap.read() # 비디오 설정
+def Capture_Frame():  # 비디오 설정 
+    ret, frame = cap.read() 
     frame = cv2.resize(frame,None,fx=scaling_factor,fy=scaling_factor,interpolation = cv2.INTER_AREA)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) # BGR-> Gray
+    return frame, gray
 
-    body = bodyCascade.detectMultiScale(
-        gray,
-        scaleFactor=1.5,
-        minSize=(100,200),
-        flags=cv2.CASCADE_SCALE_IMAGE
-        )
-    return frame, body, gray
 
 def Operation(body,frame,body_mask,i):
     for (x, y, w, h) in body:
@@ -84,7 +40,7 @@ def Operation(body,frame,body_mask,i):
             continue
         else:
             masked_body = cv2.bitwise_and(body_mask_small,body_mask_small, mask = mask) # 오버레이되는 부분만 남게된다.
-            
+            cv2.imshow('m_b',masked_body)
             masked_frame = cv2.bitwise_and(frame_roi, frame_roi, mask = mask_inv) #배경만 남게된다
             cv2.imshow('m_f',masked_frame)
             frame[y+150:y+450,x:x+300] = cv2.add(masked_body, masked_frame) # 화면에 이미지 오버레이
@@ -99,22 +55,65 @@ def draw_Fist(x,y,w,h,frame,count):
 
         if((int)((2*x+w)/2)> 100 and (int)((2*x+w)/2) < 200 and (int)((2*y+h)/2) > 150 and (int)((2*y+h)/2) < 250):
             count = count + 1
-            
-def Show_Button():
-    ret, frame1 = cap.read()
-    frame1 = cv2.resize(frame1,None,fx=scaling_factor,fy=scaling_factor,interpolation = cv2.INTER_AREA)
-    gray1 = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
-    fistList = fist_pattern.detectMultiScale(gray1, 1.5)
-    cv2.rectangle(frame1, (450, 50), (600, 150), (255, 0, 0), 3)
-    cv2.rectangle(frame1, (50, 50), (200, 150), (255, 0, 0), 3)
-    return frame1,fistList
 
-def CountNum(x,y,w,h,frame1):
+            
+def overlay(i):       #i 번째 옷 오버레이하는 정의 함수
+    # clothes - 1 overlay 
+    os.system('sudo modprobe bcm2835-v4l2') 
+    count = 0                   #오버레이 화면에서 빠져나올때 사용하는 변수
+
+    T_Shirt=Read_TS()
+    body_mask = cv2.imread(T_Shirt[i-1])  #T_Shirt배열 i 번째 이미지 읽어오기
+    # h_mask, w_mask = body_mask.shape[:2] #이미지 영역
+
+    if bodyCascade.empty(): #학습데이터 없을시 에러메세지
+        raise IOError('Unable to load the mouth cascade classifier xml files')
+
+    while True:
+        # Capture frame-by-frame
+        frame,gray=Capture_Frame()
+        body = bodyCascade.detectMultiScale(
+            gray,
+            scaleFactor=1.5,
+            minSize=(100,200),
+            flags=cv2.CASCADE_SCALE_IMAGE
+        )
+        cv2.imshow('origin',frame)
+        cv2.imshow('gray',gray)
+        # Draw a rectangle around the faces
+        Operation(body,frame,body_mask,i)
+        
+
+        fistList = fist_pattern.detectMultiScale(gray, 1.5)
+        cv2.rectangle(frame, (100, 150), (200, 250), (255, 0, 0), 3)
+
+        for (x, y, w, h) in fistList:       #주먹 인식해서 해당 네모에 있을때 초기화면으로 감 변수명 신경 안써도됨
+            draw_Fist(x,y,w,h,frame,count)
+                                 
+                                     
+        cv2.imshow('Video1', frame)
+        if cv2.waitKey(1) and 0xFF == ord('q'):
+            break
+            
+        if(count>20):
+            break
+
+    cv2.destroyAllWindows()
+    
+def Show_Button():
+    frame,gray=Capture_Frame()
+    fistList = fist_pattern.detectMultiScale(gray, 1.5)
+    cv2.rectangle(frame, (450, 50), (600, 150), (255, 0, 0), 3)
+    cv2.rectangle(frame, (50, 50), (200, 150), (255, 0, 0), 3)
+    return frame,fistList
+
+
+def CountNum(x,y,w,h,frame):
     global count1
     global count2
     if(w>30 and h>25):
         if ((x>450 and y>50) and (x<600 and y<150)) or ((x>50 and y>50) and (x<200 and y<150)): # 주먹이 사각형 범위 안에 있을때만 검출
-            cv2.rectangle(frame1, (x, y), (x+w, y+h), (0, 255, 0), 3)
+            cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 3)
                    
                 
         if((int)((2*x+w)/2)> 50 and (int)((2*x+w)/2) < 200 and (int)((2*y+h)/2) > 50 and (int)((2*y+h)/2) < 150):
