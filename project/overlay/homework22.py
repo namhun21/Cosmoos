@@ -17,19 +17,37 @@ def Capture_Frame():  # 비디오 설정
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) # BGR-> Gray
     return frame, gray
 
+def masked_Operation(x,y,w,h,frame,body_mask,i):
+    x = x-40        
+    img_size = w + 50
+    y_offset = 220
+
+    frame_roi = frame[y+y_offset:y+y_offset+img_size, x:x+img_size]
+    body_mask_small = cv2.resize(body_mask,(img_size,img_size),interpolation = cv2.INTER_AREA) # 옷이미지 키우기
+    gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)#키운 이미지에 대한 mask (BGR->Gray)
+    if(i==2):
+        ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY_INV) # 흰옷이 아닌경우
+            
+    elif(i==1):
+        ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY) # 흰옷일때
+
+    mask_inv = cv2.bitwise_not(mask)
+         
+
+    if(x<100 or x>550 or y>200):     #영역 벗어나는거 제외
+        pass
+    else:
+        masked_body = cv2.bitwise_and(body_mask_small,body_mask_small, mask = mask) # 오버레이되는 부분만 남게된다.
+        masked_frame = cv2.bitwise_and(frame_roi, frame_roi, mask = mask_inv) #배경만 남게된다
+        frame[y+y_offset:y+y_offset+img_size, x:x+img_size] = cv2.add(masked_body, masked_frame) # 화면에 이미지 오버레이
+    
 prev_x = 0
 prev_y = 0
 prev_w = 0
 prev_h = 0
-masked_body = 0
-masked_frame = 0
 
 def Operation(body,frame,body_mask,i):
     count = 0
-    y_offset = 220
-    global masked_body
-    global masked_frame
-
     global prev_x
     global prev_y
     global prev_w
@@ -56,42 +74,13 @@ def Operation(body,frame,body_mask,i):
         prev_y = y
         prev_w = w
         prev_h = h
+
+        masked_Operation(x,y,w,h,frame,body_mask,i)
         
-        x = x-40        
-        img_size = w + 50
-        frame_roi = frame[y+y_offset:y+y_offset+img_size, x:x+img_size]
-
-        
-
-        #cv2.rectangle(frame_roi,(x,y+y_offset),(x+img_size,y+y_offset+img_size),(0,0,255),2)
-        #cv2.rectangle(frame,(x,y),(x+w,y+h),(0,0,255),2)
-
-        
-        body_mask_small = cv2.resize(body_mask,(img_size,img_size),interpolation = cv2.INTER_CUBIC) # 옷이미지 키우기
-        gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)#키운 이미지에 대한 mask (BGR->Gray)
-       
-        if(i==2):
-           ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY_INV) # 흰옷이 아닌경우
-            
-        elif(i==1):
-           ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY) # 흰옷일때
-
-        mask_inv = cv2.bitwise_not(mask)
-         
-
-        if(x<150 or x>500 or y>280):     #영역 벗어나는거 제외
-            continue
-        else:
-            masked_body = cv2.bitwise_and(body_mask_small,body_mask_small, mask = mask) # 오버레이되는 부분만 남게된다.
-            masked_frame = cv2.bitwise_and(frame_roi, frame_roi, mask = mask_inv) #배경만 남게된다
-            frame[y+y_offset:y+y_offset+img_size, x:x+img_size] = cv2.add(masked_body, masked_frame) # 화면에 이미지 오버레이
-            #draw_Clothes(frame,frame_roi,body_mask_small,mask,mask_inv,y+y_offset,y+y_offset+img_size,x,x+img_size)
-            #cv2.rectangle(frame, (x, y+150), (x+300 ,y+450), (0, 0, 255), 2)
-
             
     if (count == 0):
         if (prev_x !=0 and prev_y !=0 and prev_w != 0 and prev_h !=0):
-            frame[prev_y+y_offset:prev_y+y_offset+prev_w+50, prev_x:prev_x+prev_w+50]=cv2.add(masked_body, masked_frame)
+            masked_Operation(prev_x,prev_y,prev_w,prev_h,frame,body_mask,i)
             
         #cv2.rectangle(frame,(prev_x,prev_y),(prev_x+prev_w,prev_y+prev_h),(0,255,255),2)
         #draw_shirt(x,y,w,h)
