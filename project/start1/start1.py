@@ -3,6 +3,7 @@ import sys
 import numpy as np
 import time
 import os
+import start2
 
 cap = cv2.VideoCapture(0)
 Icon = ['T-Shirt.jpg','Y-Shirt.png','Hood.jpg']
@@ -13,11 +14,11 @@ bottomLeftCornerOfText3 = (60,70)
 fontScale              = 0.5
 fontColor              = (255,255,255)
 lineType               = 2
+k = 0
 
 
 while True:
     ret, frame = cap.read()
-
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     icon_mask1 = cv2.imread(Icon[0]) # T-shirt 아이콘
     icon_mask2 = cv2.imread(Icon[1]) # Y-shirt 아이콘
@@ -60,28 +61,42 @@ while True:
 
 
     cv2.putText(frame,'T-shirt',
-        bottomLeftCornerOfText1, 
-        font, 
+        bottomLeftCornerOfText1,
+        font,
         fontScale,
         fontColor,
         lineType)
-    cv2.putText(frame,'Y-shirt', 
-        bottomLeftCornerOfText2, 
-        font, 
+    cv2.putText(frame,'Y-shirt',
+        bottomLeftCornerOfText2,
+        font,
         fontScale,
         fontColor,
         lineType)
-    cv2.putText(frame,'Hood-T', 
-        bottomLeftCornerOfText3, 
-        font, 
+    cv2.putText(frame,'Hood-T',
+        bottomLeftCornerOfText3,
+        font,
         fontScale,
         fontColor,
         lineType)
 
-    
+
     cv2.imshow('vedio', frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-    
+    elif cv2.waitKey(1) & 0xFF == ord('h'):
+        k = start2.pou('Hood-T')
+        if k == 0:
+            break
+    elif cv2.waitKey(1) & 0xFF == ord('y'):
+        k = start2.pou('Y-shirt')
+        if k == 0:
+            break
+    elif cv2.waitKey(1) & 0xFF == ord('t'):
+        k = start2.pou('T-shirt')
+        if k == 0:
+            break
+
 cv2.destroyAllWindows()
 cap.release()
+
+
