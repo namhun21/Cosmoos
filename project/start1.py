@@ -6,6 +6,7 @@ import os
 import start2
 
 def ping():
+
     cap = cv2.VideoCapture(0)
     Icon = ['T-Shirt.jpg','Y-Shirt.png','Hood.jpg']
     font                   = cv2.FONT_HERSHEY_SIMPLEX
@@ -15,7 +16,6 @@ def ping():
     fontScale              = 0.5
     fontColor              = (255,255,255)
     lineType               = 2
-    k = 0
 
 
     while True:
@@ -85,23 +85,14 @@ def ping():
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         elif cv2.waitKey(1) & 0xFF == ord('h'):
-            k = start2.pou('Hood-T')
-            if k == 0:
-                break
-            elif k==1:
-                ping()
+            start2.pou('Hood-T')
+
         elif cv2.waitKey(1) & 0xFF == ord('y'):
-            k = start2.pou('Y-shirt')
-            if k == 0:
-                break
-            elif k==1:
-                ping()
+            start2.pou('Y-shirt')
+
         elif cv2.waitKey(1) & 0xFF == ord('t'):
-            k = start2.pou('T-shirt')
-            if k == 0:
-                break
-            elif k==1:
-                ping()
+            start2.pou('T-shirt')
+
 
     cv2.destroyAllWindows()
     cap.release()

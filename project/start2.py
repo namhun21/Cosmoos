@@ -4,6 +4,7 @@ import numpy as np
 import time
 import os
 import Reco
+import start1
 
 def pou(Title):
 
@@ -56,26 +57,16 @@ def pou(Title):
 
         cv2.imshow('vedio', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
-            k = 0
             break
-        elif cv2.waitKey(1) & 0xFF == ord('b'):
-            k = 1
-            break
+        elif cv2.waitKey(1) & 0xFF == ord('x'):
+            start1.ping()
         elif cv2.waitKey(1) & 0xFF == ord('r'):
-            k = Reco.recommand()
-            if k == 0:
-                break
-            elif k == 1:
-                pou(a)
+            Reco.recommand(a)
         elif cv2.waitKey(1) & 0xFF == ord('l'):
-            k = Reco.recommand()
-            if k == 0:
-                break
-            elif k == 1:
-                pou(a)
-    #cv2.destroyAllWindows()
-    #cap.release()
-    return k
+            Reco.recommand(a)
+
+
+
 
 
 

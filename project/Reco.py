@@ -4,9 +4,10 @@ import sys
 import numpy as np
 import time
 import os
+import start2
 
 
-def recommand():
+def recommand(a):
 
     cap = cv2.VideoCapture(0)
     font                   = cv2.FONT_HERSHEY_SIMPLEX
@@ -56,20 +57,17 @@ def recommand():
 
         cv2.imshow('vedio', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
-            k = 0
             break
         elif cv2.waitKey(1) & 0xFF == ord('b'):
-            k = 1
-            break
+            start2.pou(a)
         elif cv2.waitKey(1) & 0xFF == ord('c'):
             k = 2
             break
         elif cv2.waitKey(1) & 0xFF == ord('n'):
             k = 3
             break
-    #cv2.destroyAllWindows()
-    #cap.release()
-    return k
+
+
 
 
 
