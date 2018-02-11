@@ -5,7 +5,7 @@ import numpy as np
 import time
 import os
 import start2
-
+import overlay
 
 def recommand(a):
 
@@ -55,17 +55,17 @@ def recommand(a):
             lineType)
 
 
-        cv2.imshow('vedio', frame)
+        cv2.imshow('video', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         elif cv2.waitKey(1) & 0xFF == ord('b'):
             start2.pou(a)
-        elif cv2.waitKey(1) & 0xFF == ord('c'):
-            k = 2
-            break
+        elif cv2.waitKey(1) & 0xFF == ord('w'):
+            overlay.running()
         elif cv2.waitKey(1) & 0xFF == ord('n'):
             k = 3
             break
+
 
 
 

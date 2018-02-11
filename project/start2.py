@@ -55,10 +55,10 @@ def pou(Title):
             lineType)
 
 
-        cv2.imshow('vedio', frame)
+        cv2.imshow('video', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-        elif cv2.waitKey(1) & 0xFF == ord('x'):
+        elif cv2.waitKey(1) & 0xFF == ord('b'):
             start1.ping()
         elif cv2.waitKey(1) & 0xFF == ord('r'):
             Reco.recommand(a)

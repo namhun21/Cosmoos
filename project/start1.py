@@ -81,7 +81,7 @@ def ping():
             lineType)
 
 
-        cv2.imshow('vedio', frame)
+        cv2.imshow('video', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         elif cv2.waitKey(1) & 0xFF == ord('h'):
