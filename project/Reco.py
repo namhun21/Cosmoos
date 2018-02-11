@@ -61,7 +61,7 @@ def recommand(a):
         elif cv2.waitKey(1) & 0xFF == ord('b'):
             start2.pou(a)
         elif cv2.waitKey(1) & 0xFF == ord('w'):
-            overlay.running()
+            overlay.Full_Overlay()
         elif cv2.waitKey(1) & 0xFF == ord('n'):
             k = 3
             break

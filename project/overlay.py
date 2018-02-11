@@ -34,9 +34,7 @@ def masked_Operation(x,y,w,h,frame,body_mask):
     mask_inv = cv2.bitwise_not(mask)
          
 
-    if(x<100 or x>550 or y>200):     #영역 벗어나는거 제외
-        pass
-    else:
+    if  (x>100 and x<550 ):     #영역 벗어나는거 제외
         masked_body = cv2.bitwise_and(body_mask_small,body_mask_small, mask = mask) # 오버레이되는 부분만 남게된다.
         masked_frame = cv2.bitwise_and(frame_roi, frame_roi, mask = mask_inv) #배경만 남게된다
         frame[y+y_offset:y+y_offset+img_size, x:x+img_size] = cv2.add(masked_body, masked_frame) # 화면에 이미지 오버레이
@@ -112,39 +110,13 @@ def Full_Overlay():       #i 번째 옷 오버레이하는 정의 함수
     
 
                                      
-        cv2.imshow('Video1', frame)
+        cv2.imshow('video', frame)
         if cv2.waitKey(1) and 0xFF == ord('q'):
             break
 
     cv2.destroyAllWindows()
-    
-
-def running():
-#실제 실행 화면 코드
-    global num
-    global count1
-    global count2
-    while True:
-        if num == 0:      #1번 옷 오버레이 화면
-            Full_Overlay()
-            num = 0
-            if cv2.waitKey(1) and 0xFF == ord('q'):
-                break
-
-        elif num == 1:      #2번 옷 오버레이 화면
-            Full_Overlay()
-            num = 0
-            if cv2.waitKey(1) and 0xFF == ord('q'):
-                break
-
-        if cv2.waitKey(1) and 0xFF == ord('q'):
-            break
-            
     cap.release()
 
-num = 0                         #화면 전환에 필요한 변수
-count1 = 0                      #1번 옷을 선택할때 사용하는 변수
-count2 = 0                      #2번 옷을 선택할때 사용하는 변수
 
 cap = cv2.VideoCapture(0)
 fist_pattern = cv2.CascadeClassifier('fist.xml')    #학습데이터 읽어오기
