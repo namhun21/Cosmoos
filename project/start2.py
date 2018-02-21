@@ -26,8 +26,7 @@ def pou(Title):
         #cv2.rectangle(frame, (50, 50), (170, 80), (255, 0, 0), 3)
         #cv2.circle(frame, (450,50), 40, (0,0,255), -1)
 
-        #변수 a 에 start1에서 선택한 항목의 값 저장
-        a = Title
+        a = Title   #변수 a 에 start1에서 가져온 항목의 값 저장
         cv2.putText(frame,a,
             bottomLeftCornerOfText_Title,
             font,
@@ -56,13 +55,13 @@ def pou(Title):
 
 
         cv2.imshow('video', frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        if cv2.waitKey(1) & 0xFF == ord('q'):      # q 입력시 종료
             break
-        elif cv2.waitKey(1) & 0xFF == ord('b'):
+        elif cv2.waitKey(1) & 0xFF == ord('b'):    # b 입력시 start1페이지로 이동
             start1.ping()
-        elif cv2.waitKey(1) & 0xFF == ord('r'):
+        elif cv2.waitKey(1) & 0xFF == ord('r'):    # r 입력시 reco 페이지로 이동 , 추천화면 구현시 거기로 이동
             Reco.recommand(a)
-        elif cv2.waitKey(1) & 0xFF == ord('l'):
+        elif cv2.waitKey(1) & 0xFF == ord('l'):    # l 입력시 reco 페이지로 이동 , 목록화면 구현시 거기로 이동 
             Reco.recommand(a)
 
 

@@ -56,13 +56,13 @@ def recommand(a):
 
 
         cv2.imshow('video', frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        if cv2.waitKey(1) & 0xFF == ord('q'):    # q 입력시 종료
             break
-        elif cv2.waitKey(1) & 0xFF == ord('b'):
+        elif cv2.waitKey(1) & 0xFF == ord('b'):  # b 입력시 start2 페이지로 이동
             start2.pou(a)
-        elif cv2.waitKey(1) & 0xFF == ord('w'):
+        elif cv2.waitKey(1) & 0xFF == ord('w'):  # w 입력시 overlay 화면으로 이동
             overlay.Full_Overlay()
-        elif cv2.waitKey(1) & 0xFF == ord('n'):
+        elif cv2.waitKey(1) & 0xFF == ord('n'):  # n 입력시 종료 추후 다른 추천 화면으로 넘어가도록 구현
             k = 3
             break
 

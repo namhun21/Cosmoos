@@ -39,21 +39,21 @@ def ping():
         icon_mask_small_3 = cv2.resize(icon_mask3, (50, 50), interpolation=cv2.INTER_AREA)
 
         gray_mask_1 = cv2.cvtColor(icon_mask_small_1, cv2.COLOR_BGR2GRAY)  # 키운 이미지에 대한 mask (BGR->Gray)
-        ret, mask1 = cv2.threshold(gray_mask_1, 127, 255, cv2.THRESH_BINARY_INV)  # T-Shirt
+        ret, mask1 = cv2.threshold(gray_mask_1, 127, 255, cv2.THRESH_BINARY_INV)  #T-shirt
         mask_inv1 = cv2.bitwise_not(mask1)
         masked_icon1 = cv2.bitwise_and(icon_mask_small_1,icon_mask_small_1,mask=mask1)
         masked_frame1 = cv2.bitwise_and(frame_roi_1,frame_roi_1,mask=mask_inv1)
         frame[10:60,460:510] = cv2.add(masked_icon1, masked_frame1)
 
         gray_mask_2 = cv2.cvtColor(icon_mask_small_2, cv2.COLOR_BGR2GRAY)  # 키운 이미지에 대한 mask (BGR->Gray)
-        ret, mask2 = cv2.threshold(gray_mask_2, 140, 255, cv2.THRESH_BINARY)  # 흰옷일때
+        ret, mask2 = cv2.threshold(gray_mask_2, 140, 255, cv2.THRESH_BINARY)  #Y-shirt
         mask_inv2 = cv2.bitwise_not(mask2)
         masked_icon2 = cv2.bitwise_and(icon_mask_small_2, icon_mask_small_2, mask=mask2)
         masked_frame2 = cv2.bitwise_and(frame_roi_2, frame_roi_2, mask=mask_inv2)
         frame[10:60, 260:310] = cv2.add(masked_icon2, masked_frame2)
 
         gray_mask_3 = cv2.cvtColor(icon_mask_small_3, cv2.COLOR_BGR2GRAY)  # 키운 이미지에 대한 mask (BGR->Gray)
-        ret, mask3 = cv2.threshold(gray_mask_3, 127, 255, cv2.THRESH_BINARY_INV)  # 흰옷일때
+        ret, mask3 = cv2.threshold(gray_mask_3, 127, 255, cv2.THRESH_BINARY_INV)  # Hood
         mask_inv3 = cv2.bitwise_not(mask3)
         masked_icon3 = cv2.bitwise_and(icon_mask_small_3, icon_mask_small_3, mask=mask3)
         masked_frame3 = cv2.bitwise_and(frame_roi_3, frame_roi_3, mask=mask_inv3)
@@ -82,15 +82,15 @@ def ping():
 
 
         cv2.imshow('video', frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        if cv2.waitKey(1) & 0xFF == ord('q'):      #q 입력시 종료
             break
-        elif cv2.waitKey(1) & 0xFF == ord('h'):
+        elif cv2.waitKey(1) & 0xFF == ord('h'):    # h 입력시 start2에 pou('Hood-T') 실행 
             start2.pou('Hood-T')
 
-        elif cv2.waitKey(1) & 0xFF == ord('y'):
+        elif cv2.waitKey(1) & 0xFF == ord('y'):    # y 입력시 start2에 pou('Y-shirt') 실행
             start2.pou('Y-shirt')
 
-        elif cv2.waitKey(1) & 0xFF == ord('t'):
+        elif cv2.waitKey(1) & 0xFF == ord('t'):    # t 입력시 start2에 pou('T-shirt') 실행
             start2.pou('T-shirt')
 
 
