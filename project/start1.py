@@ -84,7 +84,7 @@ def ping():
         cv2.imshow('video', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):      #q 입력시 종료
             break
-        elif cv2.waitKey(1) & 0xFF == ord('h'):    # h 입력시 start2에 pou('Hood-T') 실행 
+        elif cv2.waitKey(1) & 0xFF == ord('h'):    # h 입력시 start2에 pou('Hood-T') 실행
             start2.pou('Hood-T')
 
         elif cv2.waitKey(1) & 0xFF == ord('y'):    # y 입력시 start2에 pou('Y-shirt') 실행
@@ -97,4 +97,4 @@ def ping():
     cv2.destroyAllWindows()
     cap.release()
 
-
+ping()

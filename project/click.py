@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 
-def clicka(a,b,c,d):
+def clicka():
     cap = cv2.VideoCapture(0)
 
 
@@ -46,21 +46,11 @@ def clicka(a,b,c,d):
                        num = num+1
 
         print(num)
-        if(num > 15000 * 0.5 and count == 0 and time > 50 and touch < 30):
-            count = 1
-        if(count == 1 and num < 15000 * 0.3 and touch < 30):
-            count = 2
-        if(count == 2 and num > 15000 * 0.5 and touch < 30):
-            count = 3
-        if(count ==3 and num < 15000* 0.3 and touch < 30):
+        if(num > 15000 * 0.5 and count == 0 and time > 50):
             count = 0
-            return 1
-            break
-
-        touch = touch + 1
-        if(touch == 31):
             touch = 0
-            count = 0
+            print("success")
+
         num = 0
         print(count)
     ##    erosion = cv2.erode(roi,kernel,iterations= 1)
@@ -74,3 +64,6 @@ def clicka(a,b,c,d):
             break
 
     cv2.destroyAllWindows()
+
+clicka(0,0,150,100)
+
