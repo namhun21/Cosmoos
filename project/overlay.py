@@ -4,6 +4,14 @@ import numpy as np
 import time
 import os
 
+cap = cv2.VideoCapture(0)
+bodyCascade = cv2.CascadeClassifier('haarcascade_mcs_upperbody.xml')    #학습데이터 읽어오기
+scaling_factor = 1.5            #윈도우 크기설정
+
+prev_x = 0
+prev_y = 0
+prev_w = 0
+prev_h = 0
 
 def Read_TS():    #티셔츠 이미지 저장을 위한 함수
     T_Shirt1 = 'hoodT1.png'         #흰 티셔츠
@@ -17,7 +25,7 @@ def Capture_Frame():  # 비디오 설정
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) # BGR-> Gray
     return frame, gray
 
-def masked_Operation(x,y,w,h,frame,body_mask):
+def masked_Operation(x,y,w,h,frame,body_mask,i):
     x = x-40        
     img_size = w + 50
     y_offset = 220
@@ -25,24 +33,20 @@ def masked_Operation(x,y,w,h,frame,body_mask):
     frame_roi = frame[y+y_offset:y+y_offset+img_size, x:x+img_size]
     body_mask_small = cv2.resize(body_mask,(img_size,img_size),interpolation = cv2.INTER_AREA) # 옷이미지 키우기
     gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)#키운 이미지에 대한 mask (BGR->Gray)
-    #if(i==2):
-     #   ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY_INV) # 흰옷이 아닌경우
+    if(i==2):
+        ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY_INV) # 흰옷이 아닌경우
             
-    #elif(i==1):
-    ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY) # 흰옷일때
+    elif(i==1):
+        ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY) # 흰옷일때
 
     mask_inv = cv2.bitwise_not(mask)
          
 
-    if  (x>100 and x<550 ):     #영역 벗어나는거 제외
+    if  (x>150 and x<550):     #특정 영역을 ROI로
         masked_body = cv2.bitwise_and(body_mask_small,body_mask_small, mask = mask) # 오버레이되는 부분만 남게된다.
         masked_frame = cv2.bitwise_and(frame_roi, frame_roi, mask = mask_inv) #배경만 남게된다
         frame[y+y_offset:y+y_offset+img_size, x:x+img_size] = cv2.add(masked_body, masked_frame) # 화면에 이미지 오버레이
-    
-prev_x = 0
-prev_y = 0
-prev_w = 0
-prev_h = 0
+
 
 def Operation(body,frame,body_mask):
     count = 0
@@ -53,15 +57,15 @@ def Operation(body,frame,body_mask):
     
     for (x, y, w, h) in body:
         
-        print('x = ',x,'y = ',y,'w = ',w,'h = ',h)
+        #print('x = ',x,'y = ',y,'w = ',w,'h = ',h)
 
         if (abs(prev_x-x) < 10) and (abs(prev_y-y) < 10): #이전 x,y 와 현재 x,y의 차이가 별로 나지 않으면 
-            print('prev_x =', prev_x, 'x = ', x, 'prev_y = ',prev_y, 'y = ', y, 'w= ',prev_w, 'h = ',prev_h)
+            #print('prev_x =', prev_x, 'x = ', x, 'prev_y = ',prev_y, 'y = ', y, 'w= ',prev_w, 'h = ',prev_h)
             continue
 
         if (prev_w != 0):
             if (abs(prev_w-w) > 10) and (abs(prev_h-h) > 10):
-                print('prev_w = ',prev_w,'w = ',w,'prev_h = ',prev_h,'h = ',h)
+             #   print('prev_w = ',prev_w,'w = ',w,'prev_h = ',prev_h,'h = ',h)
                 continue
         
         count = count + 1
@@ -106,7 +110,7 @@ def Full_Overlay():       #i 번째 옷 오버레이하는 정의 함수
         )
 
         # Draw a rectangle around the faces
-        Operation(body,frame,body_mask)
+        Operation(body,frame,body_mask,1)
     
 
                                      
@@ -118,10 +122,6 @@ def Full_Overlay():       #i 번째 옷 오버레이하는 정의 함수
     cap.release()
 
 
-cap = cv2.VideoCapture(0)
-fist_pattern = cv2.CascadeClassifier('fist.xml')    #학습데이터 읽어오기
-bodyCascade = cv2.CascadeClassifier('haarcascade_mcs_upperbody.xml')    #학습데이터 읽어오기
-scaling_factor = 1.5            #윈도우 크기설정
 
 
 
