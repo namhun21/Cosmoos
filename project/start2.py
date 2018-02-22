@@ -5,6 +5,7 @@ import time
 import os
 import Reco
 import start1
+import animation2
 
 def pou(Title):
 
@@ -61,8 +62,8 @@ def pou(Title):
             start1.ping()
         elif cv2.waitKey(1) & 0xFF == ord('r'):    # r 입력시 reco 페이지로 이동 , 추천화면 구현시 거기로 이동
             Reco.recommand(a)
-        elif cv2.waitKey(1) & 0xFF == ord('l'):    # l 입력시 reco 페이지로 이동 , 목록화면 구현시 거기로 이동 
-            Reco.recommand(a)
+        elif cv2.waitKey(1) & 0xFF == ord('l'):    # l 입력시 reco 페이지로 이동 , 목록화면 구현시 거기로 이동
+             animation2.Chack()
 
 
 
