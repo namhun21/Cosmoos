@@ -169,19 +169,19 @@ def ping():
 
         print(count1, count2, count3)
 
-        if(count1 > 30):
+        if(count1 > 20):
             print("success1")
             start2.pou('T-shirt')
             count1 = 0
             count2 = 0
             count3 = 0
-        elif(count2 > 30):
+        elif(count2 > 20):
             print("success2")
             start2.pou('Y-shirt')
             count1 = 0
             count2 = 0
             count3 = 0
-        elif(count3 > 30):
+        elif(count3 > 20):
             print("success3")
             start2.pou('Hood-T')
             count1 = 0

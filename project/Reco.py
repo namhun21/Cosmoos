@@ -146,19 +146,19 @@ def recommand(a):
 
         print(count1, count2, count3)
 
-        if(count1 > 30):
+        if(count1 > 20):
             print("success1")
             overlay.Full_Overlay()
             count1 = 0
             count2 = 0
             count3 = 0
-        elif(count2 > 30):
+        elif(count2 > 20):
             print("success2")
             pass
             count1 = 0
             count2 = 0
             count3 = 0
-        elif(count3 > 30):
+        elif(count3 > 20):
             print("success3")
             start2.pou('back')
             count1 = 0
