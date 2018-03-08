@@ -184,5 +184,3 @@ def user_Interface():
     cv2.destroyAllWindows()
     cap.release()
 
-
-user_Interface()

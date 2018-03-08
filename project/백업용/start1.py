@@ -211,3 +211,4 @@ def ping():
     cap.release()
 
 
+ping()
