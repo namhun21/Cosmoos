@@ -144,13 +144,13 @@ def pou(Title):
 
         if(count1 > 20):
             print("success1")
-            Reco.recommand('Reco')
+            Reco.recommand(Title)
             count1 = 0
             count2 = 0
             count3 = 0
         elif(count2 > 20):
             print("success2")
-            Reco.recommand.pou('List')
+            animation2.Chack()
             count1 = 0
             count2 = 0
             count3 = 0
@@ -163,7 +163,7 @@ def pou(Title):
 
 
         cv2.imshow('video', frame)
-        time  = time + 1
+        time  = time + 5
         
         if cv2.waitKey(1) & 0xFF == ord('q'):      # q 입력시 종료
             break

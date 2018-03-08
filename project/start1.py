@@ -190,7 +190,7 @@ def ping():
 
 
         cv2.imshow('video', frame)
-        time  = time + 1
+        time  = time + 5
 
         if cv2.waitKey(1) & 0xFF == ord('q'):      #q 입력시 종료
             break
@@ -207,4 +207,3 @@ def ping():
     cv2.destroyAllWindows()
     cap.release()
 
-ping()

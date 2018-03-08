@@ -160,7 +160,7 @@ def recommand(a):
             count3 = 0
         elif(count3 > 20):
             print("success3")
-            start2.pou('back')
+            start2.pou(a)
             count1 = 0
             count2 = 0
             count3 = 0
