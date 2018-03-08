@@ -31,6 +31,7 @@ def ping():
         ret, frame = cap.read()
         img1 = frame.copy()
 
+
         roi1 = img1[50:80,450:570]
         roi2 = img1[50:80,250:370]
         roi3 = img1[50:80,50:170]
@@ -102,20 +103,20 @@ def ping():
             lineType)
 
         if(check == 0 and time > 100):
-            cap1 = cv2.VideoCapture(0)
-            ret, ori2 = cap1.read()
+##            cap1 = cv2.VideoCapture(0)
+##            ret, ori2 = cap.read()
 
-            oriroi1 = ori2[50:80,450:570]
-            oriroi2 = ori2[50:80,250:370]
-            oriroi3 = ori2[50:80,50:170]
+            oriroi1 = frame[50:80,450:570]
+            oriroi2 = frame[50:80,250:370]
+            oriroi3 = frame[50:80,50:170]
 
-            origray = cv2.cvtColor(ori2,cv2.COLOR_BGR2GRAY)
+            origray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
 
             origraysc1 = origray[50:80,450:570]
             origraysc2 = origray[50:80,250:370]
             origraysc3 = origray[50:80,50:170]
 
-            #cv2.imshow('asdasdasdaq',origray)
+            cv2.imshow('asdasdasdaq',origray)
             check = 1
 
 
@@ -128,17 +129,17 @@ def ping():
                   roicolor2 = origraysc2[y,x]
                   oricolor3 = roigray3[y,x]
                   roicolor3 = origraysc3[y,x]
-                  if(oricolor1- roicolor1 < 30):
+                  if(oricolor1- roicolor1 < 50):
                        roi1[y,x] = 0
                   else:
                        roi1[y,x] = 255
                        num1 = num1+1
-                  if(oricolor2- roicolor2 < 30):
+                  if(oricolor2- roicolor2 < 50):
                        roi2[y,x] = 0
                   else:
                        roi2[y,x] = 255
                        num2 = num2+1
-                  if(oricolor3- roicolor3 < 30):
+                  if(oricolor3- roicolor3 < 50):
                        roi3[y,x] = 0
                   else:
                        roi3[y,x] = 255
@@ -169,28 +170,30 @@ def ping():
 
         print(count1, count2, count3)
 
-        if(count1 > 20):
+        if(count1 > 30):
             print("success1")
             start2.pou('T-shirt')
             count1 = 0
             count2 = 0
             count3 = 0
-        elif(count2 > 20):
+        elif(count2 > 30):
             print("success2")
             start2.pou('Y-shirt')
             count1 = 0
             count2 = 0
             count3 = 0
-        elif(count3 > 20):
+        elif(count3 > 30):
             print("success3")
             start2.pou('Hood-T')
             count1 = 0
             count2 = 0
             count3 = 0
 
-
+        cv2.imshow('qweqq11',roi1)
+        cv2.imshow('qweqq12',roi2)
+        cv2.imshow('qweqq13',roi3)
         cv2.imshow('video', frame)
-        time  = time + 5
+        time  = time + 1
 
         if cv2.waitKey(1) & 0xFF == ord('q'):      #q 입력시 종료
             break
@@ -206,4 +209,5 @@ def ping():
 
     cv2.destroyAllWindows()
     cap.release()
+
 
