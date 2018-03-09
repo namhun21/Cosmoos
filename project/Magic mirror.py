@@ -3,9 +3,11 @@ import sys
 import numpy as np
 import time
 import os
-import UI_start
+import UI_Start 
+import Click_Function 
 
-UI_start.user_Interface()    # start1 ping()을 실행한다. 
+cap = cv2.VideoCapture(0)
+UI_Start.First_Menu(cap)    # start1 ping()을 실행한다. 
 
 
 
