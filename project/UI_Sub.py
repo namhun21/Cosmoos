@@ -12,6 +12,7 @@ import SelectClothes
 def Second_Menu(title,cap):
     #cap = cv2.VideoCapture(0)
     # Icon = ['T-Shirt.jpg','Y-Shirt.png','Hood.jpg']
+    #버튼 위치
     bottomLeftCornerOfText_Title = (0,20)
     bottomLeftCornerOfText1 = (460, 70)
     bottomLeftCornerOfText2 = (260, 70)
@@ -38,7 +39,7 @@ def Second_Menu(title,cap):
                     0.5,
                     (255,255,255),
                     2)
-
+        #클릭 버튼
         Click_Function.draw_Click(frame, bottomLeftCornerOfText1, 450, 570, 'Recommand')
         Click_Function.draw_Click(frame, bottomLeftCornerOfText2, 250, 370, 'List')
         Click_Function.draw_Click(frame, bottomLeftCornerOfText3, 50, 170, 'Back')
@@ -51,7 +52,7 @@ def Second_Menu(title,cap):
 
         roi = [roi1, roi2, roi3]
 
-        if (check == 0 and time > 100):
+        if (check == 0 and time > 100):    #클릭 구현시 필요한 사진
             #cap1 = cv2.VideoCapture(0)
             #ret, ori2 = cap1.read()
 
@@ -69,14 +70,14 @@ def Second_Menu(title,cap):
 
             check = 1
 
-        if (check == 1):
+        if (check == 1):    #클릭 함수 실행
             count1, count2, count3, num1,num2,num3, time = Click_Function.Click_Operation(roi, origraysc, time,count1,count2,count3,num1,num2,num3)
 
         print(count1, count2, count3)
 
-        if (count1 > 20):
+        if (count1 > 20):               #count1이 20 초과하면 UI_Recommand에 있는 Third_Menu(title)실행
             print("success1")
-            UI_Recommand.Third_Menu(title,cap)   #recommend
+            UI_Recommand.Third_Menu(title,cap)   #Third_Menu에 title를 가져가야 Third_Menu에서 다시 Second_Menu로 돌아올때 title을 가져다 쓸 수 있다
             count1 = 0
             count2 = 0
             count3 = 0

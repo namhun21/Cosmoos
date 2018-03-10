@@ -63,12 +63,12 @@ def First_Menu(cap):
           
             check = 1
 
-        if (check == 1):
+        if (check == 1):    #클릭 함수를 실행시킨다
             count1, count2, count3, num1,num2,num3, time = Click_Function.Click_Operation(roi, origraysc, time,count1,count2,count3,num1,num2,num3)
 
         print(count1, count2, count3)
 
-        if (count1 > 20):
+        if (count1 > 20):         #count1이 20이 넘으면 UI_Sub에 있는 Second_Menu를 실행시킨다.
             print("success1")
             UI_Sub.Second_Menu('T-shirt',cap)
             count1 = 0
@@ -92,13 +92,13 @@ def First_Menu(cap):
 
         if cv2.waitKey(1) & 0xFF == ord('q'):  # q 입력시 종료
             break
-        elif cv2.waitKey(1) & 0xFF == ord('h'):  # h 입력시 start2에 pou('Hood-T') 실행
+        elif cv2.waitKey(1) & 0xFF == ord('h'):  # h 입력시 UI_Sub에 Second_Menu('Hood-T') 실행
             UI_Sub.Second_Menu('Hood-T',cap)
 
-        elif cv2.waitKey(1) & 0xFF == ord('y'):  # y 입력시 start2에 pou('Y-shirt') 실행
+        elif cv2.waitKey(1) & 0xFF == ord('y'):  # y 입력시 UI_Sub에 Second_Menu('Y-shirt') 실행
             UI_Sub.Second_Menu('Y-shirt',cap)
 
-        elif cv2.waitKey(1) & 0xFF == ord('t'):  # t 입력시 start2에 pou('T-shirt') 실행
+        elif cv2.waitKey(1) & 0xFF == ord('t'):  # t 입력시 UI_Sub에 Second_Menu('T-shirt') 실행
             UI_Sub.Second_Menu('T-shirt',cap)
 
     cv2.destroyAllWindows()
