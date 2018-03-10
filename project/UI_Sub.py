@@ -5,7 +5,8 @@ import time
 import os
 import UI_Start 
 import UI_Recommand 
-import Click_Function 
+import Click_Function
+import SelectClothes
 
 
 def Second_Menu(title,cap):
@@ -75,13 +76,13 @@ def Second_Menu(title,cap):
 
         if (count1 > 20):
             print("success1")
-            UI_Recommand.Third_Menu('Recommand',cap)
+            UI_Recommand.Third_Menu(title,cap)   #recommend
             count1 = 0
             count2 = 0
             count3 = 0
         elif (count2 > 20):
             print("success2")
-            UI_Recommand.Third_Menu('List',cap)
+            SelectClothes.SelectClothes()   #list
             count1 = 0
             count2 = 0
             count3 = 0

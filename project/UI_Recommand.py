@@ -33,7 +33,7 @@ def Third_Menu(title,cap):
     while True:
         ret, frame = cap.read()
         #frame_copy = frame.copy()
-        cv2.putText(frame,title,
+        cv2.putText(frame,'recommend',
                     bottomLeftCornerOfText_Title,
                     cv2.FONT_HERSHEY_SIMPLEX,
                     0.5,
@@ -88,7 +88,7 @@ def Third_Menu(title,cap):
             count3 = 0
         elif (count3 > 20):
             print("success3")
-            UI_Sub(title,cap)
+            UI_Sub.Second_Menu(title,cap)
             count1 = 0
             count2 = 0
             count3 = 0
@@ -99,7 +99,7 @@ def Third_Menu(title,cap):
         if cv2.waitKey(1) & 0xFF == ord('q'):  # q 입력시 종료
             break
         elif cv2.waitKey(1) & 0xFF == ord('b'):  # b 입력 시 이전 페이지로 이동
-            UI_Sub(title,cap)
+            UI_Sub.Second_Menu(title,cap)
 
         elif cv2.waitKey(1) & 0xFF == ord('w'):  # w 입력 시 오버레이  페이지로 이동
             Overlay.Full_Overlay()
