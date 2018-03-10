@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import AnimationRightCall
 import AnimationLeftCall
+import overlay
 
 def SelectClothes():
 
@@ -9,6 +10,7 @@ def SelectClothes():
     index = 0
     leftcount = 0
     rightcount = 0
+    overlaycount = 0
     LeftOn = 0
     RightOn = 0
     startcompare = 0
@@ -18,43 +20,58 @@ def SelectClothes():
     move = 0
     whiteNumLeft = 0
     whiteNumRight = 0
+    whiteNumOverlay = 0
 
     while(cap.isOpened()):
         ret, img = cap.read()
         img1 = img.copy()
 
         cv2.rectangle(img,(0,350),(150,450),(255,0,0),3)
-        cv2.rectangle(img,(500,350),(650,450),(255,0,0),3)
+        cv2.rectangle(img,(450,350),(600,450),(255,0,0),3)
+        cv2.rectangle(img,(450,200),(600,300),(255,0,0),3)
         imgray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-        roil = imgray[350:450,0:150]
-        roir = imgray[350:450,450:600]
+        leftButtonFrame = imgray[350:450,0:150]
+        rightButtonFrame = imgray[350:450,450:600]
+        overlayButtonFrame = imgray[200:300,450:600]
 
         if(startcompare == 0 and timeright > 100 and timeLeft > 100):
-            origray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-            oriroil = origray[350:450,0:150]
-            oriroir = origray[350:450,450:600]
+            picturegray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+            pictureleftButtonFrame = picturegray[350:450,0:150]
+            picturerightButtonFrame = picturegray[350:450,450:600]
+            pictureoverlayButtonFrame = picturegray[200:300,450:600]
             startcompare = 1
 
         if(startcompare == 1):
             for x in range(150):
                 for y in range(100):
-                  oricolor = roir[y,x]
-                  roicolor = oriroir[y,x]
-                  if(oricolor- roicolor < 30):
-                       roir[y,x] = 0
+                  picturecolor = rightButtonFrame[y,x]
+                  rightButtonFrameColor = picturerightButtonFrame[y,x]
+                  if(picturecolor- rightButtonFrameColor < 30):
+                       rightButtonFrame[y,x] = 0
                   else:
-                       roir[y,x] = 255
+                       rightButtonFrame[y,x] = 255
                        whiteNumRight = whiteNumRight+1
 
             for x in range(150):
                 for y in range(100):
-                  oricolor = roil[y,x]
-                  roicolor = oriroil[y,x]
-                  if(oricolor- roicolor < 30):
-                       roil[y,x] = 0
+                  picturecolor = leftButtonFrame[y,x]
+                  leftButtonFrameColor = pictureleftButtonFrame[y,x]
+                  if(picturecolor - leftButtonFrameColor < 30):
+                       leftButtonFrame[y,x] = 0
                   else:
-                       roil[y,x] = 255
+                       leftButtonFrame[y,x] = 255
                        whiteNumLeft = whiteNumLeft+1
+
+
+            for x in range(150):
+                for y in range(100):
+                  picturecolor = overlayButtonFrame[y,x]
+                  overlayButtonColor = pictureoverlayButtonFrame[y,x]
+                  if(picturecolor- overlayButtonColor < 30):
+                       overlayButtonFrame[y,x] = 0
+                  else:
+                       overlayButtonFrame[y,x] = 255
+                       whiteNumOverlay = whiteNumOverlay+1
 
         if(rightcount ==0 and whiteNumRight > 15000*0.8):
             LeftOn = 0
@@ -67,6 +84,10 @@ def SelectClothes():
             LeftOn = 1
             RightOn = 0
             move = 1
+
+
+        if(overlaycount == 0 and whiteNumOverlay > 15000*0.8):
+            overlay.Full_Overlay()
 
 
         if(move == 1):
@@ -114,8 +135,9 @@ def SelectClothes():
         timeLeft = timeLeft + 1
         print("leftasdasdsa",LeftOn)
         print("rightasdasdsa",RightOn)
-        cv2.imshow('wqzxcq',roir)
-        cv2.imshow('funsadasd',roil)
+        cv2.imshow('wqzxcq',rightButtonFrame)
+        cv2.imshow('funsadasd',leftButtonFrame)
+        cv2.imshow('sjdwnmanmd',overlayButtonFrame)
         cv2.imshow('asdasda',img)
         whiteNumRight = 0
         whiteNumLeft = 0
@@ -125,4 +147,4 @@ def SelectClothes():
 
     cv2.destroyAllWindows()
 
-#SelectClothes()
+SelectClothes()
