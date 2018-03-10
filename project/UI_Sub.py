@@ -4,7 +4,7 @@ import numpy as np
 import time
 import os
 import UI_Start 
-import UI_Recommand 
+import UI_Recommend 
 import Click_Function
 import SelectClothes
 
@@ -77,7 +77,7 @@ def Second_Menu(title,cap):
 
         if (count1 > 20):               #count1이 20 초과하면 UI_Recommand에 있는 Third_Menu(title)실행
             print("success1")
-            UI_Recommand.Third_Menu(title,cap)   #Third_Menu에 title를 가져가야 Third_Menu에서 다시 Second_Menu로 돌아올때 title을 가져다 쓸 수 있다
+            UI_Recommend.Third_Menu(title,cap)   #Third_Menu에 title를 가져가야 Third_Menu에서 다시 Second_Menu로 돌아올때 title을 가져다 쓸 수 있다
             count1 = 0
             count2 = 0
             count3 = 0
@@ -103,10 +103,10 @@ def Second_Menu(title,cap):
             UI_Start.First_Menu(cap)
 
         elif cv2.waitKey(1) & 0xFF == ord('r'):  # r 입력 시 추천 페이지로 이동
-            UI_Recommand.Third_Menu('Recommand',cap)
+            UI_Recommend.Third_Menu(title,cap)
 
         elif cv2.waitKey(1) & 0xFF == ord('l'):  # l 입력 시 목록화면 페이지로 이동
-            UI_Recommand.Third_Menu('List',cap)
+            SelectClothes.SelectClothes()
 
     cv2.destroyAllWindows()
     cap.release()

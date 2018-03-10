@@ -7,7 +7,7 @@ import UI_Sub
 import Click_Function
 import overlay
 
-
+#recommend 화면은 임시로 만들었다 이상태로 구현되지 않을 것이다.
 
 
 def Third_Menu(title,cap):
