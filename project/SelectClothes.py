@@ -147,4 +147,4 @@ def SelectClothes():
 
     cv2.destroyAllWindows()
 
-SelectClothes()
+#SelectClothes()
