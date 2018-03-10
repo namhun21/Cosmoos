@@ -62,11 +62,11 @@ def Second_Menu(title,cap):
 
             #origray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-            origraysc1 = Click_Function.make_Roi(gray, 450, 570)
-            origraysc2 = Click_Function.make_Roi(gray, 250, 370)
-            origraysc3 = Click_Function.make_Roi(gray, 50, 170)
+            #origraysc1 = Click_Function.make_Roi(gray, 450, 570)
+            #origraysc2 = Click_Function.make_Roi(gray, 250, 370)
+            #origraysc3 = Click_Function.make_Roi(gray, 50, 170)
 
-            origraysc = [origraysc1, origraysc2, origraysc3]
+            origraysc = roi
 
             check = 1
 
