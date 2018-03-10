@@ -9,6 +9,7 @@ import Click_Function
 def First_Menu(cap):
     
     # Icon = ['T-Shirt.jpg','Y-Shirt.png','Hood.jpg']
+    #버튼 위치
     bottomLeftCornerOfText1 = (460, 70)
     bottomLeftCornerOfText2 = (260, 70)
     bottomLeftCornerOfText3 = (60, 70)
@@ -30,6 +31,7 @@ def First_Menu(cap):
         ret, frame = cap.read()
         #frame_copy = frame.copy()
 
+        #클릭 버튼 만들기
         Click_Function.draw_Click(frame, bottomLeftCornerOfText1, 450, 570, 'T-shirt')
         Click_Function.draw_Click(frame, bottomLeftCornerOfText2, 250, 370, 'Y-shirt')
         Click_Function.draw_Click(frame, bottomLeftCornerOfText3, 50, 170, 'Hood')
@@ -42,7 +44,8 @@ def First_Menu(cap):
 
         roi = [roi1, roi2, roi3]
 
-        if (check == 0 and time > 100):
+        if (check == 0 and time > 100):   # time이 100이상이되면 버튼 클릭 인식을 시작한다.
+                                          # 사진을 찍어서 지금 화면과 달라지는 영역을 인식한다.
             # cap1 = cv2.VideoCapture(0)
             # ret, ori2 = cap1.read()
 

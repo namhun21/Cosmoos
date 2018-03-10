@@ -7,7 +7,7 @@ import UI_Start
 import Click_Function 
 
 cap = cv2.VideoCapture(0)
-UI_Start.First_Menu(cap)    # start1 ping()을 실행한다. 
+UI_Start.First_Menu(cap)    #첫번째 화면을 실행한다.
 
 
 
