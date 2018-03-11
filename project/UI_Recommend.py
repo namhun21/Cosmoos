@@ -33,17 +33,18 @@ def Third_Menu(title,cap):
     while True:
         ret, frame = cap.read()
         #frame_copy = frame.copy()
-        cv2.putText(frame,'recommend',
+        img = cv2.flip(frame,1)
+        cv2.putText(img,'recommend',
                     bottomLeftCornerOfText_Title,
                     cv2.FONT_HERSHEY_SIMPLEX,
                     0.5,
                     (255,255,255),
                     2)
-        Click_Function.draw_Click(frame, bottomLeftCornerOfText1, 450, 570, 'Wear')
-        Click_Function.draw_Click(frame, bottomLeftCornerOfText2, 250, 370, 'Next')
-        Click_Function.draw_Click(frame, bottomLeftCornerOfText3, 50, 170, 'Back')
+        Click_Function.draw_Click(img, bottomLeftCornerOfText1, 450, 570, 'Wear')
+        Click_Function.draw_Click(img, bottomLeftCornerOfText2, 250, 370, 'Next')
+        Click_Function.draw_Click(img, bottomLeftCornerOfText3, 50, 170, 'Back')
 
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
         roi1 = Click_Function.make_Roi(gray, 450, 570)
         roi2 = Click_Function.make_Roi(gray, 250, 370)
@@ -59,7 +60,7 @@ def Third_Menu(title,cap):
             # oriroi2 = ori2[50:80,250:370]
             # oriroi3 = ori2[50:80,50:170]
 
-            origray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            origray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
             origraysc1 = Click_Function.make_Roi(origray, 450, 570)
             origraysc2 = Click_Function.make_Roi(origray, 250, 370)
@@ -93,7 +94,7 @@ def Third_Menu(title,cap):
             count2 = 0
             count3 = 0
 
-        cv2.imshow('video', frame)
+        cv2.imshow('video', img)
         time = time + 5
 
         if cv2.waitKey(1) & 0xFF == ord('q'):  # q 입력시 종료

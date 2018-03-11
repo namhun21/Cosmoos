@@ -27,18 +27,20 @@ def SelectClothes():
 
     while(cap.isOpened()):
         ret, img = cap.read()
-        img1 = img.copy()
+        img1 = cv2.flip(img,1)
+        
+        
 
-        cv2.rectangle(img,(0,350),(150,450),(255,0,0),3)
-        cv2.rectangle(img,(450,350),(600,450),(255,0,0),3)
-        cv2.rectangle(img,(200,350),(350,450),(255,0,0),3)
-        imgray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+        cv2.rectangle(img1,(0,350),(150,450),(255,0,0),3)
+        cv2.rectangle(img1,(450,350),(600,450),(255,0,0),3)
+        cv2.rectangle(img1,(200,350),(350,450),(255,0,0),3)
+        imgray = cv2.cvtColor(img1,cv2.COLOR_BGR2GRAY)
         leftButtonFrame = imgray[350:450,0:150]
         rightButtonFrame = imgray[350:450,450:600]
         overlayButtonFrame = imgray[350:450,200:350]
 
         if(startcompare == 0 and timeright > 100 and timeLeft > 100):#루프를 100번 돌고나서 비교할 이미지 추출
-            picturegray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+            picturegray = cv2.cvtColor(img1,cv2.COLOR_BGR2GRAY)
             pictureleftButtonFrame = picturegray[350:450,0:150]#왼쪽 애니메이션 버튼 부분
             picturerightButtonFrame = picturegray[350:450,450:600]#오른쪽 애니메이션  버튼 부분
             pictureoverlayButtonFrame = picturegray[350:450,200:350]#가운데 overlay 버튼 부분
@@ -116,23 +118,23 @@ def SelectClothes():
 
         if(index == 0):#가운데 이미지의 배열 인덱스가 0일 시의 예외 처리
             if(RightOn == 1):
-                  AnimationRightCall.animationright(index+3,index+4,index,index+1,animationUnit,img)
+                  AnimationRightCall.animationright(index+3,index+4,index,index+1,animationUnit,img1)
             else:
-                AnimationLeftCall.animationleft(index+4,index,index+1,index+2,animationUnit,img)
+                AnimationLeftCall.animationleft(index+4,index,index+1,index+2,animationUnit,img1)
         elif(index == 4):#가운데 이미지의 배열 인덱스가 4일 시의 예외 처리
             if(RightOn == 1):
-                AnimationRightCall.animationright(index-2,index-1,index,index-4,animationUnit,img)
+                AnimationRightCall.animationright(index-2,index-1,index,index-4,animationUnit,img1)
             else:
-                AnimationLeftCall.animationleft(index-1,index,index-4,index-3,animationUnit,img)
+                AnimationLeftCall.animationleft(index-1,index,index-4,index-3,animationUnit,img1)
         elif(index == 1 and RightOn == 1):#가운데 이미지의 배열 인덱스가 1일 시의 예외 처리
-            AnimationRightCall.animationright(index+3,index-1,index,index+1,animationUnit,img)
+            AnimationRightCall.animationright(index+3,index-1,index,index+1,animationUnit,img1)
         elif(index == 3 and LeftOn == 1):#가운데 이미지의 배열 인덱스가 3일 시의 예외 처리
-            AnimationLeftCall.animationleft(index-1,index,index+1,index-3,animationUnit,img)
+            AnimationLeftCall.animationleft(index-1,index,index+1,index-3,animationUnit,img1)
         else:#예외를 제외한 나머지 부분의 애니메이션 함수
             if(RightOn == 1):
-                AnimationRightCall.animationright(index-2,index-1,index,index+1,animationUnit,img)
+                AnimationRightCall.animationright(index-2,index-1,index,index+1,animationUnit,img1)
             else:
-                AnimationLeftCall.animationleft(index-1,index,index+1,index+2,animationUnit,img)
+                AnimationLeftCall.animationleft(index-1,index,index+1,index+2,animationUnit,img1)
         if(animationUnit == 9):#애니메이션 완료 시
             if(index == 0 and RightOn == 1):#가운데 이미지 인덱스가 0일 때 오른쪽 애니메이션 가동 중지
                 index = 4
@@ -159,7 +161,7 @@ def SelectClothes():
         cv2.imshow('wqzxcq',rightButtonFrame)
         cv2.imshow('funsadasd',leftButtonFrame)
         cv2.imshow('sjdwnmanmd',overlayButtonFrame)
-        cv2.imshow('asdasda',img)
+        cv2.imshow('asdasda',img1)
         whiteNumRight = 0#흰색 픽셀의 개수 초기화
         whiteNumLeft = 0#흰색 픽셀의 개수 초기화
         whiteNumOverlay = 0#흰색 픽셀의 개수 초기화
@@ -169,4 +171,4 @@ def SelectClothes():
 
     cv2.destroyAllWindows()
 
-SelectClothes()
+
