@@ -4,9 +4,9 @@ import AnimationRightCall
 import AnimationLeftCall
 import overlay
 
-def SelectClothes():
+def SelectClothes(cap):
 
-    cap = cv2.VideoCapture(0)
+    #cap = cv2.VideoCapture(0)
     index = 0 #옷의 배열 인덱스
     leftcount = 0#손이 올렸을 때 바로 클릭인지되지 않도록 20됐을 때 동작 실행
     rightcount = 0#손이 올렸을 때 바로 클릭인지되지 않도록 20됐을 때 동작 실행

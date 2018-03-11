@@ -4,14 +4,14 @@ import numpy as np
 import time
 import os
 
-def draw_Click(frame, position, x1, x2, name):   #클릭하는 버튼의 인터페이스를 구현한다
+def draw_Click(frame, position, S_Range, E_Range, name):   #클릭하는 버튼의 인터페이스를 구현한다
     font = cv2.FONT_HERSHEY_SIMPLEX
     Position = position
     fontScale = 0.5
     fontColor = (255, 255, 255)
     lineType = 2
 
-    cv2.rectangle(frame, (x1, 50), (x2, 80), (255, 0, 0), 3)
+    cv2.rectangle(frame, S_Range, E_Range, (255, 0, 0), 3)
     cv2.putText(frame, name,
                 Position,
                 font,
@@ -20,8 +20,8 @@ def draw_Click(frame, position, x1, x2, name):   #클릭하는 버튼의 인터�
                 lineType)
 
 
-def make_Roi(gray, x1, y1):     #일정 영역을 gray한다
-    roi = gray[50:80, x1:y1]
+def make_Roi(gray, y1, y2, x1, x2):     #일정 영역을 gray한다
+    roi = gray[y1:y2, x1:x2]
     return roi
 
 

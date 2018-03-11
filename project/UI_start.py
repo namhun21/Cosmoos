@@ -33,15 +33,15 @@ def First_Menu(cap):
         #frame_copy = frame.copy()
 
         #클릭 버튼 만들기
-        Click_Function.draw_Click(img, bottomLeftCornerOfText1, 450, 570, 'T-shirt')
-        Click_Function.draw_Click(img, bottomLeftCornerOfText2, 250, 370, 'Y-shirt')
-        Click_Function.draw_Click(img, bottomLeftCornerOfText3, 50, 170, 'Hood')
+        Click_Function.draw_Click(img, bottomLeftCornerOfText1, (450, 50), (570, 80), 'T-shirt')
+        Click_Function.draw_Click(img, bottomLeftCornerOfText2, (250, 50), (370, 80), 'Y-shirt')
+        Click_Function.draw_Click(img, bottomLeftCornerOfText3, (50, 50), (170, 80), 'Hood')
 
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-        roi1 = Click_Function.make_Roi(gray, 450, 570)
-        roi2 = Click_Function.make_Roi(gray, 250, 370)
-        roi3 = Click_Function.make_Roi(gray, 50, 170)
+        roi1 = Click_Function.make_Roi(gray,50 ,80 ,450, 570)
+        roi2 = Click_Function.make_Roi(gray,50 ,80 ,250, 370)
+        roi3 = Click_Function.make_Roi(gray,50 ,80 ,50, 170)
 
         roi = [roi1, roi2, roi3]
 
@@ -56,9 +56,9 @@ def First_Menu(cap):
 
             origray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-            origraysc1 = Click_Function.make_Roi(origray, 450, 570)
-            origraysc2 = Click_Function.make_Roi(origray, 250, 370)
-            origraysc3 = Click_Function.make_Roi(origray, 50, 170)
+            origraysc1 = Click_Function.make_Roi(origray,50 ,80 , 450, 570)
+            origraysc2 = Click_Function.make_Roi(origray,50 ,80 , 250, 370)
+            origraysc3 = Click_Function.make_Roi(origray,50 ,80 , 50, 170)
 
             origraysc = [origraysc1, origraysc2, origraysc3]
           
