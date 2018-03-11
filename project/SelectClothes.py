@@ -161,7 +161,7 @@ def SelectClothes():
         cv2.imshow('wqzxcq',rightButtonFrame)
         cv2.imshow('funsadasd',leftButtonFrame)
         cv2.imshow('sjdwnmanmd',overlayButtonFrame)
-        cv2.imshow('asdasda',img1)
+        cv2.imshow('video',img1)
         whiteNumRight = 0#흰색 픽셀의 개수 초기화
         whiteNumLeft = 0#흰색 픽셀의 개수 초기화
         whiteNumOverlay = 0#흰색 픽셀의 개수 초기화
