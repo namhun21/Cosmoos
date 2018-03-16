@@ -8,7 +8,7 @@ import overlay
 def SelectClothes(cap):
     TextLocation1=(50, 230)
     TextLocation2=(550, 230)
-    TextLocation3=(310, 430)
+    TextLocation3=(550, 400)
     #cap = cv2.VideoCapture(0)
     index = 0 #옷의 배열 인덱스
     overlaycount = 0#손이 올렸을 때 바로 클릭인지되지 않도록 20됐을 때 동작 실행
@@ -33,7 +33,7 @@ def SelectClothes(cap):
 
         Click_Function.draw_Click(img1,TextLocation1,(10,200),(140,250),"Turn Left")
         Click_Function.draw_Click(img1,TextLocation2,(510,200),(640,250),"Turn Right")
-        Click_Function.draw_Click(img1,TextLocation3,(280,400),(410,450),"Overlay")
+        Click_Function.draw_Click(img1,TextLocation3,(510,380),(640,430),"Overlay")
         #cv2.rectangle(img1,(10,200),(180,250),(255,0,0),3)
         #cv2.rectangle(img1,(200,350),(350,650),(255,0,0),3)
         #cv2.rectangle(img1,(510,250),(640,300),(255,0,0),3)
@@ -41,13 +41,13 @@ def SelectClothes(cap):
         imgray = cv2.cvtColor(img1,cv2.COLOR_BGR2GRAY)
         leftButtonFrame = imgray[200:250,10:140]
         rightButtonFrame = imgray[200:250,510:640]
-        overlayButtonFrame = imgray[400:450,280:410]
+        overlayButtonFrame = imgray[380:430,510:640]
 
         if(startcompare == 0 and timeright > 100 and timeLeft > 100):#루프를 100번 돌고나서 비교할 이미지 추출
             picturegray = cv2.cvtColor(img1,cv2.COLOR_BGR2GRAY)
             pictureleftButtonFrame = picturegray[200:250,10:140]#왼쪽 애니메이션 버튼 부분
             picturerightButtonFrame = picturegray[200:250,510:640]#오른쪽 애니메이션  버튼 부분
-            pictureoverlayButtonFrame = picturegray[400:450,280:410]#가운데 overlay 버튼 부분
+            pictureoverlayButtonFrame = picturegray[380:430,510:640]#가운데 overlay 버튼 부분
             startcompare = 1 #비교 시작
 
         if(startcompare == 1):#비교하기 위한 이미지 추출
