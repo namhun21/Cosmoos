@@ -98,10 +98,6 @@ def SelectClothes(cap):
         else:
             overlaycount = 0
 
-        if(overlaycount == 20):#오버레이 창으로 전환
-            overlaycount = 0
-            overlay.Full_Overlay(cap,Clothes_name)
-
 
 
         if(move == 1):#애니메이션 가동 시작
@@ -111,7 +107,8 @@ def SelectClothes(cap):
             if(RightOn == 1):
                 Clothes_name = AnimationRightCall.animationright(index+3,index+4,index,index+1,animationUnit,img1)
             else:
-                Clothes_mask = AnimationLeftCall.animationleft(index+4,index,index+1,index+2,animationUnit,img1)
+                Clothes_name = AnimationLeftCall.animationleft(index+4,index,index+1,index+2,animationUnit,img1)   #hm
+
         elif(index == 4):#가운데 이미지의 배열 인덱스가 4일 시의 예외 처리
             if(RightOn == 1):
                 Clothes_name = AnimationRightCall.animationright(index-2,index-1,index,index-4,animationUnit,img1)
@@ -125,7 +122,7 @@ def SelectClothes(cap):
             if(RightOn == 1):
                 Clothes_name=AnimationRightCall.animationright(index-2,index-1,index,index+1,animationUnit,img1)
             else:
-                Clothes_mask=AnimationLeftCall.animationleft(index-1,index,index+1,index+2,animationUnit,img1)
+                Clothes_name=AnimationLeftCall.animationleft(index-1,index,index+1,index+2,animationUnit,img1)   #hm
         if(animationUnit == 9):#애니메이션 완료 시
             if(index == 0 and RightOn == 1):#가운데 이미지 인덱스가 0일 때 오른쪽 애니메이션 가동 중지
                 index = 4
@@ -151,6 +148,9 @@ def SelectClothes(cap):
         #print(whiteNumRight)
         print(overlaycount)
         print('출력: ',Clothes_name)
+        if(overlaycount == 20):#오버레이 창으로 전환
+            overlaycount = 0
+            overlay.Full_Overlay(cap,Clothes_name)
         cv2.imshow('wqzxcq',rightButtonFrame)
         cv2.imshow('funsadasd',leftButtonFrame)
         cv2.imshow('sjdwnmanmd',overlayButtonFrame)
@@ -165,7 +165,7 @@ def SelectClothes(cap):
     cv2.destroyAllWindows()
 
 
-cap = cv2.VideoCapture(0)
-SelectClothes(cap)
+#cap = cv2.VideoCapture(0)
+#SelectClothes(cap)
 
 
