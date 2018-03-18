@@ -105,6 +105,7 @@ def Full_Overlay(cap,imag,color):       #이전에 정의했던 함수들을 모
         ret, frame = cap.read()
         img = cv2.flip(frame,1)
         
+        
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # BGR-> Gray
       
         body = bodyCascade.detectMultiScale(

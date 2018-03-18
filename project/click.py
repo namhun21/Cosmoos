@@ -139,6 +139,6 @@ def clicka():
         if k==27:
             break
 
-    cv2.destroyAllWindows()
+    # cv2.destroyAllWindows()
 
 clicka()

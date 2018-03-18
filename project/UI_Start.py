@@ -37,6 +37,7 @@ def First_Menu(cap):
         Click_Function.draw_Click(img, bottomLeftCornerOfText2, (250, 50), (370, 80), 'Y-shirt')
         Click_Function.draw_Click(img, bottomLeftCornerOfText3, (50, 50), (170, 80), 'Hood')
 
+        
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
         roi1 = Click_Function.make_Roi(gray,50 ,80 ,450, 570)
@@ -53,7 +54,7 @@ def First_Menu(cap):
             # oriroi1 = ori2[50:80,450:570]
             # oriroi2 = ori2[50:80,250:370]
             # oriroi3 = ori2[50:80,50:170]
-
+            
             origray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
             origraysc1 = Click_Function.make_Roi(origray,50 ,80 , 450, 570)
@@ -104,4 +105,6 @@ def First_Menu(cap):
 
     cv2.destroyAllWindows()
     cap.release()
+
+
 
