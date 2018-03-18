@@ -20,4 +20,6 @@ def animationright(firstindex,secondindex,thirdindex,fourthindex,move,frame):
     Make_Clothes_Image.make_Clothes_Image(clothes[thirdindex],(150-5*move,125-7-2*move),y[4],y[5],x[4],x[5],frame,clothes[thirdindex].split("_")[1][0])
     Make_Clothes_Image.make_Clothes_Image(clothes[fourthindex],(100-11*move,100-11*move),y[6],y[7],x[6],x[7],frame,clothes[fourthindex].split("_")[1][0])
 
+    print(clothes[thirdindex])
+    return clothes[thirdindex]
 
