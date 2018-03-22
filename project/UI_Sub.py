@@ -74,7 +74,7 @@ def Second_Menu(title,cap):
         if (check == 1):    #클릭 함수 실행
             count1, count2, count3, num1,num2,num3, time = Click_Function.Click_Operation(roi, origraysc, time,count1,count2,count3,num1,num2,num3)
 
-        print(count1, count2, count3)
+        print(count3, count2, count1)
 
         if (count1 > 20):               #count1이 20 초과하면 UI_Recommand에 있는 Third_Menu(title)실행
             print("success1")

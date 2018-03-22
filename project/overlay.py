@@ -118,7 +118,7 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
 
         Click_Function.draw_Click(img,TextPosition1,(500,70),(620,140),'Reco')
         Click_Function.draw_Click(img,TextPosition2,(500,210),(620,280),'List')
-        Click_Function.draw_Click(img,TextPosition3,(500,350),(620,420),'Buy')
+        #Click_Function.draw_Click(img,TextPosition3,(500,350),(620,420),'Buy')
 
         
         Range_Operation(body,img,body_mask,Clothes_name)

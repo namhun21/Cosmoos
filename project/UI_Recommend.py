@@ -73,7 +73,7 @@ def Third_Menu(title,cap):
         if (check == 1):
            count1, count2, count3, num1,num2,num3, time = Click_Function.Click_Operation(roi, origraysc, time,count1,count2,count3,num1,num2,num3)
            
-        print(count1, count2, count3)
+        print(count3, count2, count1)
 
         if (count1 > 20):
             print("success1")
