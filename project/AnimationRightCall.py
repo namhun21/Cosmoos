@@ -7,7 +7,7 @@ def animationright(firstindex,secondindex,thirdindex,fourthindex,move,frame):
 ##    clothes2 = 'T-shirt_no.png'
 ##    clothes3 = 'pants1_no.png'
 ##    clothes4 = 'super_no.png'
-    clothes = ['coat_no.png','hoodT1_white.png','T-shirt_no.png','pants1_no.png','super_no.png']
+    clothes = ['nit_no.png','hoodT1_white.png','T-shirt_no.png','pants1_no.png','blueshirts_white.png']
 
 
 

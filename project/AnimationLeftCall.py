@@ -8,7 +8,7 @@ def animationleft(firstindex,secondindex,thirdindex,fourthindex,move,frame):
 ##    clothes2 = 'T-shirt.png'
 ##    clothes3 = 'pants1.png'
 ##    clothes4 = 'super.png'
-    clothes = ['coat_no.png','hoodT1_white.png','T-shirt_no.png','pants1_no.png','super_no.png']
+    clothes = ['nit_no.png','hoodT1_white.png','T-shirt_no.png','pants1_no.png','blueshirts_white.png']
 
     y=[30-3*move,30-3*move+100-11*move,75-5*move,75-5*move+125-7-2*move,30+5*move,30+5*move+100+7+2*move,3+3*move,3+3*move+10+10*move]
     x=[50-5*move,50-5*move+100-11*move,250-20-20*move,250-20-20*move+150-5-5*move,480-23-23*move,480-23-23*move+100+5+5*move,590-11-11*move,590-11-11*move+10+10*move]
@@ -21,5 +21,5 @@ def animationleft(firstindex,secondindex,thirdindex,fourthindex,move,frame):
     Make_Clothes_Image.make_Clothes_Image(clothes[fourthindex],(10+10*move,10+10*move),y[6],y[7],x[6],x[7],frame,clothes[fourthindex].split("_")[1][0])
 
     print(clothes[secondindex])
-    return clothes[secondindex]   
+    return clothes[secondindex]
 

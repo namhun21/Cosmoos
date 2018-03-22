@@ -8,7 +8,7 @@ def make_Clothes_Image(clothes,size,y1,y2,x1,x2,frame,white):
     mask_small = cv2.resize(maskclo,size,interpolation = cv2.INTER_AREA)
     gray_mask = cv2.cvtColor(mask_small, cv2.COLOR_BGR2GRAY)
     if(white == "n"):
-        ret, mask = cv2.threshold(gray_mask, 180,255, cv2.THRESH_BINARY_INV)
+        ret, mask = cv2.threshold(gray_mask, 130,255, cv2.THRESH_BINARY_INV)
     else:
         ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY)
     mask_inv = cv2.bitwise_not(mask)
