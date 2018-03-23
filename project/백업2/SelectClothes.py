@@ -146,14 +146,14 @@ def SelectClothes(cap):
         timeLeft = timeLeft + 1#비교할 프레임을 찍기위한 시간 체크변수 1증가(100때 이미지 비교 시작)
         #print(whiteNumLeft)
         #print(whiteNumRight)
-        #print(overlaycount)
-        #print('출력: ',Clothes_name)
+        print(overlaycount)
+        print('출력: ',Clothes_name)
         if(overlaycount == 20):#오버레이 창으로 전환
             overlaycount = 0
             overlay.Full_Overlay(cap,Clothes_name)
-        #cv2.imshow('wqzxcq',rightButtonFrame)
-        #cv2.imshow('funsadasd',leftButtonFrame)
-        #cv2.imshow('sjdwnmanmd',overlayButtonFrame)
+        cv2.imshow('wqzxcq',rightButtonFrame)
+        cv2.imshow('funsadasd',leftButtonFrame)
+        cv2.imshow('sjdwnmanmd',overlayButtonFrame)
         cv2.imshow('video',img1)
         whiteNumRight = 0#흰색 픽셀의 개수 초기화
         whiteNumLeft = 0#흰색 픽셀의 개수 초기화

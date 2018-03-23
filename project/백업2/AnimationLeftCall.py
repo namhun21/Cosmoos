@@ -20,6 +20,6 @@ def animationleft(firstindex,secondindex,thirdindex,fourthindex,move,frame):
     Make_Clothes_Image.make_Clothes_Image(clothes[thirdindex],(100+5+5*move,100+7+2*move),y[4],y[5],x[4],x[5],frame,clothes[thirdindex].split("_")[1][0])
     Make_Clothes_Image.make_Clothes_Image(clothes[fourthindex],(10+10*move,10+10*move),y[6],y[7],x[6],x[7],frame,clothes[fourthindex].split("_")[1][0])
 
-    #print(clothes[secondindex])
+    print(clothes[secondindex])
     return clothes[secondindex]
 

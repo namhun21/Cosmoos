@@ -14,18 +14,11 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name): # 상체 ROI의 범위
 
     if x>20:
         x = x-10
-    y_offset = 130    # 이미지 사이즈 조정
-    img_size = 0
-    
-    if Clothes_name == "hoodT1_white.png":        # 옷마다 사이즈 지정    
-        img_size = 260
-    elif Clothes_name == "T-Shirt_no.png":
-        img_size = 270
-    elif Clothes_name =="nit_no.png":
-        img_size = 300       
-    elif Clothes_name =="blueshirts_white.png":
-        img_size = 280
-        
+    else:
+        pass
+    y_offset = 130        # 이미지 사이즈 조정
+    img_size = 260
+
     frame_roi = img[y+y_offset:y+y_offset+img_size, x:x+img_size]
     
     cv2.imshow('video2',frame_roi)
@@ -41,14 +34,14 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name): # 상체 ROI의 범위
 
     mask_inv = cv2.bitwise_not(mask)
     
-    try:        # bitwise_and부분에서 error가 발생하는 경우가 있기때문에 그경우에는 Error를 출력하게 하고 그외에는 그대로 실행시킨다.
+    try:       
         masked_body = cv2.bitwise_and(body_mask_small,body_mask_small, mask = mask) # 오버레이되는 부분만 남게된다.
         masked_frame = cv2.bitwise_and(frame_roi, frame_roi, mask = mask_inv) #배경만 남게된다
         img[y+y_offset:y+y_offset+img_size, x:x+img_size] = cv2.add(masked_body, masked_frame) # 화면에 이미지 오버레이
     except:
         print('Error')
      
-def Range_Operation(body,img,body_mask,Clothes_name):    # 특정조건에서만 실행되도록 조건을 부여하였다
+def Range_Operation(body,img,body_mask,Clothes_name):    # 예외범위를 추가한 코드
     count = 0
     global prev_x
     global prev_y
@@ -98,16 +91,11 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
     bodyCascade = cv2.CascadeClassifier('haarcascade_mcs_upperbody.xml')    #학습데이터 읽어오기
     
 
-    TextPosition1= (540,110)    # 글씨가 적혀질 위치
+    TextPosition1= (540,110)
     TextPosition2= (540,250)
     TextPosition3= (540,390)
-
-    backButtonCount = 0  #손이 올렸을 때 바로 클릭인지되지 않도록 20됐을 때 동작 실행하도록하는 변수
-    startcompare = 0   #영상의 프레임과 이미지 비교 시작
-    timeright = 0#100번의 루프를 돌고나서 이미지 찍기 위한 변수
-    timeLeft = 0#100번의 루프를 돌고나서 이미지 찍기 위한 변수
     
-    body_mask = cv2.imread(Clothes_name)  #애니메이션함수로 부터 이미지의 이름을 받아 이미지 읽어오기
+    body_mask = cv2.imread(Clothes_name)  #애니메이션으로 부터  이미지 읽어오기
     
     # h_mask, w_mask = body_mask.shape[:2] #이미지 영역
 
@@ -130,13 +118,12 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
 
         Click_Function.draw_Click(img,TextPosition1,(500,70),(620,140),'Reco')
         Click_Function.draw_Click(img,TextPosition2,(500,210),(620,280),'List')
-        Click_Function.draw_Click(img,TextPosition3,(500,350),(620,420),'Back')
+        #Click_Function.draw_Click(img,TextPosition3,(500,350),(620,420),'Buy')
 
         
         Range_Operation(body,img,body_mask,Clothes_name)
-
-
-                                
+    
+                                   
         cv2.imshow('video', img)
         if cv2.waitKey(1) and 0xFF == ord('q'):
             break
