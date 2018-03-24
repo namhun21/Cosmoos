@@ -107,7 +107,7 @@ def Second_Menu(title,cap):
             UI_Recommend.Third_Menu(title,cap)
 
         elif cv2.waitKey(1) & 0xFF == ord('l'):  # l 입력 시 목록화면 페이지로 이동
-            SelectClothes.SelectClothes()
+            SelectClothes.SelectClothes(cap)
 
     cv2.destroyAllWindows()
     cap.release()

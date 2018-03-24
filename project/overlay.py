@@ -138,7 +138,7 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
 
                                 
         cv2.imshow('video', img)
-        if cv2.waitKey(1) and 0xFF == ord('q'):
+        if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
     cv2.destroyAllWindows()
