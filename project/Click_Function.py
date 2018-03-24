@@ -27,12 +27,12 @@ def make_Roi(gray, y1, y2, x1, x2):     #일정 영역을 gray한다
 
 #클릭하는 동작
 #지금화면과 이전화면을 비교하여 달라진 영역을 계산하여 일정 수준 이상 달라져 있으면 클릭이 되게한다
-def Click_Operation(roi, origraysc, time, count1, count2, count3, num1,num2,num3):
+def Click_Operation(roi, origraysc, waiting_time, count1, count2, count3, num1,num2,num3):
     # num1 = 0
     # num2 = 0
     # num3 = 0
 
-    # time = 0
+    # waiting_time = 0
 
     # count1 = 0
     # count2 = 0
@@ -49,7 +49,7 @@ def Click_Operation(roi, origraysc, time, count1, count2, count3, num1,num2,num3
 
             if (oricolor1 - roicolor1 < 30):    #달라진 정도가 30 미만이면 인식하지않는다
                 roi[0][y, x] = 0
-               
+
             else:
                 roi[0][y, x] = 255              #달라진 정도가 30 이상이면 인식한다
                 num1 = num1 + 1
@@ -85,4 +85,4 @@ def Click_Operation(roi, origraysc, time, count1, count2, count3, num1,num2,num3
 
     num3 = 0
 
-    return count1, count2, count3,num1,num2,num3,time
+    return count1, count2, count3,num1,num2,num3,waiting_time

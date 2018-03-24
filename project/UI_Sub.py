@@ -3,8 +3,8 @@ import sys
 import numpy as np
 import time
 import os
-import UI_Start 
-import UI_Recommend 
+import UI_Start
+import UI_Recommend
 import Click_Function
 import SelectClothes
 
@@ -17,23 +17,23 @@ def Second_Menu(title,cap):
     bottomLeftCornerOfText1 = (460, 70)
     bottomLeftCornerOfText2 = (260, 70)
     bottomLeftCornerOfText3 = (60, 70)
-    
+
     num1 = 0
     num2 = 0
     num3 = 0
-    
+
     count1 = 0
     count2 = 0
     count3 = 0
-    
-    time = 0
+
+    waiting_time = 0
     check = 0
     kernel = np.ones((5, 5), np.uint8)
 
     while True:
         ret, frame = cap.read()
         img = cv2.flip(frame,1)
-        
+
         cv2.putText(img,title,
                     bottomLeftCornerOfText_Title,
                     cv2.FONT_HERSHEY_SIMPLEX,
@@ -53,7 +53,7 @@ def Second_Menu(title,cap):
 
         roi = [roi1, roi2, roi3]
 
-        if (check == 0 and time > 100):    #클릭 구현시 필요한 사진
+        if (check == 0 and waiting_time > 100):    #클릭 구현시 필요한 사진
             #cap1 = cv2.VideoCapture(0)
             #ret, ori2 = cap1.read()
 
@@ -72,7 +72,7 @@ def Second_Menu(title,cap):
             check = 1
 
         if (check == 1):    #클릭 함수 실행
-            count1, count2, count3, num1,num2,num3, time = Click_Function.Click_Operation(roi, origraysc, time,count1,count2,count3,num1,num2,num3)
+            count1, count2, count3, num1,num2,num3, waiting_time = Click_Function.Click_Operation(roi, origraysc, waiting_time,count1,count2,count3,num1,num2,num3)
 
         print(count3, count2, count1)
 
@@ -96,7 +96,7 @@ def Second_Menu(title,cap):
             count3 = 0
 
         cv2.imshow('video', img)
-        time = time + 5
+        waiting_time = waiting_time + 5
 
         if cv2.waitKey(1) & 0xFF == ord('q'):  # q 입력 시 종료
             break

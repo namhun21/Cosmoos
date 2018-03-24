@@ -3,11 +3,11 @@ import sys
 import numpy as np
 import time
 import os
-import UI_Sub 
+import UI_Sub
 import Click_Function
 
 def First_Menu(cap):
-    
+
     # Icon = ['T-Shirt.jpg','Y-Shirt.png','Hood.jpg']
     #버튼 위치
     bottomLeftCornerOfText1 = (460, 70)
@@ -23,7 +23,7 @@ def First_Menu(cap):
     num2 = 0
     num3 = 0
 
-    time = 0
+    waiting_time = 0
     check = 0
     kernel = np.ones((5, 5), np.uint8)
 
@@ -37,7 +37,7 @@ def First_Menu(cap):
         Click_Function.draw_Click(img, bottomLeftCornerOfText2, (250, 50), (370, 80), 'Y-shirt')
         Click_Function.draw_Click(img, bottomLeftCornerOfText3, (50, 50), (170, 80), 'Hood')
 
-        
+
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
         roi1 = Click_Function.make_Roi(gray,50 ,80 ,450, 570)
@@ -46,7 +46,7 @@ def First_Menu(cap):
 
         roi = [roi1, roi2, roi3]
 
-        if (check == 0 and time > 100):   # time이 100이상이되면 버튼 클릭 인식을 시작한다.
+        if (check == 0 and waiting_time > 100):   # waiting_time이 100이상이되면 버튼 클릭 인식을 시작한다.
                                           # 사진을 찍어서 지금 화면과 달라지는 영역을 인식한다.
             # cap1 = cv2.VideoCapture(0)
             # ret, ori2 = cap1.read()
@@ -54,7 +54,7 @@ def First_Menu(cap):
             # oriroi1 = ori2[50:80,450:570]
             # oriroi2 = ori2[50:80,250:370]
             # oriroi3 = ori2[50:80,50:170]
-            
+
             origray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
             origraysc1 = Click_Function.make_Roi(origray,50 ,80 , 450, 570)
@@ -62,11 +62,11 @@ def First_Menu(cap):
             origraysc3 = Click_Function.make_Roi(origray,50 ,80 , 50, 170)
 
             origraysc = [origraysc1, origraysc2, origraysc3]
-          
+
             check = 1
 
         if (check == 1):    #클릭 함수를 실행시킨다
-            count1, count2, count3, num1,num2,num3, time = Click_Function.Click_Operation(roi, origraysc, time,count1,count2,count3,num1,num2,num3)
+            count1, count2, count3, num1,num2,num3, waiting_time = Click_Function.Click_Operation(roi, origraysc, waiting_time,count1,count2,count3,num1,num2,num3)
 
         print(count3, count2, count1)
 
@@ -90,7 +90,7 @@ def First_Menu(cap):
             count3 = 0
 
         cv2.imshow('video', img)
-        time = time + 5
+        waiting_time = waiting_time + 5
 
         if cv2.waitKey(1) & 0xFF == ord('q'):  # q 입력시 종료
             break
