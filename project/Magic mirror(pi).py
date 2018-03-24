@@ -6,7 +6,7 @@ import os
 import UI_Start 
 import Click_Function
 
-os.system("sudo modprobe bcm-v4l2")
+os.system("sudo modprobe bcm2835-v4l2")
 
 cap = cv2.VideoCapture(0)
 print('width:{0},height:{1}'.format(cap.get(3),cap.get(4)))
