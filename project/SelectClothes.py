@@ -11,6 +11,7 @@ def SelectClothes(cap):
     TextLocation3=(550, 400)
     #cap = cv2.VideoCapture(0)
     index = 0 #옷의 배열 인덱스
+    velocity = 0.5#애니메이션의 속도를 결정함. 0<velocity<2 사이의 값 가능
     overlaycount = 0#손이 올렸을 때 바로 클릭인지되지 않도록 20됐을 때 동작 실행
     LeftOn = 0#애니메이션 왼쪽 오른쪽 구분하기 위하여 선언
     RightOn = 0#애니메이션 왼쪽 오른쪽 구분하기 위하여 선언
@@ -101,7 +102,7 @@ def SelectClothes(cap):
 
 
         if(move == 1):#애니메이션 가동 시작
-            animationUnit = animationUnit + 1#가중치를 증가
+            animationUnit = animationUnit + velocity#가중치를 증가
 
         if(index == 0):#가운데 이미지의 배열 인덱스가 0일 시의 예외 처리
             if(RightOn == 1):
@@ -123,7 +124,7 @@ def SelectClothes(cap):
                 Clothes_name=AnimationRightCall.animationright(index-2,index-1,index,index+1,animationUnit,img1)
             else:
                 Clothes_name=AnimationLeftCall.animationleft(index-1,index,index+1,index+2,animationUnit,img1)   #hm
-        if(animationUnit == 9):#애니메이션 완료 시
+        if(animationUnit >= 9):#애니메이션 완료 시
             if(index == 0 and RightOn == 1):#가운데 이미지 인덱스가 0일 때 오른쪽 애니메이션 가동 중지
                 index = 4
                 move = 0
@@ -165,7 +166,7 @@ def SelectClothes(cap):
     cv2.destroyAllWindows()
 
 
-#cap = cv2.VideoCapture(0)
-#SelectClothes(cap)
+cap = cv2.VideoCapture(0)
+SelectClothes(cap)
 
 
