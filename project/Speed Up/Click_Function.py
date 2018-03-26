@@ -61,5 +61,5 @@ def Click_Operation(roi, origraysc, waiting_time, count, num,Box_number):
 
     end = timeit.default_timer()
 
-    print((end-start)*1000)
+    #print((end-start)*1000)
     return count,num,waiting_time

@@ -78,7 +78,7 @@ def First_Menu(cap):
 
 
 
-        print(count3, count2, count1)
+        #print(count3, count2, count1)
 
         if (count1 > 20):         #count1이 20이 넘으면 UI_Sub에 있는 Second_Menu를 실행시킨다.
             print("success1")

@@ -30,6 +30,7 @@ def First_Menu(cap):
     kernel = np.ones((5, 5), np.uint8)
 
     while True:
+        First_Menu_startTime = int(round(time.time() * 1000))
 
         ret, frame = cap.read()
         img = cv2.flip(frame, 1)
@@ -67,15 +68,13 @@ def First_Menu(cap):
 
             check = 1
 
-        First_Menu_startTime = int(round(time.time() * 1000))
         if (check == 1):  # 클릭 함수를 실행시킨다
 
             count1, num1, waiting_time = Click_Function.Click_Operation(roi, origraysc, waiting_time, count1, num1, 0)
             count2, num2, waiting_time = Click_Function.Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
             count3, num3, waiting_time = Click_Function.Click_Operation(roi, origraysc, waiting_time, count3, num3, 2)
 
-        First_Menu_endTime = int(round(time.time() * 1000))
-        print(count3, count2, count1)
+        #print(count3, count2, count1)
 
         if (count1 > 20):  # count1이 20이 넘으면 UI_Sub에 있는 Second_Menu를 실행시킨다.
             print("success1")
@@ -110,6 +109,9 @@ def First_Menu(cap):
 
         elif cv2.waitKey(1) & 0xFF == ord('t'):  # t 입력시 UI_Sub에 Second_Menu('T-shirt') 실행
             UI_Sub.Second_Menu('T-shirt', cap)
+
+        First_Menu_endTime = int(round(time.time() * 1000))
+
 
         sum_time, n = time_measurement.measure(First_Menu_startTime, First_Menu_endTime, sum_time, n)
 
