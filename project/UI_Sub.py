@@ -7,6 +7,8 @@ import UI_Start
 import UI_Recommend
 import Click_Function
 import SelectClothes
+import time_measurement
+
 
 
 def Second_Menu(title,cap):
@@ -26,11 +28,14 @@ def Second_Menu(title,cap):
     count2 = 0
     count3 = 0
 
+    sum_time = 0
+    n = 0
     waiting_time = 0
     check = 0
     kernel = np.ones((5, 5), np.uint8)
 
     while True:
+        Sub_startTime = int(round(time.time() * 1000))
         ret, frame = cap.read()
         img = cv2.flip(frame,1)
 
@@ -74,7 +79,7 @@ def Second_Menu(title,cap):
         if (check == 1):    #클릭 함수 실행
             count1, count2, count3, num1,num2,num3, waiting_time = Click_Function.Click_Operation(roi, origraysc, waiting_time,count1,count2,count3,num1,num2,num3)
 
-        print(count3, count2, count1)
+        #print(count3, count2, count1)
 
         if (count1 > 20):               #count1이 20 초과하면 UI_Recommand에 있는 Third_Menu(title)실행
             print("success1")
@@ -108,6 +113,11 @@ def Second_Menu(title,cap):
 
         elif cv2.waitKey(1) & 0xFF == ord('l'):  # l 입력 시 목록화면 페이지로 이동
             SelectClothes.SelectClothes(cap)
+
+        Sub_endTime = int(round(time.time() * 1000))
+        sum_time,n = time_measurement.measure(Sub_startTime, Sub_endTime, sum_time, n)
+
+        
 
     cv2.destroyAllWindows()
     cap.release()

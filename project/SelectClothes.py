@@ -4,6 +4,8 @@ import AnimationRightCall
 import AnimationLeftCall
 import Click_Function
 import overlay
+import time_measurement
+import time
 
 def SelectClothes(cap):
     TextLocation1=(50, 230)
@@ -23,11 +25,15 @@ def SelectClothes(cap):
     move = 0#1일 때 움직임을 허가한다.
     whiteNumLeft = 0#왼쪽 애니메이션  버튼의 흑백 프레임의 흰색 픽셀의 개수
     whiteNumRight = 0#오른쪽 애니메이션  버튼의 흑백 프레임의 흰색 픽셀의 개수
-    whiteNumOverlay = 0#가운데 overlay창으로 가기위한 버튼의 흑백 프레임의 흰색 픽셀의 개수
+    whiteNumOverlay = 0#가운데 overlay창으로 가기위한 버튼의 흑백 프레임의 흰색픽셀의 개수
+    sum_time = 0
+    n = 0
 
     Clothes_name ='coat_no.png'
 
     while(cap.isOpened()):
+
+        Select_startTime = int(round(time.time() * 1000))
         ret, img = cap.read()
         img1 = cv2.flip(img,1)
 
@@ -162,6 +168,10 @@ def SelectClothes(cap):
         k = cv2.waitKey(10)
         if k==27:
             break
+
+        Select_endTime = int(round(time.time() * 1000))
+        sum_time,n = time_measurement.measure(Select_startTime, Select_endTime, sum_time, n)
+
 
     cv2.destroyAllWindows()
 

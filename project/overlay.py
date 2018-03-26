@@ -4,6 +4,7 @@ import numpy as np
 import time
 import os
 import Click_Function
+import time_measurement
 
 prev_x = 0
 prev_y = 0
@@ -58,15 +59,15 @@ def Range_Operation(body,img,body_mask,Clothes_name):    # 특정조건에서만
     
     for (x, y, w, h) in body:
         
-        print('x = ',x,'y = ',y,'w = ',w,'h = ',h)
+        #print('x = ',x,'y = ',y,'w = ',w,'h = ',h)
 
         if (abs(prev_x-x) < 10) and (abs(prev_y-y) < 10): #이전 x,y 와 현재 x,y의 차이가 별로 나지 않으면 이전 위치의 이미지 출력
-            print('prev_x =', prev_x, 'x = ', x, 'prev_y = ',prev_y, 'y = ', y, 'w= ',prev_w, 'h = ',prev_h)
+            #print('prev_x =', prev_x, 'x = ', x, 'prev_y = ',prev_y, 'y = ', y, 'w= ',prev_w, 'h = ',prev_h)
             continue
 
         if (prev_w != 0):             
             if (abs(prev_w-w) > 20) and (abs(prev_h-h) > 20):
-                print('prev_w = ',prev_w,'w = ',w,'prev_h = ',prev_h,'h = ',h)
+                #print('prev_w = ',prev_w,'w = ',w,'prev_h = ',prev_h,'h = ',h)
                 continue
         
         count = count + 1
@@ -106,7 +107,9 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
     startcompare = 0   #영상의 프레임과 이미지 비교 시작
     timeright = 0#100번의 루프를 돌고나서 이미지 찍기 위한 변수
     timeLeft = 0#100번의 루프를 돌고나서 이미지 찍기 위한 변수
-    
+
+    sum_time = 0
+    n = 0
     body_mask = cv2.imread(Clothes_name)  #애니메이션함수로 부터 이미지의 이름을 받아 이미지 읽어오기
     
     # h_mask, w_mask = body_mask.shape[:2] #이미지 영역
@@ -115,6 +118,7 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
         raise IOError('Unable to load the mouth cascade classifier xml files')
 
     while True:
+        Overlay_startTime = int(round(time.time() * 1000))
         # Capture frame-by-frame
         ret, frame = cap.read()
         #frame = cv2.resize(frame,None,fx=scaling_factor,fy=scaling_factor,interpolation = cv2.INTER_CUBIC)
@@ -140,6 +144,9 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
         cv2.imshow('video', img)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
+        Overlay_endTime = int(round(time.time() * 1000))
+        sum_time,n = time_measurement.measure(Overlay_startTime, Overlay_endTime, sum_time, n)
+
 
     cv2.destroyAllWindows()
     cap.release()
