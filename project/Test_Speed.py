@@ -2,9 +2,10 @@ import numpy as np
 import cv2
 import time
 import time_measurement
+import os
 sum_time = 0
 n = 0
-
+os.system("sudo modprobe bcm2835-v4l2")
 capture = cv2.VideoCapture(0)
 
 capture.set(3, 320)
