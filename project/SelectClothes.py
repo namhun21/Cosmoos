@@ -175,8 +175,8 @@ def SelectClothes(cap):
 
     cv2.destroyAllWindows()
 
-cap = cv2.VideoCapture(0)
-SelectClothes(cap)
+##cap = cv2.VideoCapture(0)
+##SelectClothes(cap)
 
 
 
