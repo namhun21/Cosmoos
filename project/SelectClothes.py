@@ -19,8 +19,8 @@ def SelectClothes(cap):
     RightOn = 0#애니메이션 왼쪽 오른쪽 구분하기 위하여 선언
     startcompare = 0#영상의 프레임과 이미지 비교 시작
     animationUnit = 0#애니메이션 움직임의 가중치(좌표에 더해지는 값)
-    timeright = 0#100번의 루프를 돌고나서 이미지 찍기 위한 변수
-    timeLeft = 0#100번의 루프를 돌고나서 이미지 찍기 위한 변수
+    waiting_time = 0#100번의 루프를 돌고나서 이미지 찍기 위한 변수
+    
 
     move = 0#1일 때 움직임을 허가한다.
     whiteNumLeft = 0#왼쪽 애니메이션  버튼의 흑백 프레임의 흰색 픽셀의 개수
@@ -50,7 +50,7 @@ def SelectClothes(cap):
         rightButtonFrame = imgray[200:250,510:640]
         overlayButtonFrame = imgray[380:430,510:640]
 
-        if(startcompare == 0 and timeright > 100 and timeLeft > 100):#루프를 100번 돌고나서 비교할 이미지 추출
+        if(startcompare == 0 and waiting_time > 100):#루프를 100번 돌고나서 비교할 이미지 추출
             picturegray = cv2.cvtColor(img1,cv2.COLOR_BGR2GRAY)
             pictureleftButtonFrame = picturegray[200:250,10:140]#왼쪽 애니메이션 버튼 부분
             picturerightButtonFrame = picturegray[200:250,510:640]#오른쪽 애니메이션  버튼 부분
@@ -149,8 +149,8 @@ def SelectClothes(cap):
             animationUnit = 0
             move = 0
 
-        timeright = timeright + 1#비교할 프레임을 찍기위한 시간 체크변수 1증가(100때 이미지 비교 시작)
-        timeLeft = timeLeft + 1#비교할 프레임을 찍기위한 시간 체크변수 1증가(100때 이미지 비교 시작)
+        waiting_time = waiting_time + 5#비교할 프레임을 찍기위한 시간 체크변수 5증가(100때 이미지 비교 시작)
+        
         #print(whiteNumLeft)
         #print(whiteNumRight)
         #print(overlaycount)
