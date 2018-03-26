@@ -13,14 +13,14 @@ def SelectClothes(cap):
     TextLocation3=(550, 400)
     #cap = cv2.VideoCapture(0)
     index = 0 #옷의 배열 인덱스
-    velocity = 0.5#애니메이션의 속도를 결정함. 0<velocity<2 사이의 값 가능
+    velocity = 1.8#애니메이션의 속도를 결정함. 0<velocity<2 사이의 값 가능
     overlaycount = 0#손이 올렸을 때 바로 클릭인지되지 않도록 20됐을 때 동작 실행
     LeftOn = 0#애니메이션 왼쪽 오른쪽 구분하기 위하여 선언
     RightOn = 0#애니메이션 왼쪽 오른쪽 구분하기 위하여 선언
     startcompare = 0#영상의 프레임과 이미지 비교 시작
     animationUnit = 0#애니메이션 움직임의 가중치(좌표에 더해지는 값)
     waiting_time = 0#100번의 루프를 돌고나서 이미지 찍기 위한 변수
-    
+
 
     move = 0#1일 때 움직임을 허가한다.
     whiteNumLeft = 0#왼쪽 애니메이션  버튼의 흑백 프레임의 흰색 픽셀의 개수
@@ -130,7 +130,7 @@ def SelectClothes(cap):
                 Clothes_name=AnimationRightCall.animationright(index-2,index-1,index,index+1,animationUnit,img1)
             else:
                 Clothes_name=AnimationLeftCall.animationleft(index-1,index,index+1,index+2,animationUnit,img1)   #hm
-        if(animationUnit >= 9):#애니메이션 완료 시
+        if(abs(animationUnit - 9) <= 1):#애니메이션 완료 시
             if(index == 0 and RightOn == 1):#가운데 이미지 인덱스가 0일 때 오른쪽 애니메이션 가동 중지
                 index = 4
                 move = 0
@@ -150,7 +150,7 @@ def SelectClothes(cap):
             move = 0
 
         waiting_time = waiting_time + 5#비교할 프레임을 찍기위한 시간 체크변수 5증가(100때 이미지 비교 시작)
-        
+
         #print(whiteNumLeft)
         #print(whiteNumRight)
         #print(overlaycount)
@@ -175,6 +175,8 @@ def SelectClothes(cap):
 
     cv2.destroyAllWindows()
 
+##cap = cv2.VideoCapture(0)
+##SelectClothes(cap)
 
 
 

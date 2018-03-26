@@ -7,7 +7,7 @@ def animationright(firstindex,secondindex,thirdindex,fourthindex,move,frame):
 ##    clothes2 = 'T-shirt_no.png'
 ##    clothes3 = 'pants1_no.png'
 ##    clothes4 = 'super_no.png'
-    clothes = ['nit_no.png','hoodT1_white.png','T-shirt_no.png','pants1_no.png','blueshirts_white.png']
+    clothes = ['t-shirt6_white.png','hoodT1_white.png','T-shirt_no.png','hoodt5_no.png','blueshirts_white.png']
 
 
 
@@ -20,6 +20,6 @@ def animationright(firstindex,secondindex,thirdindex,fourthindex,move,frame):
     Make_Clothes_Image.make_Clothes_Image(clothes[thirdindex],(int(round(150-5*move)),int(round(125-7-2*move))),y[4],y[5],x[4],x[5],frame,clothes[thirdindex].split("_")[1][0])
     Make_Clothes_Image.make_Clothes_Image(clothes[fourthindex],(int(round(100-11*move)),int(round(100-11*move))),y[6],y[7],x[6],x[7],frame,clothes[fourthindex].split("_")[1][0])
 
-    #print(clothes[thirdindex])
+    print(clothes[thirdindex])
     return clothes[thirdindex]
 

@@ -8,7 +8,7 @@ def animationleft(firstindex,secondindex,thirdindex,fourthindex,move,frame):
 ##    clothes2 = 'T-shirt.png'
 ##    clothes3 = 'pants1.png'
 ##    clothes4 = 'super.png'
-    clothes = ['nit_no.png','hoodT1_white.png','T-shirt_no.png','pants1_no.png','blueshirts_white.png']
+    clothes = ['t-shirt6_white.png','hoodT1_white.png','T-shirt_no.png','hoodt5_no.png','blueshirts_white.png']
 
     y=[int(round(30-3*move)),int(round(30-3*move))+int(round(100-11*move)),int(round(75-5*move)),int(round(75-5*move))+int(round(125-7-2*move)),int(round(30+5*move)),int(round(30+5*move))+int(round(100+7+2*move)),int(round(3+3*move)),int(round(3+3*move))+int(round(10+10*move))]
     x=[int(round(50-5*move)),int(round(50-5*move))+int(round(100-11*move)),int(round(250-20-20*move)),int(round(250-20-20*move))+int(round(150-5-5*move)),int(round(480-23-23*move)),int(round(480-23-23*move))+int(round(100+5+5*move)),int(round(590-11-11*move)),int(round(590-11-11*move))+int(round(10+10*move))]
