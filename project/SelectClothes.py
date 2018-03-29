@@ -29,11 +29,11 @@ def SelectClothes(cap):
     sum_time = 0
     n = 0
 
-    Clothes_name ='coat_no.png'
+    Clothes_name ='t-shirt6 _white.png'
 
     while(cap.isOpened()):
 
-        Select_startTime = int(round(time.time() * 1000))
+        #Select_startTime = int(round(time.time() * 1000))
         ret, img = cap.read()
         img1 = cv2.flip(img,1)
 
@@ -169,8 +169,8 @@ def SelectClothes(cap):
         if k==27:
             break
 
-        Select_endTime = int(round(time.time() * 1000))
-        sum_time,n = time_measurement.measure(Select_startTime, Select_endTime, sum_time, n)
+        #Select_endTime = int(round(time.time() * 1000))
+        #sum_time,n = time_measurement.measure(Select_startTime, Select_endTime, sum_time, n)
 
 
     cv2.destroyAllWindows()

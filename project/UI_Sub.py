@@ -77,9 +77,12 @@ def Second_Menu(title,cap):
             check = 1
 
         if (check == 1):    #클릭 함수 실행
-            count1, count2, count3, num1,num2,num3, waiting_time = Click_Function.Click_Operation(roi, origraysc, waiting_time,count1,count2,count3,num1,num2,num3)
+            count1, num1, waiting_time = Click_Function.Click_Operation(roi, origraysc, waiting_time, count1, num1, 0)
+            count2, num2, waiting_time = Click_Function.Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
+            count3, num3, waiting_time = Click_Function.Click_Operation(roi, origraysc, waiting_time, count3, num3, 2)
+            
 
-        #print(count3, count2, count1)
+        print(count3, count2, count1)
 
         if (count1 > 20):               #count1이 20 초과하면 UI_Recommand에 있는 Third_Menu(title)실행
             print("success1")
@@ -102,20 +105,10 @@ def Second_Menu(title,cap):
 
         cv2.imshow('video', img)
         waiting_time = waiting_time + 5
-
-        if cv2.waitKey(1) & 0xFF == ord('q'):  # q 입력 시 종료
+        if cv2.waitKey(1) & 0xFF == ord('q'):  # q 입력시 종료
             break
-        elif cv2.waitKey(1) & 0xFF == ord('b'):  # b 입력 시 이전 페이지로 이동
-            UI_Start.First_Menu(cap)
-
-        elif cv2.waitKey(1) & 0xFF == ord('r'):  # r 입력 시 추천 페이지로 이동
-            UI_Recommend.Third_Menu(title,cap)
-
-        elif cv2.waitKey(1) & 0xFF == ord('l'):  # l 입력 시 목록화면 페이지로 이동
-            SelectClothes.SelectClothes(cap)
-
         Sub_endTime = int(round(time.time() * 1000))
-        sum_time,n = time_measurement.measure(Sub_startTime, Sub_endTime, sum_time, n)
+        sum_time,n = time_measurement.measure_UI_Sub(Sub_startTime, Sub_endTime, sum_time, n)
 
         
 

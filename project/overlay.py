@@ -144,8 +144,8 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
         cv2.imshow('video', img)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-        Overlay_endTime = int(round(time.time() * 1000))
-        sum_time,n = time_measurement.measure(Overlay_startTime, Overlay_endTime, sum_time, n)
+        #Overlay_endTime = int(round(time.time() * 1000))
+        #sum_time,n = time_measurement.measure(Overlay_startTime, Overlay_endTime, sum_time, n)
 
 
     cv2.destroyAllWindows()

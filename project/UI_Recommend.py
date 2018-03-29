@@ -71,13 +71,15 @@ def Third_Menu(title,cap):
             check = 1
 
         if (check == 1):
-           count1, count2, count3, num1,num2,num3, time = Click_Function.Click_Operation(roi, origraysc, time,count1,count2,count3,num1,num2,num3)
-           
-        print(count3, count2, count1)
+            count1, num1, waiting_time = Click_Function.Click_Operation(roi, origraysc, waiting_time, count1, num1, 0)
+            count2, num2, waiting_time = Click_Function.Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
+            count3, num3, waiting_time = Click_Function.Click_Operation(roi, origraysc, waiting_time, count3, num3, 2)
+
+        #print(count3, count2, count1)
 
         if (count1 > 20):
             print("success1")
-            overlay.Full_Overlay()
+            #overlay.Full_Overlay()
             count1 = 0
             count2 = 0
             count3 = 0
@@ -97,13 +99,6 @@ def Third_Menu(title,cap):
         cv2.imshow('video', img)
         time = time + 5
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):  # q 입력시 종료
-            break
-        elif cv2.waitKey(1) & 0xFF == ord('b'):  # b 입력 시 이전 페이지로 이동
-            UI_Sub.Second_Menu(title,cap)
-
-        elif cv2.waitKey(1) & 0xFF == ord('w'):  # w 입력 시 오버레이  페이지로 이동
-            Overlay.Full_Overlay()
 
         #elif cv2.waitKey(1) & 0xFF == ord('t'):  # t 입력시 start2에 pou('T-shirt') 실행
             #start2.pou('T-shirt')
