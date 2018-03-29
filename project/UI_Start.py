@@ -4,14 +4,10 @@ import numpy as np
 import time
 import os
 import UI_Sub
-import Click_Function
+import Function
 import time_measurement
 
-def resetCount(count1,count2,count3):
-    count1=0
-    count2=0
-    count3=0
-    return count1,count2,count3
+
 
 def First_Menu(cap):
     # Icon = ['T-Shirt.jpg','Y-Shirt.png','Hood.jpg']
@@ -42,15 +38,15 @@ def First_Menu(cap):
         # frame_copy = frame.copy()
 
         # 클릭 버튼 만들기
-        Click_Function.draw_Click(img, bottomLeftCornerOfText1, (450, 50), (570, 80), 'T-shirt')
-        Click_Function.draw_Click(img, bottomLeftCornerOfText2, (250, 50), (370, 80), 'Y-shirt')
-        Click_Function.draw_Click(img, bottomLeftCornerOfText3, (50, 50), (170, 80), 'Hood')
+        Function.draw_Click(img, bottomLeftCornerOfText1, (450, 50), (570, 80), 'T-shirt')
+        Function.draw_Click(img, bottomLeftCornerOfText2, (250, 50), (370, 80), 'Y-shirt')
+        Function.draw_Click(img, bottomLeftCornerOfText3, (50, 50), (170, 80), 'Hood')
 
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-        roi1 = Click_Function.make_Roi(gray, 50, 80, 450, 570)
-        roi2 = Click_Function.make_Roi(gray, 50, 80, 250, 370)
-        roi3 = Click_Function.make_Roi(gray, 50, 80, 50, 170)
+        roi1 = Function.make_Roi(gray, 50, 80, 450, 570)
+        roi2 = Function.make_Roi(gray, 50, 80, 250, 370)
+        roi3 = Function.make_Roi(gray, 50, 80, 50, 170)
 
         roi = [roi1, roi2, roi3]
 
@@ -65,9 +61,9 @@ def First_Menu(cap):
 
             origray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-            origraysc1 = Click_Function.make_Roi(origray, 50, 80, 450, 570)
-            origraysc2 = Click_Function.make_Roi(origray, 50, 80, 250, 370)
-            origraysc3 = Click_Function.make_Roi(origray, 50, 80, 50, 170)
+            origraysc1 = Function.make_Roi(origray, 50, 80, 450, 570)
+            origraysc2 = Function.make_Roi(origray, 50, 80, 250, 370)
+            origraysc3 = Function.make_Roi(origray, 50, 80, 50, 170)
 
             origraysc = [origraysc1, origraysc2, origraysc3]
 
@@ -75,27 +71,27 @@ def First_Menu(cap):
 
         if (check == 1):  # 클릭 함수를 실행시킨다
             
-            count1, num1, waiting_time = Click_Function.Click_Operation(roi, origraysc, waiting_time, count1, num1, 0)
-            count2, num2, waiting_time = Click_Function.Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
-            count3, num3, waiting_time = Click_Function.Click_Operation(roi, origraysc, waiting_time, count3, num3, 2)
+            count1, num1, waiting_time = Function.Click_Operation(roi, origraysc, waiting_time, count1, num1, 0)
+            count2, num2, waiting_time = Function.Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
+            count3, num3, waiting_time = Function.Click_Operation(roi, origraysc, waiting_time, count3, num3, 2)
 
             
             
 
-        print(count3, count2, count1)
+        #print(count3, count2, count1)
 
         if (count1 > 20):  # count1이 20이 넘으면 UI_Sub에 있는 Second_Menu를 실행시킨다.
             print("success1")
             UI_Sub.Second_Menu('T-shirt', cap)
-            count1 ,count2 , count3 = resetCount(count1,count2,count3) 
+            count1 ,count2 , count3 = Function.resetCount(count1,count2,count3) 
         elif (count2 > 20):
             print("success2")
             UI_Sub.Second_Menu('Y-shirt', cap)
-            count1 ,count2 , count3 = resetCount(count1,count2,count3)
+            count1 ,count2 , count3 = Function.resetCount(count1,count2,count3)
         elif (count3 > 20):
             print("success3")
             UI_Sub.Second_Menu('Hood-T', cap)
-            count1 ,count2 , count3 = resetCount(count1,count2,count3)
+            count1 ,count2 , count3 = Function.resetCount(count1,count2,count3)
 
         cv2.imshow('video', img)
 

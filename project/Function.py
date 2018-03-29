@@ -5,6 +5,12 @@ import time
 import os
 import timeit
 
+def resetCount(count1,count2,count3):
+    count1=0
+    count2=0
+    count3=0
+    return count1,count2,count3
+
 def draw_Click(frame, position, S_Range, E_Range, name):   #클릭하는 버튼의 인터페이스를 구현한다
     font = cv2.FONT_HERSHEY_SIMPLEX
     Position = position

@@ -3,7 +3,7 @@ import sys
 import numpy as np
 import time
 import os
-import Click_Function
+import Function
 import time_measurement
 
 prev_x = 0
@@ -132,9 +132,9 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
             flags=cv2.CASCADE_SCALE_IMAGE
         )
 
-        Click_Function.draw_Click(img,TextPosition1,(500,70),(620,140),'Reco')
-        Click_Function.draw_Click(img,TextPosition2,(500,210),(620,280),'List')
-        Click_Function.draw_Click(img,TextPosition3,(500,350),(620,420),'Back')
+        Function.draw_Click(img,TextPosition1,(500,70),(620,140),'Reco')
+        Function.draw_Click(img,TextPosition2,(500,210),(620,280),'List')
+        Function.draw_Click(img,TextPosition3,(500,350),(620,420),'Back')
 
         
         Range_Operation(body,img,body_mask,Clothes_name)

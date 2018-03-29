@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import AnimationRightCall
 import AnimationLeftCall
-import Click_Function
+import Function
 import overlay
 import time_measurement
 import time
@@ -38,9 +38,9 @@ def SelectClothes(cap):
         img1 = cv2.flip(img,1)
 
 
-        Click_Function.draw_Click(img1,TextLocation1,(10,200),(140,250),"Turn Left")
-        Click_Function.draw_Click(img1,TextLocation2,(510,200),(640,250),"Turn Right")
-        Click_Function.draw_Click(img1,TextLocation3,(510,380),(640,430),"Overlay")
+        Function.draw_Click(img1,TextLocation1,(10,200),(140,250),"Turn Left")
+        Function.draw_Click(img1,TextLocation2,(510,200),(640,250),"Turn Right")
+        Function.draw_Click(img1,TextLocation3,(510,380),(640,430),"Overlay")
         #cv2.rectangle(img1,(10,200),(180,250),(255,0,0),3)
         #cv2.rectangle(img1,(200,350),(350,650),(255,0,0),3)
         #cv2.rectangle(img1,(510,250),(640,300),(255,0,0),3)
