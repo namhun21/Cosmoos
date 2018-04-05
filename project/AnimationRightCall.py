@@ -1,13 +1,16 @@
 import cv2
 import numpy as np
 import Make_Clothes_Image
+import time
+
 def animationright(firstindex,secondindex,thirdindex,fourthindex,move,frame):
 ##    clothes0 = 'coat_no.png'
 ##    clothes1 = 'hoodT1_white.png'
 ##    clothes2 = 'T-shirt_no.png'
 ##    clothes3 = 'pants1_no.png'
 ##    clothes4 = 'super_no.png'
-    clothes = ['t-shirt6_white.png','hoodT1_white.png','T-shirt_no.png','hoodt5_no.png','blueshirts_white.png']
+    millis_start = int(round(time.time() * 1000))
+    clothes = ['t-shirt6_no.png','hoodT1_no.png','T-shirt_no.png','hoodt5_no.png','blueshirts_no.png']
 
 
 
@@ -21,5 +24,7 @@ def animationright(firstindex,secondindex,thirdindex,fourthindex,move,frame):
     Make_Clothes_Image.make_Clothes_Image(clothes[fourthindex],(int(round(100-11*move)),int(round(100-11*move))),y[6],y[7],x[6],x[7],frame,clothes[fourthindex].split("_")[1][0])
 
     print(clothes[thirdindex])
+    millis_end = int(round(time.time() * 1000))
+    print("AnimationRightCall : ",millis_end - millis_start,"ms")
     return clothes[thirdindex]
 

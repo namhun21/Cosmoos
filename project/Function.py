@@ -12,6 +12,7 @@ def resetCount(count1,count2,count3):
     return count1,count2,count3
 
 def draw_Click(frame, position, S_Range, E_Range, name):   #클릭하는 버튼의 인터페이스를 구현한다
+    millis_start = int(round(time.time()*1000))
     font = cv2.FONT_HERSHEY_SIMPLEX
     Position = position
     fontScale = 0.5
@@ -26,9 +27,16 @@ def draw_Click(frame, position, S_Range, E_Range, name):   #클릭하는 버튼�
                 fontColor,
                 lineType)
 
+    millis_end = int(round(time.time() * 1000))
+    print("draw_click : ",millis_end - millis_start,"ms")
+
+
 
 def make_Roi(gray, y1, y2, x1, x2):     #일정 영역을 gray한다
+    millis_start = int(round(time.time() * 1000))
     roi = gray[y1:y2, x1:x2]
+    millis_end = int(round(time.time() * 1000))
+    print("make_roi : ",millis_end - millis_start,"ms")
     return roi
 
 
