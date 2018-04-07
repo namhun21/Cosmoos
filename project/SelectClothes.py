@@ -59,15 +59,7 @@ def SelectClothes(cap):
         if(startcompare == 1 and frame_number == 1):#비교하기 위한 이미지 추출
             millis_start_click = int(round(time.time()*1000))
             rightButtonFrame = imgray[200:250,510:640]
-            for x in range(130):
-                for y in range(50):
-                  picturecolor = rightButtonFrame[y,x]#현재 프레임의 오른쪽 버튼 부분
-                  rightButtonFrameColor = picturerightButtonFrame[y,x]#찍어놓은 이미지의 오른쪽 버튼 부분
-                  if(picturecolor- rightButtonFrameColor < 30):#비교해서 색의 차가 30 미만일 때
-                       rightButtonFrame[y,x] = 0#흑색으로 변환
-                  else:
-                       rightButtonFrame[y,x] = 255#백색으로 변환
-                       whiteNumRight = whiteNumRight+1#오른쪽 부분의 흰색 픽셀 개수 증가
+            whiteNumRight = Function.Click_Operation1(rightButtonFrame,picturerightButtonFrame,130,50)
             if(whiteNumRight > 6500 *0.7):
                 LeftOn = 0
                 RightOn = 1
@@ -77,15 +69,7 @@ def SelectClothes(cap):
         if(startcompare == 1 and frame_number == 2):
             millis_start_click = int(round(time.time()*1000))
             leftButtonFrame = imgray[200:250,10:140]
-            for x in range(130):
-                for y in range(50):
-                  picturecolor = leftButtonFrame[y,x]#현재 프레임의 왼쪽 버튼 부분
-                  leftButtonFrameColor = pictureleftButtonFrame[y,x]#찍어놓은 이미지의 왼쪽 버튼 부분
-                  if(picturecolor - leftButtonFrameColor < 30):#비교해서 색의 차가 30 미만일 때
-                       leftButtonFrame[y,x] = 0#흑색으로 변환
-                  else:
-                       leftButtonFrame[y,x] = 255#백색으로 변환
-                       whiteNumLeft = whiteNumLeft+1#왼쪽 부분의 흰색 픽셀 개수 증가
+            whiteNumLeft = Function.Click_Operation1(leftButtonFrame,pictureleftButtonFrame,130,50)
             if(whiteNumLeft > 6500*0.7):
                 LeftOn = 1
                 RightOn = 0
@@ -96,15 +80,7 @@ def SelectClothes(cap):
         if(startcompare == 1 and frame_number == 3):
             overlayButtonFrame = imgray[380:430,510:640]
             millis_start_click = int(round(time.time()*1000))
-            for x in range(130):
-                for y in range(50):
-                  picturecolor = overlayButtonFrame[y,x]#현재 프레임의 가운데 버튼 부분
-                  overlayButtonColor = pictureoverlayButtonFrame[y,x]#찍어놓은 이미지의 가운데 버튼 부분
-                  if(picturecolor- overlayButtonColor < 30):#비교해서 색의 차가 30 미만일 때
-                       overlayButtonFrame[y,x] = 0#흑색으로 변환
-                  else:
-                       overlayButtonFrame[y,x] = 255#백색으로 변환
-                       whiteNumOverlay = whiteNumOverlay+1#가운데 부분의 흰색 픽셀 개수 증가
+            whiteNumOverlay = Function.Click_Operation1(overlayButtonFrame,pictureoverlayButtonFrame,130,50)
             if(whiteNumOverlay > 6500 *0.7):
                 overlaycount = overlaycount + 1
             else:
@@ -187,8 +163,8 @@ def SelectClothes(cap):
 
     cv2.destroyAllWindows()
 
-cap = cv2.VideoCapture(0)
-SelectClothes(cap)
+##cap = cv2.VideoCapture(0)
+##SelectClothes(cap)
 
 
 

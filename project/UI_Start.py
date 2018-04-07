@@ -19,7 +19,7 @@ def First_Menu(cap):
     count1 = 0
     count2 = 0
     count3 = 0
-
+    frame_number = 1
     num1 = 0
     num2 = 0
     num3 = 0
@@ -31,7 +31,7 @@ def First_Menu(cap):
     kernel = np.ones((5, 5), np.uint8)
 
     while True:
-        
+
         First_Menu_startTime = int(round(time.time() * 1000))
         ret, frame = cap.read()
         img = cv2.flip(frame, 1)
@@ -70,20 +70,23 @@ def First_Menu(cap):
             check = 1
 
         if (check == 1):  # 클릭 함수를 실행시킨다
-            
-            count1, num1, waiting_time = Function.Click_Operation(roi, origraysc, waiting_time, count1, num1, 0)
-            count2, num2, waiting_time = Function.Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
-            count3, num3, waiting_time = Function.Click_Operation(roi, origraysc, waiting_time, count3, num3, 2)
 
-            
-            
+            if(frame_number == 1):
+                count1, num1, waiting_time = Function.Click_Operation(roi, origraysc, waiting_time, count1, num1, 0)
+            if(frame_number==2):
+                count2, num2, waiting_time = Function.Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
+            if(frame_number == 3):
+                count3, num3, waiting_time = Function.Click_Operation(roi, origraysc, waiting_time, count3, num3, 2)
+
+
+
 
         #print(count3, count2, count1)
 
         if (count1 > 20):  # count1이 20이 넘으면 UI_Sub에 있는 Second_Menu를 실행시킨다.
             print("success1")
             UI_Sub.Second_Menu('T-shirt', cap)
-            count1 ,count2 , count3 = Function.resetCount(count1,count2,count3) 
+            count1 ,count2 , count3 = Function.resetCount(count1,count2,count3)
         elif (count2 > 20):
             print("success2")
             UI_Sub.Second_Menu('Y-shirt', cap)
@@ -93,6 +96,10 @@ def First_Menu(cap):
             UI_Sub.Second_Menu('Hood-T', cap)
             count1 ,count2 , count3 = Function.resetCount(count1,count2,count3)
 
+        if(frame_number <3):
+            frame_number = frame_number + 1
+        else:
+            frame_number = 1
         cv2.imshow('video', img)
 
         waiting_time = waiting_time + 5
@@ -101,7 +108,7 @@ def First_Menu(cap):
 
         First_Menu_endTime = int(round(time.time() * 1000))
         sum_time, n = time_measurement.measure_UI_Start(First_Menu_startTime, First_Menu_endTime, sum_time, n)
-       
+
     cv2.destroyAllWindows()
     cap.release()
 

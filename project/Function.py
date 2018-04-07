@@ -75,3 +75,17 @@ def Click_Operation(roi, origraysc, waiting_time, count, num,Box_number):
     #print((end-start)*1000)
     return count,num,waiting_time
 
+
+def Click_Operation1(ButtonFrame,pictureButtonFrame,width,height):
+    whiteNum = 0
+    for x in range(width):
+        for y in range(height):
+           picturecolor = ButtonFrame[y,x]#현재 프레임의 오른쪽 버튼 부분
+           ButtonFrameColor = pictureButtonFrame[y,x]#찍어놓은 이미지의 오른쪽 버튼 부분
+           if(picturecolor- ButtonFrameColor < 30):#비교해서 색의 차가 30 미만일 때
+                ButtonFrame[y,x] = 0#흑색으로 변환
+           else:
+                ButtonFrame[y,x] = 255#백색으로 변환
+                whiteNum = whiteNum+1#오른쪽 부분의 흰색 픽셀 개수 증가
+
+    return whiteNum
