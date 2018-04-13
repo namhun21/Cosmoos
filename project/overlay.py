@@ -18,14 +18,19 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name): # 상체 ROI의 범위
     y_offset = 130    # 이미지 사이즈 조정
     img_size = 0
     
-    if Clothes_name == "hoodT1_white.png":        # 옷마다 사이즈 지정    
+    if Clothes_name == "hoodT1_no_GUZZI_L_15000_.png":        # 옷마다 사이즈 지정    
         img_size = 260
-    elif Clothes_name == "T-Shirt_no.png":
+    elif Clothes_name == "T-Shirt_no_PERARI_L_6700_.png":
         img_size = 270
-    elif Clothes_name =="nit_no.png":
+    elif Clothes_name =="nit_no_ADIDAS_S_10500_.png":
         img_size = 300       
-    elif Clothes_name =="blueshirts_white.png":
+    elif Clothes_name =="blueshirts_no_WHAT_M_8000_.png":
         img_size = 280
+    elif Clothes_name == "t-shirt6_no_DONG_M_7700_.png":
+        img_size = 270
+    elif Clothes_name == "hoodt5_no_NIKE_M_9999_.png":
+        img_size = 270
+    
         
     frame_roi = img[y+y_offset:y+y_offset+img_size, x:x+img_size]
     
@@ -35,9 +40,9 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name): # 상체 ROI의 범위
     gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)# 키운 이미지의 gray처리 (BGR->Gray)
 
     if(Clothes_name.split("_")[1][0] == "n"):
-        ret, mask = cv2.threshold(gray_mask, 180,255, cv2.THRESH_BINARY_INV)
+        ret, mask = cv2.threshold(gray_mask, 254,255, cv2.THRESH_BINARY_INV)
     else:
-        ret, mask = cv2.threshold(gray_mask, 127,255, cv2.THRESH_BINARY)
+        ret, mask = cv2.threshold(gray_mask, 10,255, cv2.THRESH_BINARY)
     
 
     mask_inv = cv2.bitwise_not(mask)
@@ -103,6 +108,10 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
     TextPosition2= (540,250)
     TextPosition3= (540,390)
 
+    InfoPosition1=(20, 80)      #옷 브랜드
+    InfoPosition2=(20, 120)     #옷 사이즈
+    InfoPosition3=(20, 160)     #옷 가격
+
     backButtonCount = 0  #손이 올렸을 때 바로 클릭인지되지 않도록 20됐을 때 동작 실행하도록하는 변수
     startcompare = 0   #영상의 프레임과 이미지 비교 시작
     timeright = 0#100번의 루프를 돌고나서 이미지 찍기 위한 변수
@@ -122,7 +131,7 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
         # Capture frame-by-frame
         ret, frame = cap.read()
         #frame = cv2.resize(frame,None,fx=scaling_factor,fy=scaling_factor,interpolation = cv2.INTER_CUBIC)
-        img = cv2.flip(frame,1)
+        img = cv2.flip(frame,1)  #카메라 반전
         
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # BGR-> Gray
       
@@ -135,6 +144,16 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
         Function.draw_Click(img,TextPosition1,(500,70),(620,140),'Reco')
         Function.draw_Click(img,TextPosition2,(500,210),(620,280),'List')
         Function.draw_Click(img,TextPosition3,(500,350),(620,420),'Back')
+
+        ClothesBrand = 'Brand: ' + Clothes_name.split("_")[2]
+        ClothesSize = 'Size: ' + Clothes_name.split("_")[3]
+        ClothesPrice = 'Price: ' + Clothes_name.split("_")[4]
+
+
+        Function.draw_Click(img,InfoPosition1, (0,0), (0,0), ClothesBrand)
+        Function.draw_Click(img,InfoPosition2, (0,0), (0,0), ClothesSize)
+        Function.draw_Click(img,InfoPosition3, (0,0), (0,0), ClothesPrice)
+
 
         
         Range_Operation(body,img,body_mask,Clothes_name)

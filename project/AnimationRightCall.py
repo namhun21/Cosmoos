@@ -10,7 +10,7 @@ def animationright(firstindex,secondindex,thirdindex,fourthindex,move,frame):
 ##    clothes3 = 'pants1_no.png'
 ##    clothes4 = 'super_no.png'
     millis_start = int(round(time.time() * 1000))
-    clothes = ['t-shirt6_no.png','hoodT1_no.png','T-shirt_no.png','hoodt5_no.png','blueshirts_no.png']
+    clothes = ['t-shirt6_no_DONG_M_7700_.png','hoodT1_no_GUZZI_L_15000_.png','T-shirt_no_PERARI_L_6700_.png','hoodt5_no_NIKE_M_9999_.png','blueshirts_no_WHAT_M_8000_.png']
 
 
 
