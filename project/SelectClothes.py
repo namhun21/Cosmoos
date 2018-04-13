@@ -30,7 +30,7 @@ def SelectClothes(cap):
     sum_time = 0
     n = 0
 
-    Clothes_name ='t-shirt6 _no_DONG_M_7700_.png'
+    Clothes_name ='t-shirt6_no_DONG_M_7700_.png'
 
     while(cap.isOpened()):
 
