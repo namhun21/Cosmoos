@@ -30,7 +30,7 @@ def SelectClothes(cap):
     sum_time = 0
     n = 0
 
-    Clothes_name ='t-shirt6 _white.png'
+    Clothes_name ='t-shirt6 _no_DONG_M_7700_.png'
 
     while(cap.isOpened()):
 
@@ -163,8 +163,8 @@ def SelectClothes(cap):
 
     cv2.destroyAllWindows()
 
-##cap = cv2.VideoCapture(0)
-##SelectClothes(cap)
+cap = cv2.VideoCapture(0)
+SelectClothes(cap)
 
 
 

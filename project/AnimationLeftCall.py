@@ -10,7 +10,7 @@ def animationleft(firstindex,secondindex,thirdindex,fourthindex,move,frame):
 ##    clothes3 = 'pants1.png'
 ##    clothes4 = 'super.png'
     millis_start = int(round(time.time() * 1000))
-    clothes = ['t-shirt6_no.png','hoodT1_no.png','T-shirt_no.png','hoodt5_no.png','blueshirts_no.png']
+    clothes = ['t-shirt6_no_DONG_M_7700_.png','hoodT1_no_GUZZI_L_15000_.png','T-shirt_no_PERARI_L_6700_.png','hoodt5_no_NIKE_M_9999_.png','blueshirts_no_WHAT_M_8000_.png']
 
     y=[int(round(30-3*move)),int(round(30-3*move))+int(round(100-11*move)),int(round(75-5*move)),int(round(75-5*move))+int(round(125-7-2*move)),int(round(30+5*move)),int(round(30+5*move))+int(round(100+7+2*move)),int(round(3+3*move)),int(round(3+3*move))+int(round(10+10*move))]
     x=[int(round(50-5*move)),int(round(50-5*move))+int(round(100-11*move)),int(round(250-20-20*move)),int(round(250-20-20*move))+int(round(150-5-5*move)),int(round(480-23-23*move)),int(round(480-23-23*move))+int(round(100+5+5*move)),int(round(590-11-11*move)),int(round(590-11-11*move))+int(round(10+10*move))]
