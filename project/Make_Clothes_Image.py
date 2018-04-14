@@ -3,15 +3,16 @@ import numpy as np
 import time
 
 
-def make_Clothes_Image(clothes,size,y1,y2,x1,x2,frame,white):
+def make_Clothes_Image(clothes,size,y1,y2,x1,x2,frame):
     millis_start = int(round(time.time() * 1000))
     maskclo = cv2.imread(clothes)
     mask_small = cv2.resize(maskclo,size,interpolation = cv2.INTER_AREA)
     gray_mask = cv2.cvtColor(mask_small, cv2.COLOR_BGR2GRAY)
-    if(white == "n"):
-        ret, mask = cv2.threshold(gray_mask, 254,255, cv2.THRESH_BINARY_INV)
+    color = clothes.split("_")[1]
+    if((color == "black") or (color == "blue") or (color == "red")):
+        ret, mask = cv2.threshold(gray_mask, 200,255, cv2.THRESH_BINARY_INV)
     else:
-        ret, mask = cv2.threshold(gray_mask, 10,255, cv2.THRESH_BINARY)
+        ret, mask = cv2.threshold(gray_mask, 1,255, cv2.THRESH_BINARY)
     mask_inv = cv2.bitwise_not(mask)
     frame_roi = frame[y1:y2,x1:x2]
     masked_body = cv2.bitwise_and(mask_small,mask_small,mask = mask)

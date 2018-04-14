@@ -90,7 +90,7 @@ def Second_Menu(title,cap):
             count1,count2, count3 = Function.resetCount(count1,count2,count3)
         elif (count2 > 20):
             print("success2")
-            SelectClothes.SelectClothes(cap)   #list
+            SelectClothes.SelectClothes(title,cap)   #list
             count1,count2, count3 = Function.resetCount(count1,count2,count3)
         elif (count3 > 20):
             print("success3")

@@ -16,7 +16,7 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name): # 상체 ROI의 범위
     if x>20:
         x = x-10
     y_offset = 130    # 이미지 사이즈 조정
-    img_size = 0
+    img_size = 270
     
     if Clothes_name == "hoodT1_no_GUZZI_L_15000_.png":        # 옷마다 사이즈 지정    
         img_size = 260
@@ -39,11 +39,11 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name): # 상체 ROI의 범위
     body_mask_small = cv2.resize(body_mask,(img_size,img_size),interpolation = cv2.INTER_CUBIC) # 옷이미지 키우기
     gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)# 키운 이미지의 gray처리 (BGR->Gray)
 
-    if(Clothes_name.split("_")[1][0] == "n"):
-        ret, mask = cv2.threshold(gray_mask, 254,255, cv2.THRESH_BINARY_INV)
+    color = Clothes_name.split("_")[1]
+    if((color == "black") or (color == "blue") or (color == "red")):
+        ret, mask = cv2.threshold(gray_mask, 200,255, cv2.THRESH_BINARY_INV)
     else:
-        ret, mask = cv2.threshold(gray_mask, 10,255, cv2.THRESH_BINARY)
-    
+        ret, mask = cv2.threshold(gray_mask, 1,255, cv2.THRESH_BINARY)
 
     mask_inv = cv2.bitwise_not(mask)
     

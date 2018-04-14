@@ -85,15 +85,15 @@ def First_Menu(cap):
 
         if (count1 > 20):  # count1이 20이 넘으면 UI_Sub에 있는 Second_Menu를 실행시킨다.
             print("success1")
-            UI_Sub.Second_Menu('T-shirt', cap)
+            UI_Sub.Second_Menu('t-shirt', cap)
             count1 ,count2 , count3 = Function.resetCount(count1,count2,count3)
         elif (count2 > 20):
             print("success2")
-            UI_Sub.Second_Menu('Y-shirt', cap)
+            UI_Sub.Second_Menu('y-shirt', cap)
             count1 ,count2 , count3 = Function.resetCount(count1,count2,count3)
         elif (count3 > 20):
             print("success3")
-            UI_Sub.Second_Menu('Hood-T', cap)
+            UI_Sub.Second_Menu('hood-t', cap)
             count1 ,count2 , count3 = Function.resetCount(count1,count2,count3)
 
         if(frame_number <3):

@@ -7,7 +7,7 @@ import overlay
 import time_measurement
 import time
 
-def SelectClothes(cap):
+def SelectClothes(title, cap):
     TextLocation1=(50, 230)
     TextLocation2=(550, 230)
     TextLocation3=(550, 400)
@@ -29,8 +29,6 @@ def SelectClothes(cap):
     whiteNumOverlay = 0#가운데 overlay창으로 가기위한 버튼의 흑백 프레임의 흰색픽셀의 개수
     sum_time = 0
     n = 0
-
-    Clothes_name ='t-shirt6_no_DONG_M_7700_.png'
 
     while(cap.isOpened()):
 
@@ -94,24 +92,24 @@ def SelectClothes(cap):
 
         if(index == 0):#가운데 이미지의 배열 인덱스가 0일 시의 예외 처리
             if(RightOn == 1):
-                Clothes_name = AnimationRightCall.animationright(index+3,index+4,index,index+1,animationUnit,img1)
+                Clothes_name = AnimationRightCall.animationright(index+3,index+4,index,index+1,animationUnit,img1,title)
             else:
-                Clothes_name = AnimationLeftCall.animationleft(index+4,index,index+1,index+2,animationUnit,img1)   #hm
+                Clothes_name = AnimationLeftCall.animationleft(index+4,index,index+1,index+2,animationUnit,img1,title)   #hm
 
         elif(index == 4):#가운데 이미지의 배열 인덱스가 4일 시의 예외 처리
             if(RightOn == 1):
-                Clothes_name = AnimationRightCall.animationright(index-2,index-1,index,index-4,animationUnit,img1)
+                Clothes_name = AnimationRightCall.animationright(index-2,index-1,index,index-4,animationUnit,img1,title)
             else:
-                Clothes_name = AnimationLeftCall.animationleft(index-1,index,index-4,index-3,animationUnit,img1)
+                Clothes_name = AnimationLeftCall.animationleft(index-1,index,index-4,index-3,animationUnit,img1,title)
         elif(index == 1 and RightOn == 1):#가운데 이미지의 배열 인덱스가 1일 시의 예외 처리
-            Clothes_name=AnimationRightCall.animationright(index+3,index-1,index,index+1,animationUnit,img1)
+            Clothes_name=AnimationRightCall.animationright(index+3,index-1,index,index+1,animationUnit,img1,title)
         elif(index == 3 and LeftOn == 1):#가운데 이미지의 배열 인덱스가 3일 시의 예외 처리
-            Clothes_name=AnimationLeftCall.animationleft(index-1,index,index+1,index-3,animationUnit,img1)
+            Clothes_name=AnimationLeftCall.animationleft(index-1,index,index+1,index-3,animationUnit,img1,title)
         else:#예외를 제외한 나머지 부분의 애니메이션 함수
             if(RightOn == 1):
-                Clothes_name=AnimationRightCall.animationright(index-2,index-1,index,index+1,animationUnit,img1)
+                Clothes_name=AnimationRightCall.animationright(index-2,index-1,index,index+1,animationUnit,img1,title)
             else:
-                Clothes_name=AnimationLeftCall.animationleft(index-1,index,index+1,index+2,animationUnit,img1)   #hm
+                Clothes_name=AnimationLeftCall.animationleft(index-1,index,index+1,index+2,animationUnit,img1,title)   #hm
         if(abs(animationUnit - 9) <= 1):#애니메이션 완료 시
             if(index == 0 and RightOn == 1):#가운데 이미지 인덱스가 0일 때 오른쪽 애니메이션 가동 중지
                 index = 4
@@ -164,7 +162,8 @@ def SelectClothes(cap):
     cv2.destroyAllWindows()
 
 cap = cv2.VideoCapture(0)
-SelectClothes(cap)
+SelectClothes('t-shirt', cap)
+
 
 
 
