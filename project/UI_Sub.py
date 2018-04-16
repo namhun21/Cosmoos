@@ -89,7 +89,8 @@ def Second_Menu(title,cap):
             UI_Recommend.Third_Menu(title,cap)   #Third_Menu에 title를 가져가야 Third_Menu에서 다시 Second_Menu로 돌아올때 title을 가져다 쓸 수 있다
         elif (count2 > 20):
             print("success2")
-            SelectClothes.SelectClothes(title,cap)   #list
+            SelectClothes.SelectClothes(title,cap)
+            break#list
         elif (count3 > 20):
             print("success3")
             UI_Start.First_Menu(cap)
