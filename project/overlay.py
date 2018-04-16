@@ -108,6 +108,8 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
 
     num1 = 0
     num2 = 0
+    num3 = 0
+    num4 = 0
 
     waiting_time = 0
     check = 0
@@ -183,9 +185,9 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
             if(frame_number==2):
                 count2, num2, waiting_time = Function.overlay_Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
             if(frame_number==3):
-                count3, num2, waiting_time = Function.overlay_Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
+                count3, num3, waiting_time = Function.overlay_Click_Operation(roi, origraysc, waiting_time, count3, num3, 2)
             if(frame_number==4):
-                count4, num2, waiting_time = Function.overlay_Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
+                count4, num4, waiting_time = Function.overlay_Click_Operation(roi, origraysc, waiting_time, count4, num4, 3)
 
         cv2.imshow('video', img)
 
@@ -216,7 +218,7 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
             count3 = 0
             count4 = 0
 
-        if(frame_number <2):
+        if(frame_number <4):
             frame_number = frame_number + 1
         else:
             frame_number = 1
