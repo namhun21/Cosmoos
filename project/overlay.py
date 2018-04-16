@@ -160,8 +160,8 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
 
         roi1 = Function.make_Roi(gray, 230, 280, 20, 120)
         roi2 = Function.make_Roi(gray, 350, 400, 20, 120)
-        roi3 = Function.make_Roi(gray, 100, 150, 500, 620)
-        roi4 = Function.make_Roi(gray, 250, 300, 500, 620)
+        roi3 = Function.make_Roi(gray, 100, 150, 500, 600)
+        roi4 = Function.make_Roi(gray, 250, 300, 500, 600)
         roi = [roi1, roi2, roi3, roi4]
 
         if (check == 0 and waiting_time > 100):  # waiting_time이 100이상이되면 버튼 클릭 인식을 시작한다.
@@ -171,8 +171,8 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
 
             origraysc1 = Function.make_Roi(origray, 230, 280, 20, 120)
             origraysc2 = Function.make_Roi(origray, 350, 400, 20, 120)
-            origraysc3 = Function.make_Roi(origray, 100, 150, 500,620)
-            origraysc4 = Function.make_Roi(origray, 250, 300, 500,620)
+            origraysc3 = Function.make_Roi(origray, 100, 150, 500,600)
+            origraysc4 = Function.make_Roi(origray, 250, 300, 500,600)
 
             origraysc = [origraysc1, origraysc2,origraysc3,origraysc4]
 

@@ -17,15 +17,15 @@ def Third_Menu(title,cap):
     bottomLeftCornerOfText1 = (460, 70)
     bottomLeftCornerOfText2 = (260, 70)
     bottomLeftCornerOfText3 = (60, 70)
-    
+
     num1 = 0
     num2 = 0
     num3 = 0
-    
+    time = 0
     count1 = 0
     count2 = 0
     count3 = 0
-    
+
     sum_time = 0
     n = 0
     waiting_time = 0
@@ -69,7 +69,7 @@ def Third_Menu(title,cap):
             origraysc3 = Function.make_Roi(origray, 50 ,80 , 50, 170)
 
             origraysc = [origraysc1, origraysc2, origraysc3]
-            
+
             check = 1
 
         if (check == 1):
@@ -82,15 +82,15 @@ def Third_Menu(title,cap):
         if (count1 > 20):
             print("success1")
             #overlay.Full_Overlay()
-            
+
         elif (count2 > 20):
             print("success2")
             #start2.pou('Y-shirt')
-            
+
         elif (count3 > 20):
             print("success3")
             UI_Sub.Second_Menu(title,cap)
-            
+
 
         cv2.imshow('video', img)
         time = time + 5

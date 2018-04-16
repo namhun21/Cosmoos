@@ -94,7 +94,7 @@ def overlay_Click_Operation(roi, origraysc, waiting_time, count, num,Box_number)
                 num = num + 1
                 #print(num1)
 
-    if (num > 3600 * 0.5):      # 1번 영역에서 달라졌다고 인식한 수가 전체의 50%가 넘으면 그 영역 count를 1 더한다.
+    if (num > 5000 * 0.5):      # 1번 영역에서 달라졌다고 인식한 수가 전체의 50%가 넘으면 그 영역 count를 1 더한다.
         count = count + 1
 
     num = 0
@@ -118,11 +118,11 @@ def Select_Click_Operation(ButtonFrame,pictureButtonFrame,width,height):
     return whiteNum
 
 def sizeUp(Clothes_name,img_size):  #옷의 이미지 크기 늘이기 위한 함수
-    
+
     if Clothes_name.split("_")[3] == 'L':
         print('사이즈업 불가')
         return Clothes_name,img_size
-        
+
     elif Clothes_name.split("_")[3] =='M':
         Clothes_name = Clothes_name.replace('M','L')
         img_size = img_size + 20
@@ -133,7 +133,7 @@ def sizeUp(Clothes_name,img_size):  #옷의 이미지 크기 늘이기 위한 �
         return Clothes_name,img_size
 
 def sizeDown(Clothes_name,img_size):  #옷의 이미지 줄이기 위한 함수
-    
+
     if Clothes_name.split("_")[3] == 'S':
         print('사이즈다운 불가')
         return Clothes_name,img_size
