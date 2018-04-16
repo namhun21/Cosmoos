@@ -11,25 +11,11 @@ prev_y = 0
 prev_w = 0
 prev_h = 0
 
-def masked_Operation(x,y,w,h,img,body_mask,Clothes_name): # 상체 ROI의 범위를 정하고 이미지를 해당 영역에 덮어씌운다
+def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size): # 상체 ROI의 범위를 정하고 이미지를 해당 영역에 덮어씌운다
 
     if x>20:
         x = x-10
     y_offset = 130    # 이미지 사이즈 조정
-    img_size = 270
-    
-    if Clothes_name == "hoodT1_no_GUZZI_L_15000_.png":        # 옷마다 사이즈 지정    
-        img_size = 260
-    elif Clothes_name == "T-Shirt_no_PERARI_L_6700_.png":
-        img_size = 270
-    elif Clothes_name =="nit_no_ADIDAS_S_10500_.png":
-        img_size = 300       
-    elif Clothes_name =="blueshirts_no_WHAT_M_8000_.png":
-        img_size = 280
-    elif Clothes_name == "t-shirt6_no_DONG_M_7700_.png":
-        img_size = 270
-    elif Clothes_name == "hoodt5_no_NIKE_M_9999_.png":
-        img_size = 270
     
         
     frame_roi = img[y+y_offset:y+y_offset+img_size, x:x+img_size]
@@ -54,12 +40,11 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name): # 상체 ROI의 범위
     except:
         print('Error')
      
-def Range_Operation(body,img,body_mask,Clothes_name):    # 특정조건에서만 실행되도록 조건을 부여하였다
+def Range_Operation(body,img,body_mask,Clothes_name,img_size):    # 특정조건에서만 실행되도록 조건을 부여하였다
     count = 0
     global prev_x
     global prev_y
     global prev_w
-
     global prev_h
     
     for (x, y, w, h) in body:
@@ -86,7 +71,7 @@ def Range_Operation(body,img,body_mask,Clothes_name):    # 특정조건에서만
         prev_h = h
         
         if  (x>20 and x<520):     # 특정 영역을 벗어나지 않으면 오버레이
-            masked_Operation(x,y,w,h,img,body_mask,Clothes_name)
+            masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size)
 
         else:          
             continue
@@ -94,23 +79,20 @@ def Range_Operation(body,img,body_mask,Clothes_name):    # 특정조건에서만
             
     if (count == 0):   # 이동 전, 후 차이가 적으면 이전 오버레이위치 출력 
         if (prev_x !=0 and prev_y !=0 and prev_w != 0 and prev_h !=0):
-            masked_Operation(prev_x,prev_y,prev_w,prev_h,img,body_mask,Clothes_name)
+            masked_Operation(prev_x,prev_y,prev_w,prev_h,img,body_mask,Clothes_name,img_size)
  
         #cv2.rectangle(frame,(prev_x,prev_y),(prev_x+prev_w,prev_y+prev_h),(0,255,255),2)
         #draw_shirt(x,y,w,h)
         
 def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 모아서 처리
 
+    Clothes_name = Clothes_name
     bodyCascade = cv2.CascadeClassifier('haarcascade_mcs_upperbody.xml')    #학습데이터 읽어오기
     
+    TextPosition = ((540,130),(540,270),(540,390)) # 글씨가 적혀질 위치
+    
+    InfoPosition = ((20, 80),(20, 120),(20, 160)) #옷 브랜드, 사이즈, 가격 순서
 
-    TextPosition1= (540,110)    # 글씨가 적혀질 위치
-    TextPosition2= (540,250)
-    TextPosition3= (540,390)
-
-    InfoPosition1=(20, 80)      #옷 브랜드
-    InfoPosition2=(20, 120)     #옷 사이즈
-    InfoPosition3=(20, 160)     #옷 가격
 
     backButtonCount = 0  #손이 올렸을 때 바로 클릭인지되지 않도록 20됐을 때 동작 실행하도록하는 변수
     startcompare = 0   #영상의 프레임과 이미지 비교 시작
@@ -119,6 +101,7 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
 
     sum_time = 0
     n = 0
+    img_size = 260
     body_mask = cv2.imread(Clothes_name)  #애니메이션함수로 부터 이미지의 이름을 받아 이미지 읽어오기
     
     # h_mask, w_mask = body_mask.shape[:2] #이미지 영역
@@ -141,26 +124,31 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
             flags=cv2.CASCADE_SCALE_IMAGE
         )
 
-        Function.draw_Click(img,TextPosition1,(500,70),(620,140),'Reco')
-        Function.draw_Click(img,TextPosition2,(500,210),(620,280),'List')
-        Function.draw_Click(img,TextPosition3,(500,350),(620,420),'Back')
+        Function.draw_Click(img,TextPosition[0],(500,100),(620,150),'Reco')
+        Function.draw_Click(img,TextPosition[1],(500,250),(620,300),'List')
+        #Function.draw_Click(img,TextPosition[2],(500,350),(620,420),'Back')
 
         ClothesBrand = 'Brand: ' + Clothes_name.split("_")[2]
         ClothesSize = 'Size: ' + Clothes_name.split("_")[3]
         ClothesPrice = 'Price: ' + Clothes_name.split("_")[4]
 
 
-        Function.draw_Click(img,InfoPosition1, (0,0), (0,0), ClothesBrand)
-        Function.draw_Click(img,InfoPosition2, (0,0), (0,0), ClothesSize)
-        Function.draw_Click(img,InfoPosition3, (0,0), (0,0), ClothesPrice)
+        Function.draw_Click(img,InfoPosition[0], (0,0), (0,0), ClothesBrand)
+        Function.draw_Click(img,InfoPosition[1], (0,0), (0,0), ClothesSize)
+        Function.draw_Click(img,InfoPosition[2], (0,0), (0,0), ClothesPrice)
 
 
         
-        Range_Operation(body,img,body_mask,Clothes_name)
+        Range_Operation(body,img,body_mask,Clothes_name,img_size)
 
-
-                                
         cv2.imshow('video', img)
+        
+        print(Clothes_name,img_size)
+        Clothes_name, img_size = Function.sizeUp(Clothes_name,img_size)
+
+        print(Clothes_name,img_size)
+
+                            
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         #Overlay_endTime = int(round(time.time() * 1000))
@@ -171,3 +159,6 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
     cap.release()
 
 
+cap = cv2.VideoCapture(0)
+Clothes_name= "hood-t_white_NIKE_M_7000_.png"
+Full_Overlay(cap,Clothes_name)

@@ -89,3 +89,32 @@ def Click_Operation1(ButtonFrame,pictureButtonFrame,width,height):
                 whiteNum = whiteNum+1#오른쪽 부분의 흰색 픽셀 개수 증가
 
     return whiteNum
+
+def sizeUp(Clothes_name,img_size):  #옷의 이미지 크기 늘이기 위한 함수
+    
+    if Clothes_name.split("_")[3] == 'L':
+        print('사이즈업 불가')
+        return Clothes_name,img_size
+        
+    elif Clothes_name.split("_")[3] =='M':
+        Clothes_name = Clothes_name.replace('M','L')
+        img_size = img_size + 20
+        return Clothes_name, img_size
+    elif Clothes_name.split("_")[3] =='S':
+        Clothes_name = Clothes_name.replace('S','M')
+        img_size = img_size + 20
+        return Clothes_name,img_size
+
+def sizeDown(Clothes_name,img_size):  #옷의 이미지 줄이기 위한 함수
+    
+    if Clothes_name.split("_")[3] == 'S':
+        print('사이즈다운 불가')
+        return Clothes_name,img_size
+    elif Clothes_name.split("_")[3] =='M':
+        Clothes_name = Clothes_name.replace('M','S')
+        img_size = img_size - 20
+        return Clothes_name, img_size
+    elif Clothes_name.split("_")[3] =='L':
+        Clothes_name = Clothes_name.replace('L','M')
+        img_size = img_size - 20
+        return Clothes_name, img_size
