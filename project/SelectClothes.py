@@ -57,7 +57,7 @@ def SelectClothes(title, cap):
         if(startcompare == 1 and frame_number == 1):#비교하기 위한 이미지 추출
             millis_start_click = int(round(time.time()*1000))
             rightButtonFrame = imgray[200:250,510:640]
-            whiteNumRight = Function.Click_Operation1(rightButtonFrame,picturerightButtonFrame,130,50)
+            whiteNumRight = Function.Select_Click_Operation(rightButtonFrame,picturerightButtonFrame,130,50)
             if(whiteNumRight > 6500 *0.7):
                 LeftOn = 0
                 RightOn = 1
@@ -67,7 +67,7 @@ def SelectClothes(title, cap):
         if(startcompare == 1 and frame_number == 2):
             millis_start_click = int(round(time.time()*1000))
             leftButtonFrame = imgray[200:250,10:140]
-            whiteNumLeft = Function.Click_Operation1(leftButtonFrame,pictureleftButtonFrame,130,50)
+            whiteNumLeft = Function.Select_Click_Operation(leftButtonFrame,pictureleftButtonFrame,130,50)
             if(whiteNumLeft > 6500*0.7):
                 LeftOn = 1
                 RightOn = 0
@@ -78,7 +78,7 @@ def SelectClothes(title, cap):
         if(startcompare == 1 and frame_number == 3):
             overlayButtonFrame = imgray[380:430,510:640]
             millis_start_click = int(round(time.time()*1000))
-            whiteNumOverlay = Function.Click_Operation1(overlayButtonFrame,pictureoverlayButtonFrame,130,50)
+            whiteNumOverlay = Function.Select_Click_Operation(overlayButtonFrame,pictureoverlayButtonFrame,130,50)
             if(whiteNumOverlay > 6500 *0.7):
                 overlaycount = overlaycount + 1
             else:

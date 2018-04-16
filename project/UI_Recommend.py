@@ -73,24 +73,24 @@ def Third_Menu(title,cap):
             check = 1
 
         if (check == 1):
-            count1, num1, waiting_time = Function.Click_Operation(roi, origraysc, waiting_time, count1, num1, 0)
-            count2, num2, waiting_time = Function.Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
-            count3, num3, waiting_time = Function.Click_Operation(roi, origraysc, waiting_time, count3, num3, 2)
+            count1, num1, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count1, num1, 0)
+            count2, num2, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
+            count3, num3, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count3, num3, 2)
 
         #print(count3, count2, count1)
 
         if (count1 > 20):
             print("success1")
             #overlay.Full_Overlay()
-            count1,count2 ,count3 = Function.resetCount(count1,count2,count3)
+            
         elif (count2 > 20):
             print("success2")
             #start2.pou('Y-shirt')
-            count1,count2, count3 = Function.resetCount(count1,count2,count3)
+            
         elif (count3 > 20):
             print("success3")
             UI_Sub.Second_Menu(title,cap)
-            count1,count2, count3 = Function.resetCount(count1,count2,count3)
+            
 
         cv2.imshow('video', img)
         time = time + 5

@@ -90,7 +90,7 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
     bodyCascade = cv2.CascadeClassifier('haarcascade_mcs_upperbody.xml')    #학습데이터 읽어오기
     
     TextPosition = ((540,130),(540,270),(540,390)) # 글씨가 적혀질 위치
-    
+    TextPosition1 = ((50,250),(50,370)) # Up, Down 글씨가 적힐 위치     
     InfoPosition = ((20, 80),(20, 120),(20, 160)) #옷 브랜드, 사이즈, 가격 순서
 
 
@@ -99,6 +99,16 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
     timeright = 0#100번의 루프를 돌고나서 이미지 찍기 위한 변수
     timeLeft = 0#100번의 루프를 돌고나서 이미지 찍기 위한 변수
 
+    count1 = 0
+    count2 = 0
+    
+    frame_number = 1
+    
+    num1 = 0
+    num2 = 0
+    
+    waiting_time = 0
+    check = 0    
     sum_time = 0
     n = 0
     img_size = 260
@@ -128,6 +138,9 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
         Function.draw_Click(img,TextPosition[1],(500,250),(620,300),'List')
         #Function.draw_Click(img,TextPosition[2],(500,350),(620,420),'Back')
 
+        Function.draw_Click(img,TextPosition1[0],(20,230),(120,280),'Up')
+        Function.draw_Click(img,TextPosition1[1],(20,350),(120,400),'Down')
+        
         ClothesBrand = 'Brand: ' + Clothes_name.split("_")[2]
         ClothesSize = 'Size: ' + Clothes_name.split("_")[3]
         ClothesPrice = 'Price: ' + Clothes_name.split("_")[4]
@@ -141,13 +154,52 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
         
         Range_Operation(body,img,body_mask,Clothes_name,img_size)
 
+        roi1 = Function.make_Roi(gray, 230, 280, 20, 120)
+        roi2 = Function.make_Roi(gray, 350, 400, 20, 120)
+
+        roi = [roi1, roi2]
+
+        if (check == 0 and waiting_time > 100):  # waiting_time이 100이상이되면 버튼 클릭 인식을 시작한다.
+            # 사진을 찍어서 지금 화면과 달라지는 영역을 인식한다.
+
+            origray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+            origraysc1 = Function.make_Roi(origray, 230, 280, 20, 120)
+            origraysc2 = Function.make_Roi(origray, 350, 400, 20, 120)
+            
+
+            origraysc = [origraysc1, origraysc2]
+
+            check = 1
+
+        if (check == 1):  # 클릭 함수를 실행시킨다
+
+            if(frame_number == 1):
+                count1, num1, waiting_time = Function.overlay_Click_Operation(roi, origraysc, waiting_time, count1, num1, 0)
+            if(frame_number==2):
+                count2, num2, waiting_time = Function.overlay_Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
+
         cv2.imshow('video', img)
+
+        if (count1 > 20):  # count1이 20이 넘으면 UI_Sub에 있는 Second_Menu를 실행시킨다.
+            print("success1")
+            Clothes_name, img_size = Function.sizeUp(Clothes_name,img_size)
+            count1 = 0
+            count2 = 0
+        elif (count2 > 20):
+            print("success2")
+            Clothes_name, img_size = Function.sizeDown(Clothes_name,img_size)
+            count1 = 0
+            count2 = 0
+            
+        if(frame_number <2):
+            frame_number = frame_number + 1
+        else:
+            frame_number = 1        
+        print(Clothes_name,img_size)
         
-        print(Clothes_name,img_size)
-        Clothes_name, img_size = Function.sizeUp(Clothes_name,img_size)
 
-        print(Clothes_name,img_size)
-
+        waiting_time = waiting_time + 5
                             
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
@@ -159,6 +211,6 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
     cap.release()
 
 
-cap = cv2.VideoCapture(0)
-Clothes_name= "hood-t_white_NIKE_M_7000_.png"
-Full_Overlay(cap,Clothes_name)
+#cap = cv2.VideoCapture(0)
+#Clothes_name= "hood-t_white_NIKE_M_7000_.png"
+#Full_Overlay(cap,Clothes_name)

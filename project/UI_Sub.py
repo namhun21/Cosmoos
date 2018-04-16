@@ -77,9 +77,9 @@ def Second_Menu(title,cap):
             check = 1
 
         if (check == 1):    #클릭 함수 실행
-            count1, num1, waiting_time = Function.Click_Operation(roi, origraysc, waiting_time, count1, num1, 0)
-            count2, num2, waiting_time = Function.Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
-            count3, num3, waiting_time = Function.Click_Operation(roi, origraysc, waiting_time, count3, num3, 2)
+            count1, num1, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count1, num1, 0)
+            count2, num2, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
+            count3, num3, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count3, num3, 2)
             
 
         print(count3, count2, count1)
@@ -87,15 +87,13 @@ def Second_Menu(title,cap):
         if (count1 > 20):               #count1이 20 초과하면 UI_Recommand에 있는 Third_Menu(title)실행
             print("success1")
             UI_Recommend.Third_Menu(title,cap)   #Third_Menu에 title를 가져가야 Third_Menu에서 다시 Second_Menu로 돌아올때 title을 가져다 쓸 수 있다
-            count1,count2, count3 = Function.resetCount(count1,count2,count3)
         elif (count2 > 20):
             print("success2")
             SelectClothes.SelectClothes(title,cap)   #list
-            count1,count2, count3 = Function.resetCount(count1,count2,count3)
         elif (count3 > 20):
             print("success3")
             UI_Start.First_Menu(cap)
-            count1,count2, count3 = Function.resetCount(count1,count2,count3)
+            
 
         cv2.imshow('video', img)
         waiting_time = waiting_time + 5

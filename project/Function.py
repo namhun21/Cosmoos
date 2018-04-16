@@ -5,11 +5,6 @@ import time
 import os
 import timeit
 
-def resetCount(count1,count2,count3):
-    count1=0
-    count2=0
-    count3=0
-    return count1,count2,count3
 
 def draw_Click(frame, position, S_Range, E_Range, name):   #클릭하는 버튼의 인터페이스를 구현한다
     millis_start = int(round(time.time()*1000))
@@ -42,7 +37,7 @@ def make_Roi(gray, y1, y2, x1, x2):     #일정 영역을 gray한다
 
 #클릭하는 동작
 #지금화면과 이전화면을 비교하여 달라진 영역을 계산하여 일정 수준 이상 달라져 있으면 클릭이 되게한다
-def Click_Operation(roi, origraysc, waiting_time, count, num,Box_number):
+def Menu_Click_Operation(roi, origraysc, waiting_time, count, num,Box_number):
     # num1 = 0
     # num2 = 0
     # num3 = 0
@@ -75,8 +70,40 @@ def Click_Operation(roi, origraysc, waiting_time, count, num,Box_number):
     #print((end-start)*1000)
     return count,num,waiting_time
 
+def overlay_Click_Operation(roi, origraysc, waiting_time, count, num,Box_number):
+    # num1 = 0
+    # num2 = 0
+    # num3 = 0
 
-def Click_Operation1(ButtonFrame,pictureButtonFrame,width,height):
+    # waiting_time = 0
+
+    # count1 = 0
+    # count2 = 0
+    # count3 = 0
+
+    for x in range(100):
+        for y in range(50):
+            oricolor = roi[Box_number][y, x]
+            roicolor = origraysc[Box_number][y, x]
+
+            if (oricolor - roicolor < 30):    #달라진 정도가 30 미만이면 인식하지않는다
+                roi[Box_number][y, x] = 0
+
+            else:
+                roi[Box_number][y, x] = 255              #달라진 정도가 30 이상이면 인식한다
+                num = num + 1
+                #print(num1)
+
+    if (num > 3600 * 0.5):      # 1번 영역에서 달라졌다고 인식한 수가 전체의 50%가 넘으면 그 영역 count를 1 더한다.
+        count = count + 1
+
+    num = 0
+
+
+    #print((end-start)*1000)
+    return count,num,waiting_time
+
+def Select_Click_Operation(ButtonFrame,pictureButtonFrame,width,height):
     whiteNum = 0
     for x in range(width):
         for y in range(height):

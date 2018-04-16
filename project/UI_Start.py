@@ -72,11 +72,11 @@ def First_Menu(cap):
         if (check == 1):  # 클릭 함수를 실행시킨다
 
             if(frame_number == 1):
-                count1, num1, waiting_time = Function.Click_Operation(roi, origraysc, waiting_time, count1, num1, 0)
+                count1, num1, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count1, num1, 0)
             if(frame_number==2):
-                count2, num2, waiting_time = Function.Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
+                count2, num2, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
             if(frame_number == 3):
-                count3, num3, waiting_time = Function.Click_Operation(roi, origraysc, waiting_time, count3, num3, 2)
+                count3, num3, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count3, num3, 2)
 
 
 
@@ -86,15 +86,12 @@ def First_Menu(cap):
         if (count1 > 20):  # count1이 20이 넘으면 UI_Sub에 있는 Second_Menu를 실행시킨다.
             print("success1")
             UI_Sub.Second_Menu('t-shirt', cap)
-            count1 ,count2 , count3 = Function.resetCount(count1,count2,count3)
         elif (count2 > 20):
             print("success2")
             UI_Sub.Second_Menu('y-shirt', cap)
-            count1 ,count2 , count3 = Function.resetCount(count1,count2,count3)
         elif (count3 > 20):
             print("success3")
             UI_Sub.Second_Menu('hood-t', cap)
-            count1 ,count2 , count3 = Function.resetCount(count1,count2,count3)
 
         if(frame_number <3):
             frame_number = frame_number + 1
