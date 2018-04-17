@@ -37,7 +37,11 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,store): # 상�
         masked_body = cv2.bitwise_and(body_mask_small,body_mask_small, mask = mask) # 오버레이되는 부분만 남게된다.
         masked_frame = cv2.bitwise_and(frame_roi, frame_roi, mask = mask_inv) #배경만 남게된다
         img[y+y_offset:y+y_offset+img_size, x:x+img_size] = cv2.add(masked_body, masked_frame) # 화면에 이미지 오버레이
-        if(store ==1):
+        
+            
+    except:
+        print('Error')
+    if(store ==1):
             if(color == "black"):
                 cv2.imwrite('overlay_black.png', img)
             elif(color == "blue"):
@@ -48,9 +52,6 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,store): # 상�
                 cv2.imwrite('overlay_white.png', img)
             else :
                 cv2.imwrite('overlay_yellow.png', img)
-            
-    except:
-        print('Error')
         
 
 def Range_Operation(body,img,body_mask,Clothes_name,img_size):    # 특정조건에서만 실행되도록 조건을 부여하였다

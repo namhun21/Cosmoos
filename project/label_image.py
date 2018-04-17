@@ -9,9 +9,10 @@ import cv2
 # change this as you see fit
 #image_path = sys.argv[1]
 def Reco(title,body,clothes):
-    original_clothes = cv2.imread('original.png')
     i=0
     while(i<5):
+        original_clothes = cv2.imread('original.png')
+
         for (x, y, w, h) in body:
             body_mask = cv2.imread(clothes[i])
             overlay.masked_Operation(x,y,w,h,original_clothes,body_mask,clothes[i],270,1)
