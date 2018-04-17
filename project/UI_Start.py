@@ -32,7 +32,7 @@ def First_Menu(cap):
 
     while True:
 
-        #First_Menu_startTime = int(round(time.time() * 1000))
+        First_Menu_startTime = int(round(time.time() * 1000))
         ret, frame = cap.read()
         img = cv2.flip(frame, 1)
         # frame_copy = frame.copy()
@@ -103,9 +103,11 @@ def First_Menu(cap):
         if cv2.waitKey(1) & 0xFF == ord('q'):  # q 입력시 종료
             break
 
-        #First_Menu_endTime = int(round(time.time() * 1000))
-        #sum_time, n = time_measurement.measure_UI_Start(First_Menu_startTime, First_Menu_endTime, sum_time, n)
-
+        First_Menu_endTime = int(round(time.time() * 1000))
+        t1 = int(round(time.time() * 1000))
+        sum_time, n = time_measurement.measure_UI_Start(First_Menu_startTime, First_Menu_endTime, sum_time, n)
+        t2 = int(round(time.time() * 1000))
+        print(t2-t1)
     cv2.destroyAllWindows()
     cap.release()
 

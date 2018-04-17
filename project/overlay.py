@@ -11,7 +11,7 @@ prev_y = 0
 prev_w = 0
 prev_h = 0
 
-def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size): # 상체 ROI의 범위를 정하고 이미지를 해당 영역에 덮어씌운다
+def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,store): # 상체 ROI의 범위를 정하고 이미지를 해당 영역에 덮어씌운다
 
     if x>20:
         x = x-10
@@ -19,8 +19,8 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size): # 상체 ROI�
 
 
     frame_roi = img[y+y_offset:y+y_offset+img_size, x:x+img_size]
-
-    cv2.imshow('video2',frame_roi)
+    if(store == 0):
+        cv2.imshow('video2',frame_roi)
 
     body_mask_small = cv2.resize(body_mask,(img_size,img_size),interpolation = cv2.INTER_CUBIC) # 옷이미지 키우기
     gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)# 키운 이미지의 gray처리 (BGR->Gray)
@@ -37,8 +37,21 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size): # 상체 ROI�
         masked_body = cv2.bitwise_and(body_mask_small,body_mask_small, mask = mask) # 오버레이되는 부분만 남게된다.
         masked_frame = cv2.bitwise_and(frame_roi, frame_roi, mask = mask_inv) #배경만 남게된다
         img[y+y_offset:y+y_offset+img_size, x:x+img_size] = cv2.add(masked_body, masked_frame) # 화면에 이미지 오버레이
+        if(store ==1):
+            if(color == "black"):
+                cv2.imwrite('overlay_black.png', img)
+            elif(color == "blue"):
+                cv2.imwrite('overlay_blue.png', img)
+            elif(color == "red"):
+                cv2.imwrite('overlay_red.png', img)
+            elif(color == "white"):
+                cv2.imwrite('overlay_white.png', img)
+            else :
+                cv2.imwrite('overlay_yellow.png', img)
+            
     except:
         print('Error')
+        
 
 def Range_Operation(body,img,body_mask,Clothes_name,img_size):    # 특정조건에서만 실행되도록 조건을 부여하였다
     count = 0
@@ -71,7 +84,7 @@ def Range_Operation(body,img,body_mask,Clothes_name,img_size):    # 특정조건
         prev_h = h
 
         if  (x>20 and x<520):     # 특정 영역을 벗어나지 않으면 오버레이
-            masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size)
+            masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,0)
 
         else:
             continue
@@ -79,7 +92,7 @@ def Range_Operation(body,img,body_mask,Clothes_name,img_size):    # 특정조건
 
     if (count == 0):   # 이동 전, 후 차이가 적으면 이전 오버레이위치 출력
         if (prev_x !=0 and prev_y !=0 and prev_w != 0 and prev_h !=0):
-            masked_Operation(prev_x,prev_y,prev_w,prev_h,img,body_mask,Clothes_name,img_size)
+            masked_Operation(prev_x,prev_y,prev_w,prev_h,img,body_mask,Clothes_name,img_size, 0)
 
         #cv2.rectangle(frame,(prev_x,prev_y),(prev_x+prev_w,prev_y+prev_h),(0,255,255),2)
         #draw_shirt(x,y,w,h)
