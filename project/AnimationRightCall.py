@@ -27,5 +27,5 @@ def animationright(firstindex,secondindex,thirdindex,fourthindex,move,frame,titl
     print(clothes[thirdindex])
     millis_end = int(round(time.time() * 1000))
     print("AnimationRightCall : ",millis_end - millis_start,"ms")
-    return clothes[thirdindex]
+    return thirdindex
 
