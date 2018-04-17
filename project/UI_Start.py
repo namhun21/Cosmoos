@@ -16,6 +16,7 @@ def First_Menu(cap):
     bottomLeftCornerOfText2 = (260, 70)
     bottomLeftCornerOfText3 = (60, 70)
 
+    count = 0
     count1 = 0
     count2 = 0
     count3 = 0
@@ -26,6 +27,7 @@ def First_Menu(cap):
     sum_time = 0
     n = 0
 
+    roi = []
     waiting_time = 0
     check = 0
     kernel = np.ones((5, 5), np.uint8)
@@ -44,11 +46,12 @@ def First_Menu(cap):
 
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-        roi1 = Function.make_Roi(gray, 50, 80, 450, 570)
-        roi2 = Function.make_Roi(gray, 50, 80, 250, 370)
-        roi3 = Function.make_Roi(gray, 50, 80, 50, 170)
-
-        roi = [roi1, roi2, roi3]
+        if count == 0:
+            roi1 = Function.make_Roi(gray, 50, 80, 450, 570)
+            roi2 = Function.make_Roi(gray, 50, 80, 250, 370)
+            roi3 = Function.make_Roi(gray, 50, 80, 50, 170)
+            roi = [roi1, roi2, roi3]
+            count += 1
 
         if (check == 0 and waiting_time > 100):  # waiting_time이 100이상이되면 버튼 클릭 인식을 시작한다.
             # 사진을 찍어서 지금 화면과 달라지는 영역을 인식한다.
