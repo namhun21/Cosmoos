@@ -24,12 +24,10 @@ def Second_Menu(title,cap):
     num2 = 0
     num3 = 0
 
-    count = 0
     count1 = 0
     count2 = 0
     count3 = 0
 
-    roi = []
     sum_time = 0
     n = 0
     waiting_time = 0
@@ -54,12 +52,11 @@ def Second_Menu(title,cap):
 
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-        if count == 0:
-            roi1 = Function.make_Roi(gray, 50, 80, 450, 570)
-            roi2 = Function.make_Roi(gray, 50, 80, 250, 370)
-            roi3 = Function.make_Roi(gray, 50, 80, 50, 170)
-            roi = [roi1, roi2, roi3]
-            count += 1
+        
+        roi1 = Function.make_Roi(gray, 50, 80, 450, 570)
+        roi2 = Function.make_Roi(gray, 50, 80, 250, 370)
+        roi3 = Function.make_Roi(gray, 50, 80, 50, 170)
+        roi = [roi1, roi2, roi3]
 
         if (check == 0 and waiting_time > 100):    #클릭 구현시 필요한 사진
             #cap1 = cv2.VideoCapture(0)
