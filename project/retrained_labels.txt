@@ -1,2 +1,5 @@
 black
+beige
+gray
 white
+blue
