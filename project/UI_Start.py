@@ -47,7 +47,6 @@ def First_Menu(cap):
         roi1 = Function.make_Roi(gray, 50, 80, 450, 570)
         roi2 = Function.make_Roi(gray, 50, 80, 250, 370)
         roi3 = Function.make_Roi(gray, 50, 80, 50, 170)
-
         roi = [roi1, roi2, roi3]
 
         if (check == 0 and waiting_time > 100):  # waiting_time이 100이상이되면 버튼 클릭 인식을 시작한다.

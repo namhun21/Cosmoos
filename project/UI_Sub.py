@@ -23,6 +23,7 @@ def Second_Menu(title,cap):
     num1 = 0
     num2 = 0
     num3 = 0
+    frame_number = 1
 
     count1 = 0
     count2 = 0
@@ -52,10 +53,10 @@ def Second_Menu(title,cap):
 
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-        roi1 = Function.make_Roi(gray, 50 ,80 ,450 , 570)
-        roi2 = Function.make_Roi(gray, 50 ,80, 250, 370)
-        roi3 = Function.make_Roi(gray, 50 ,80, 50, 170)
-
+        
+        roi1 = Function.make_Roi(gray, 50, 80, 450, 570)
+        roi2 = Function.make_Roi(gray, 50, 80, 250, 370)
+        roi3 = Function.make_Roi(gray, 50, 80, 50, 170)
         roi = [roi1, roi2, roi3]
 
         if (check == 0 and waiting_time > 100):    #클릭 구현시 필요한 사진
@@ -77,10 +78,14 @@ def Second_Menu(title,cap):
             check = 1
 
         if (check == 1):    #클릭 함수 실행
-            count1, num1, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count1, num1, 0)
-            count2, num2, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
-            count3, num3, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count3, num3, 2)
-            
+            if(frame_number == 1):
+                count1, num1, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count1, num1, 0)
+            if(frame_number==2):
+                count2, num2, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
+            if(frame_number == 3):
+                count3, num3, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count3, num3, 2)
+
+
 
         print(count3, count2, count1)
 
@@ -95,7 +100,10 @@ def Second_Menu(title,cap):
             print("success3")
             UI_Start.First_Menu(cap)
             
-
+        if(frame_number <3):
+            frame_number = frame_number + 1
+        else:
+            frame_number = 1
         cv2.imshow('video', img)
         waiting_time = waiting_time + 5
         if cv2.waitKey(1) & 0xFF == ord('q'):  # q 입력시 종료

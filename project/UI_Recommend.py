@@ -17,14 +17,13 @@ def Third_Menu(title,cap):
     bodyCascade = cv2.CascadeClassifier('haarcascade_mcs_upperbody.xml')
 
     check = 0
-    global best_color
     kinds = title.split("_")[0][0]
     if(kinds == 'h'):
-        clothes = ['hood-t_black_NIKE_M_9800_down.png', 'hood-t_blue_NIKE_M_7000_down.png', 'hood-t_red_NIKE_M_7000_down.png', 'hood-t_white_NIKE_M_7000_down.png', 'hood-t_yellow_NIKE_M_7000_down.png']
+        clothes = ['hood-t_black_NIKE_M_9800_.png', 'hood-t_blue_NIKE_M_7000_.png', 'hood-t_red_NIKE_M_7000_.png', 'hood-t_white_NIKE_M_7000_.png', 'hood-t_yellow_NIKE_M_7000_.png']
     elif(kinds == 't'):
-        clothes = ['t-shirt_black_ADIDAS_M_8500_down.png', 't-shirt_blue_NIKE_M_7000_down.png', 't-shirt_red_NIKE_M_7000_down.png', 't-shirt_white_NIKE_M_7000_down.png', 't-shirt_yellow_NIKE_M_7000_down.png']
+        clothes = ['t-shirt_black_ADIDAS_M_8500_.png', 't-shirt_blue_NIKE_M_7000_.png', 't-shirt_red_NIKE_M_7000_.png', 't-shirt_white_NIKE_M_7000_.png', 't-shirt_yellow_NIKE_M_7000_.png']
     else:
-        clothes = ['y-shirt_black_GUZZI_M_7500_down.png', 'y-shirt_blue_NIKE_M_7000_down.png', 'y-shirt_red_NIKE_M_7000_down.png', 'y-shirt_white_NIKE_M_7000_down.png', 'y-shirt_yellow_NIKE_M_7000_down.png']
+        clothes = ['y-shirt_black_GUZZI_M_7500_.png', 'y-shirt_blue_NIKE_M_7000_.png', 'y-shirt_red_NIKE_M_7000_.png', 'y-shirt_white_NIKE_M_7000_.png', 'y-shirt_yellow_NIKE_M_7000_.png']
 
     while (check<10):
         ret, frame = cap.read()
@@ -64,7 +63,7 @@ def Third_Menu(title,cap):
                     (255,255,255),
                     2)
             
-            best_color = label_image.Reco(title,body)
+            best_color = label_image.Reco(title,body,clothes)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):  # q 입력시 종료
             break
@@ -86,5 +85,5 @@ def Third_Menu(title,cap):
     cv2.destroyAllWindows()
     cap.release()
 
-cap = cv2.VideoCapture(0)
-Third_Menu('hood-t', cap)
+#cap = cv2.VideoCapture(0)
+#Third_Menu('hood-t', cap)

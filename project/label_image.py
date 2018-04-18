@@ -8,17 +8,11 @@ import cv2
 
 # change this as you see fit
 #image_path = sys.argv[1]
-def Reco(title,body):
-    original_clothes = cv2.imread('original.png')
-    kinds = title.split("_")[0][0]
-    if(kinds == 'h'):
-        clothes = ['hood-t_black_NIKE_M_9800_down.png', 'hood-t_blue_NIKE_M_7000_down.png', 'hood-t_red_NIKE_M_7000_down.png', 'hood-t_white_NIKE_M_7000_down.png', 'hood-t_yellow_NIKE_M_7000_down.png']
-    elif(kinds == 't'):
-        clothes = ['t-shirt_black_ADIDAS_M_8500_down.png', 't-shirt_blue_NIKE_M_7000_down.png', 't-shirt_red_NIKE_M_7000_down.png', 't-shirt_white_NIKE_M_7000_down.png', 't-shirt_yellow_NIKE_M_7000_down.png']
-    else:
-        clothes = ['y-shirt_black_GUZZI_M_7500_down.png', 'y-shirt_blue_NIKE_M_7000_down.png', 'y-shirt_red_NIKE_M_7000_down.png', 'y-shirt_white_NIKE_M_7000_down.png', 'y-shirt_yellow_NIKE_M_7000_down.png']
+def Reco(title,body,clothes):
     i=0
     while(i<5):
+        original_clothes = cv2.imread('original.png')
+
         for (x, y, w, h) in body:
             body_mask = cv2.imread(clothes[i])
             overlay.masked_Operation(x,y,w,h,original_clothes,body_mask,clothes[i],270,1)

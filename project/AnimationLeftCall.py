@@ -27,5 +27,4 @@ def animationleft(firstindex,secondindex,thirdindex,fourthindex,move,frame,title
     millis_end = int(round(time.time() * 1000))
     print("AnimationLeftCall : ",millis_end - millis_start,"ms")
     #print(clothes[secondindex])
-    return clothes[secondindex]
-
+    return secondindex

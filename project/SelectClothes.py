@@ -29,6 +29,14 @@ def SelectClothes(title, cap):
     whiteNumOverlay = 0#가운데 overlay창으로 가기위한 버튼의 흑백 프레임의 흰색픽셀의 개수
     sum_time = 0
     n = 0
+    kinds = title.split("_")[0][0]
+    if(kinds == 'h'):
+        clothes = ['hood-t_black_NIKE_M_9800_.png', 'hood-t_blue_NIKE_M_7000_.png', 'hood-t_red_NIKE_M_7000_.png', 'hood-t_white_NIKE_M_7000_.png', 'hood-t_yellow_NIKE_M_7000_.png']
+    elif(kinds == 't'):
+        clothes = ['t-shirt_black_ADIDAS_M_8500_.png', 't-shirt_blue_NIKE_M_7000_.png', 't-shirt_red_NIKE_M_7000_.png', 't-shirt_white_NIKE_M_7000_.png', 't-shirt_yellow_NIKE_M_7000_.png']
+    else:
+        clothes = ['y-shirt_black_GUZZI_M_7500_.png', 'y-shirt_blue_NIKE_M_7000_.png', 'y-shirt_red_NIKE_M_7000_.png', 'y-shirt_white_NIKE_M_7000_.png', 'y-shirt_yellow_NIKE_M_7000_.png']
+
 
     while(cap.isOpened()):
 
@@ -137,7 +145,7 @@ def SelectClothes(title, cap):
         #print('출력: ',Clothes_name)
         if(overlaycount == 20):#오버레이 창으로 전환
             overlaycount = 0
-            overlay.Full_Overlay(cap,Clothes_name)
+            overlay.Full_Overlay(cap,clothes[Clothes_name])
         #cv2.imshow('wqzxcq',rightButtonFrame)
         #cv2.imshow('funsadasd',leftButtonFrame)
         #cv2.imshow('sjdwnmanmd',overlayButtonFrame)
