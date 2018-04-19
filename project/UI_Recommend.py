@@ -13,10 +13,11 @@ import label_image
 def Third_Menu(title,cap):
     #cap = cv2.VideoCapture(0)
     # Icon = ['T-Shirt.jpg','Y-Shirt.png','Hood.jpg']
-    bottomLeftCornerOfText_Title = (300,20)
+    bottomLeftCornerOfText_Title = (300,200)
     bodyCascade = cv2.CascadeClassifier('haarcascade_mcs_upperbody.xml')
 
     check = 0
+    count = 0
     kinds = title.split("_")[0][0]
     if(kinds == 'h'):
         clothes = ['hood-t_black_NIKE_M_9800_.png', 'hood-t_blue_NIKE_M_7000_.png', 'hood-t_gray_NIKE_M_7000_.png', 'hood-t_white_NIKE_M_7000_.png', 'hood-t_beige_NIKE_M_7000_.png']
@@ -25,7 +26,7 @@ def Third_Menu(title,cap):
     else:
         clothes = ['y-shirt_black_GUZZI_M_7500_.png', 'y-shirt_blue_NIKE_M_7000_.png', 'y-shirt_gray_NIKE_M_7000_.png', 'y-shirt_white_NIKE_M_7000_.png', 'y-shirt_beige_NIKE_M_7000_.png']
 
-    while (check<10):
+    while (count<10):
         ret, frame = cap.read()
         #frame_copy = frame.copy()
         img = cv2.flip(frame,1)
@@ -44,7 +45,7 @@ def Third_Menu(title,cap):
             #cv2.imshow('video2', frame_roi)
             if(check == 0):
                 Picture = img
-                cv2.imshow('picture', Picture)
+                #cv2.imshow('picture', Picture)
 
                 cv2.imwrite('original.png',img)
 
@@ -53,9 +54,8 @@ def Third_Menu(title,cap):
             
                         
         cv2.imshow('video', img)
-        check = check +1
 
-        if(check == 10):
+        if(check == 1):
             cv2.putText(img,'loading```````',
                     bottomLeftCornerOfText_Title,
                     cv2.FONT_HERSHEY_SIMPLEX,
@@ -64,6 +64,7 @@ def Third_Menu(title,cap):
                     2)
             
             best_color = label_image.Reco(title,body,clothes)
+            count = 10
 
         if cv2.waitKey(1) & 0xFF == ord('q'):  # q 입력시 종료
             break
