@@ -85,5 +85,5 @@ def Third_Menu(title,cap):
     cv2.destroyAllWindows()
     cap.release()
 
-cap = cv2.VideoCapture(0)
-Third_Menu('hood-t', cap)
+#cap = cv2.VideoCapture(0)
+#Third_Menu('hood-t', cap)

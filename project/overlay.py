@@ -26,8 +26,11 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,store): # 상�
     gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)# 키운 이미지의 gray처리 (BGR->Gray)
 
     color = Clothes_name.split("_")[1]
-    if((color == "black") or (color == "blue") or (color == "gray")):
+    if((color == "black") or (color == "blue")):
         ret, mask = cv2.threshold(gray_mask, 200,255, cv2.THRESH_BINARY_INV)
+    elif(color == "gray"):
+        ret, mask = cv2.threshold(gray_mask, 230,255, cv2.THRESH_BINARY_INV)
+
     else:
         ret, mask = cv2.threshold(gray_mask, 1,255, cv2.THRESH_BINARY)
 
@@ -46,7 +49,7 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,store): # 상�
                 cv2.imwrite('overlay_black.png', img)
             elif(color == "blue"):
                 cv2.imwrite('overlay_blue.png', img)
-            elif(color == "red"):
+            elif(color == "gray"):
                 cv2.imwrite('overlay_gray.png', img)
             elif(color == "white"):
                 cv2.imwrite('overlay_white.png', img)
@@ -252,5 +255,5 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
 
 
 #cap = cv2.VideoCapture(0)
-#Clothes_name= "hood-t_white_NIKE_M_7000_.png"
+#Clothes_name= "hood-t_gray_NIKE_M_7000_.png"
 #Full_Overlay(cap,Clothes_name)
