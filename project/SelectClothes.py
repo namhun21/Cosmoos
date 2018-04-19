@@ -89,8 +89,7 @@ def SelectClothes(title, cap):
             whiteNumOverlay = Function.Select_Click_Operation(overlayButtonFrame,pictureoverlayButtonFrame,130,50)
             if(whiteNumOverlay > 6500 *0.7):
                 overlaycount = overlaycount + 1
-            else:
-                overlaycount = 0
+            
             #millis_end_click = int(round(time.time() * 1000))
             #print("Click Function time3 : ",millis_end_click - millis_start_click,"ms")
 
