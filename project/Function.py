@@ -5,6 +5,11 @@ import time
 import os
 import timeit
 
+def resetCount(*n):
+    list1=[]
+    for i in n:
+        list1.append(0)
+    return list1
 
 def draw_Click(frame, position, S_Range, E_Range, name):   #클릭하는 버튼의 인터페이스를 구현한다
     #millis_start = int(round(time.time()*1000))

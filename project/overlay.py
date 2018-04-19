@@ -211,29 +211,17 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
         if (count1 > 20):  # count1이 20이 넘으면 UI_Sub에 있는 Second_Menu를 실행시킨다.
             print("success1")
             Clothes_name, img_size = Function.sizeUp(Clothes_name,img_size)
-            count1 = 0
-            count2 = 0
-            count3 = 0
-            count4 = 0
+            count1, count2, count3, count4 = resetCount(count1,count2, count3, count4)
         elif (count2 > 20):
             print("success2")
             Clothes_name, img_size = Function.sizeDown(Clothes_name,img_size)
-            count1 = 0
-            count2 = 0
-            count3 = 0
-            count4 = 0
+            count1, count2, count3, count4 = resetCount(count1,count2, count3, count4)
         elif (count3 > 20):
             print("success3")
-            count1 = 0
-            count2 = 0
-            count3 = 0
-            count4 = 0
+            count1, count2, count3, count4 = resetCount(count1,count2, count3, count4)
         elif (count4 > 20):
             print("success4")
-            count1 = 0
-            count2 = 0
-            count3 = 0
-            count4 = 0
+            count1, count2, count3, count4 = resetCount(count1,count2, count3, count4)
 
         if(frame_number <4):
             frame_number = frame_number + 1
