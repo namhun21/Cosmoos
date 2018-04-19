@@ -26,7 +26,7 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,store): # 상�
     gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)# 키운 이미지의 gray처리 (BGR->Gray)
 
     color = Clothes_name.split("_")[1]
-    if((color == "black") or (color == "blue") or (color == "red")):
+    if((color == "black") or (color == "blue") or (color == "gray")):
         ret, mask = cv2.threshold(gray_mask, 200,255, cv2.THRESH_BINARY_INV)
     else:
         ret, mask = cv2.threshold(gray_mask, 1,255, cv2.THRESH_BINARY)
@@ -47,11 +47,11 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,store): # 상�
             elif(color == "blue"):
                 cv2.imwrite('overlay_blue.png', img)
             elif(color == "red"):
-                cv2.imwrite('overlay_red.png', img)
+                cv2.imwrite('overlay_gray.png', img)
             elif(color == "white"):
                 cv2.imwrite('overlay_white.png', img)
             else :
-                cv2.imwrite('overlay_yellow.png', img)
+                cv2.imwrite('overlay_beige.png', img)
         
 
 def Range_Operation(body,img,body_mask,Clothes_name,img_size):    # 특정조건에서만 실행되도록 조건을 부여하였다

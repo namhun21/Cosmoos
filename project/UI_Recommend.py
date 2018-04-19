@@ -19,11 +19,11 @@ def Third_Menu(title,cap):
     check = 0
     kinds = title.split("_")[0][0]
     if(kinds == 'h'):
-        clothes = ['hood-t_black_NIKE_M_9800_.png', 'hood-t_blue_NIKE_M_7000_.png', 'hood-t_red_NIKE_M_7000_.png', 'hood-t_white_NIKE_M_7000_.png', 'hood-t_yellow_NIKE_M_7000_.png']
+        clothes = ['hood-t_black_NIKE_M_9800_.png', 'hood-t_blue_NIKE_M_7000_.png', 'hood-t_gray_NIKE_M_7000_.png', 'hood-t_white_NIKE_M_7000_.png', 'hood-t_beige_NIKE_M_7000_.png']
     elif(kinds == 't'):
-        clothes = ['t-shirt_black_ADIDAS_M_8500_.png', 't-shirt_blue_NIKE_M_7000_.png', 't-shirt_red_NIKE_M_7000_.png', 't-shirt_white_NIKE_M_7000_.png', 't-shirt_yellow_NIKE_M_7000_.png']
+        clothes = ['t-shirt_black_ADIDAS_M_8500_.png', 't-shirt_blue_NIKE_M_7000_.png', 't-shirt_gray_NIKE_M_7000_.png', 't-shirt_white_NIKE_M_7000_.png', 't-shirt_beige_NIKE_M_7000_.png']
     else:
-        clothes = ['y-shirt_black_GUZZI_M_7500_.png', 'y-shirt_blue_NIKE_M_7000_.png', 'y-shirt_red_NIKE_M_7000_.png', 'y-shirt_white_NIKE_M_7000_.png', 'y-shirt_yellow_NIKE_M_7000_.png']
+        clothes = ['y-shirt_black_GUZZI_M_7500_.png', 'y-shirt_blue_NIKE_M_7000_.png', 'y-shirt_gray_NIKE_M_7000_.png', 'y-shirt_white_NIKE_M_7000_.png', 'y-shirt_beige_NIKE_M_7000_.png']
 
     while (check<10):
         ret, frame = cap.read()
@@ -75,7 +75,7 @@ def Third_Menu(title,cap):
             overlay.Full_Overlay(cap, clothes[0])
         elif(best_color == 'blue'):
             overlay.Full_Overlay(cap, clothes[1])
-        elif(best_color == 'red'):
+        elif(best_color == 'gray'):
             overlay.Full_Overlay(cap, clothes[2])
         elif(best_color == 'white'):
             overlay.Full_Overlay(cap, clothes[3])
@@ -85,5 +85,5 @@ def Third_Menu(title,cap):
     cv2.destroyAllWindows()
     cap.release()
 
-#cap = cv2.VideoCapture(0)
-#Third_Menu('hood-t', cap)
+cap = cv2.VideoCapture(0)
+Third_Menu('hood-t', cap)
