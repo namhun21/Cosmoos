@@ -19,7 +19,7 @@ def Reco(title,body,clothes):
 
         i = i+1
                              
-    image_path = ['overlay_black.png', 'overlay_blue.png', 'overlay_red.png','overlay_white.png','overlay_yellow.png']
+    image_path = ['overlay_black.png', 'overlay_blue.png', 'overlay_gray.png','overlay_white.png','overlay_beige.png']
     
 #image_path 는 오버레이 한 이미지 즉 5가지 이미지가 찍힌다.
 #그 5가지 이미지 사진을 비교해서 점수가 가장 높은 이미지를 찾아서 해당 옷을 추천
