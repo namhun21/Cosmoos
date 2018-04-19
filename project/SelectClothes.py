@@ -40,7 +40,7 @@ def SelectClothes(title, cap):
 
     while(cap.isOpened()):
 
-        millis_start = int(round(time.time() * 1000))
+        #millis_start = int(round(time.time() * 1000))
         #Select_startTime = int(round(time.time() * 1000))
         ret, img = cap.read()
         img1 = cv2.flip(img,1)
@@ -63,25 +63,25 @@ def SelectClothes(title, cap):
             startcompare = 1 #비교 시작
 
         if(startcompare == 1 and frame_number == 1):#비교하기 위한 이미지 추출
-            millis_start_click = int(round(time.time()*1000))
+           # millis_start_click = int(round(time.time()*1000))
             rightButtonFrame = imgray[200:250,510:640]
             whiteNumRight = Function.Select_Click_Operation(rightButtonFrame,picturerightButtonFrame,130,50)
             if(whiteNumRight > 6500 *0.7):
                 LeftOn = 0
                 RightOn = 1
                 move = 1
-            millis_end_click = int(round(time.time() * 1000))
-            print("Click Function time1 : ",millis_end_click - millis_start_click,"ms")
+           # millis_end_click = int(round(time.time() * 1000))
+           # print("Click Function time1 : ",millis_end_click - millis_start_click,"ms")
         if(startcompare == 1 and frame_number == 2):
-            millis_start_click = int(round(time.time()*1000))
+            #millis_start_click = int(round(time.time()*1000))
             leftButtonFrame = imgray[200:250,10:140]
             whiteNumLeft = Function.Select_Click_Operation(leftButtonFrame,pictureleftButtonFrame,130,50)
             if(whiteNumLeft > 6500*0.7):
                 LeftOn = 1
                 RightOn = 0
                 move = 1
-            millis_end_click = int(round(time.time() * 1000))
-            print("Click Function time2 : ", millis_end_click - millis_start_click,"ms")
+            #millis_end_click = int(round(time.time() * 1000))
+            #print("Click Function time2 : ", millis_end_click - millis_start_click,"ms")
 
         if(startcompare == 1 and frame_number == 3):
             overlayButtonFrame = imgray[380:430,510:640]
@@ -91,8 +91,8 @@ def SelectClothes(title, cap):
                 overlaycount = overlaycount + 1
             else:
                 overlaycount = 0
-            millis_end_click = int(round(time.time() * 1000))
-            print("Click Function time3 : ",millis_end_click - millis_start_click,"ms")
+            #millis_end_click = int(round(time.time() * 1000))
+            #print("Click Function time3 : ",millis_end_click - millis_start_click,"ms")
 
 
         if(move == 1):#애니메이션 가동 시작
@@ -150,8 +150,8 @@ def SelectClothes(title, cap):
         #cv2.imshow('funsadasd',leftButtonFrame)
         #cv2.imshow('sjdwnmanmd',overlayButtonFrame)
         cv2.imshow('video',img1)
-        millis_end = int(round(time.time() * 1000))
-        print("SelectClothes : ",millis_end - millis_start,"ms")
+        #millis_end = int(round(time.time() * 1000))
+        #print("SelectClothes : ",millis_end - millis_start,"ms")
         whiteNumRight = 0#흰색 픽셀의 개수 초기화
         whiteNumLeft = 0#흰색 픽셀의 개수 초기화
         whiteNumOverlay = 0#흰색 픽셀의 개수 초기화

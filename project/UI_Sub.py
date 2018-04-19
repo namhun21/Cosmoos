@@ -36,7 +36,7 @@ def Second_Menu(title,cap):
     kernel = np.ones((5, 5), np.uint8)
 
     while True:
-        Sub_startTime = int(round(time.time() * 1000))
+        #Sub_startTime = int(round(time.time() * 1000))
         ret, frame = cap.read()
         img = cv2.flip(frame,1)
 
@@ -108,8 +108,8 @@ def Second_Menu(title,cap):
         waiting_time = waiting_time + 5
         if cv2.waitKey(1) & 0xFF == ord('q'):  # q 입력시 종료
             break
-        Sub_endTime = int(round(time.time() * 1000))
-        sum_time,n = time_measurement.measure_UI_Sub(Sub_startTime, Sub_endTime, sum_time, n)
+        #Sub_endTime = int(round(time.time() * 1000))
+        #sum_time,n = time_measurement.measure_UI_Sub(Sub_startTime, Sub_endTime, sum_time, n)
 
         
 

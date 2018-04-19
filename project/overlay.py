@@ -227,7 +227,7 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
             frame_number = frame_number + 1
         else:
             frame_number = 1
-        print(Clothes_name,img_size)
+        #print(Clothes_name,img_size)
 
 
         waiting_time = waiting_time + 5

@@ -5,7 +5,7 @@ import time
 
 def animationright(firstindex,secondindex,thirdindex,fourthindex,move,frame,title):
 
-    millis_start = int(round(time.time() * 1000))
+    #millis_start = int(round(time.time() * 1000))
     kinds = title.split("_")[0][0]
     if(kinds == 'h'):
         clothes = ['hood-t_black_NIKE_M_9800_down.png', 'hood-t_blue_NIKE_M_7000_down.png', 'hood-t_gray_NIKE_M_7000_down.png', 'hood-t_white_NIKE_M_7000_down.png', 'hood-t_beige_NIKE_M_7000_down.png']
@@ -24,8 +24,8 @@ def animationright(firstindex,secondindex,thirdindex,fourthindex,move,frame,titl
     Make_Clothes_Image.make_Clothes_Image(clothes[thirdindex],(int(round(150-5*move)),int(round(125-7-2*move))),y[4],y[5],x[4],x[5],frame)
     Make_Clothes_Image.make_Clothes_Image(clothes[fourthindex],(int(round(100-11*move)),int(round(100-11*move))),y[6],y[7],x[6],x[7],frame)
 
-    print(clothes[thirdindex])
-    millis_end = int(round(time.time() * 1000))
-    print("AnimationRightCall : ",millis_end - millis_start,"ms")
+    #print(clothes[thirdindex])
+    #millis_end = int(round(time.time() * 1000))
+    #print("AnimationRightCall : ",millis_end - millis_start,"ms")
     return thirdindex
 
