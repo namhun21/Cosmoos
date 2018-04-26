@@ -32,7 +32,7 @@ def First_Menu(cap):
 
     while True:
 
-        First_Menu_startTime = int(round(time.time() * 1000))
+        #First_Menu_startTime = int(round(time.time() * 1000))
         ret, frame = cap.read()
         img = cv2.flip(frame, 1)
         # frame_copy = frame.copy()
@@ -71,11 +71,11 @@ def First_Menu(cap):
         if (check == 1):  # 클릭 함수를 실행시킨다
 
             if(frame_number == 1):
-                count1, num1, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count1, num1, 0)
+                count1 = Function.Menu_Click_Operation(roi, origraysc, count1, 0)
             if(frame_number==2):
-                count2, num2, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
+                count2 = Function.Menu_Click_Operation(roi, origraysc, count2, 1)
             if(frame_number == 3):
-                count3, num3, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count3, num3, 2)
+                count3 = Function.Menu_Click_Operation(roi, origraysc, count3, 2)
 
 
 
@@ -102,11 +102,11 @@ def First_Menu(cap):
         if cv2.waitKey(1) & 0xFF == ord('q'):  # q 입력시 종료
             break
 
-        First_Menu_endTime = int(round(time.time() * 1000))
-        t1 = int(round(time.time() * 1000))
-        sum_time, n = time_measurement.measure_UI_Start(First_Menu_startTime, First_Menu_endTime, sum_time, n)
-        t2 = int(round(time.time() * 1000))
-        print(t2-t1)
+        #First_Menu_endTime = int(round(time.time() * 1000))
+        #t1 = int(round(time.time() * 1000))
+        #sum_time, n = time_measurement.measure_UI_Start(First_Menu_startTime, First_Menu_endTime, sum_time, n)
+        #t2 = int(round(time.time() * 1000))
+        #print(t2-t1)
     cv2.destroyAllWindows()
     cap.release()
 

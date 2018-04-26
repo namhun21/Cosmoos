@@ -42,7 +42,7 @@ def make_Roi(gray, y1, y2, x1, x2):     #일정 영역을 gray한다
 
 #클릭하는 동작
 #지금화면과 이전화면을 비교하여 달라진 영역을 계산하여 일정 수준 이상 달라져 있으면 클릭이 되게한다
-def Menu_Click_Operation(roi, origraysc, waiting_time, count, num,Box_number):
+def Menu_Click_Operation(roi, origraysc, count,Box_number):
     # num1 = 0
     # num2 = 0
     # num3 = 0
@@ -52,7 +52,7 @@ def Menu_Click_Operation(roi, origraysc, waiting_time, count, num,Box_number):
     # count1 = 0
     # count2 = 0
     # count3 = 0
-
+    num = 0
     for x in range(120):
         for y in range(30):
             oricolor = roi[Box_number][y, x]
@@ -69,11 +69,10 @@ def Menu_Click_Operation(roi, origraysc, waiting_time, count, num,Box_number):
     if (num > 3600 * 0.5):      # 1번 영역에서 달라졌다고 인식한 수가 전체의 50%가 넘으면 그 영역 count를 1 더한다.
         count = count + 1
 
-    num = 0
 
 
     #print((end-start)*1000)
-    return count,num,waiting_time
+    return count
 
 def overlay_Click_Operation(roi, origraysc, waiting_time, count, num,Box_number):
     # num1 = 0

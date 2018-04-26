@@ -79,11 +79,11 @@ def Second_Menu(title,cap):
 
         if (check == 1):    #클릭 함수 실행
             if(frame_number == 1):
-                count1, num1, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count1, num1, 0)
+                count1 = Function.Menu_Click_Operation(roi, origraysc, count1, 0)
             if(frame_number==2):
-                count2, num2, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
+                count2 = Function.Menu_Click_Operation(roi, origraysc, count2, 1)
             if(frame_number == 3):
-                count3, num3, waiting_time = Function.Menu_Click_Operation(roi, origraysc, waiting_time, count3, num3, 2)
+                count3 = Function.Menu_Click_Operation(roi, origraysc, count3, 2)
 
 
 
