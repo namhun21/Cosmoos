@@ -10,7 +10,9 @@ import cv2
 #image_path = sys.argv[1]
 def Reco(title,body,clothes):
     i=0
-    while(i<5):
+    NUM = 5
+
+    while(i<NUM):
         original_clothes = cv2.imread('original.png')
 
         for (x, y, w, h) in body:
@@ -23,11 +25,14 @@ def Reco(title,body,clothes):
     
 #image_path 는 오버레이 한 이미지 즉 5가지 이미지가 찍힌다.
 #그 5가지 이미지 사진을 비교해서 점수가 가장 높은 이미지를 찾아서 해당 옷을 추천
-    NUM = 5
     count=0
     # Read in the image_data
     best_score = 0
     best_clothes = 'default'
+    with tf.gfile.FastGFile("retrained_graph.pb", 'rb') as f:
+            graph_def = tf.GraphDef()
+            graph_def.ParseFromString(f.read())
+            _ = tf.import_graph_def(graph_def, name='')
     while(count<NUM):
         image_data = tf.gfile.FastGFile(image_path[count], 'rb').read()
 
@@ -37,10 +42,7 @@ def Reco(title,body,clothes):
                            in tf.gfile.GFile("retrained_labels.txt")]
 
         # Unpersists graph from file
-        with tf.gfile.FastGFile("retrained_graph.pb", 'rb') as f:
-            graph_def = tf.GraphDef()
-            graph_def.ParseFromString(f.read())
-            _ = tf.import_graph_def(graph_def, name='')
+        
 
         with tf.Session() as sess:
             

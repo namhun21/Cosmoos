@@ -19,7 +19,6 @@ def First_Menu(cap):
     count2 = 0
     count3 = 0
     frame_number = 1
-    sum_time = 0
     n = 0
 
     waiting_time = 0

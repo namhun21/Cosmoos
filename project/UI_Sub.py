@@ -27,8 +27,6 @@ def Second_Menu(title,cap):
     count2 = 0
     count3 = 0
 
-    sum_time = 0
-    n = 0
     waiting_time = 0
     check = 0
     kernel = np.ones((5, 5), np.uint8)

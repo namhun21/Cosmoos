@@ -7,18 +7,15 @@ import UI_Sub
 import Function
 import overlay
 import label_image
-#recommend 화면은 임시로 만들었다 이상태로 구현되지 않을 것이다.
 
 
 def Third_Menu(title,cap):
-    #cap = cv2.VideoCapture(0)
-    # Icon = ['T-Shirt.jpg','Y-Shirt.png','Hood.jpg']
     bottomLeftCornerOfText_Title = (300,200)
     bodyCascade = cv2.CascadeClassifier('haarcascade_mcs_upperbody.xml')
 
     check = 0
     count = 0
-    kinds = title.split("_")[0][0]
+    kinds = title[0]
     if(kinds == 'h'):
         clothes = ['hood-t_black_NIKE_M_9800_.png', 'hood-t_blue_NIKE_M_7000_.png', 'hood-t_gray_NIKE_M_7000_.png', 'hood-t_white_NIKE_M_7000_.png', 'hood-t_beige_NIKE_M_7000_.png']
     elif(kinds == 't'):
@@ -28,7 +25,6 @@ def Third_Menu(title,cap):
 
     while (count<10):
         ret, frame = cap.read()
-        #frame_copy = frame.copy()
         img = cv2.flip(frame,1)
         
         
@@ -42,10 +38,7 @@ def Third_Menu(title,cap):
         for (x, y, w, h) in body:
             
             frame_roi = img[y+130:y+130+500, x:x+400]
-            #cv2.imshow('video2', frame_roi)
             if(check == 0):
-                Picture = img
-                #cv2.imshow('picture', Picture)
 
                 cv2.imwrite('original.png',img)
 
