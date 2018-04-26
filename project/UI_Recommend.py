@@ -37,7 +37,6 @@ def Third_Menu(title,cap):
         )
         for (x, y, w, h) in body:
             
-            frame_roi = img[y+130:y+130+500, x:x+400]
             if(check == 0):
 
                 cv2.imwrite('original.png',img)

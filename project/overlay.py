@@ -46,15 +46,15 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,store): # 상�
         print('Error')
     if(store ==1):
             if(color == "black"):
-                cv2.imwrite('overlay_black.png', img)
+                cv2.imwrite('overlay_black.png', img[0:480, 100:540])
             elif(color == "blue"):
-                cv2.imwrite('overlay_blue.png', img)
+                cv2.imwrite('overlay_blue.png', img[0:480, 100:540])
             elif(color == "gray"):
-                cv2.imwrite('overlay_gray.png', img)
+                cv2.imwrite('overlay_gray.png', img[0:480, 100:540])
             elif(color == "white"):
-                cv2.imwrite('overlay_white.png', img)
+                cv2.imwrite('overlay_white.png', img[0:480, 100:540])
             else :
-                cv2.imwrite('overlay_beige.png', img)
+                cv2.imwrite('overlay_beige.png', img[0:480, 100:540])
         
 
 def Range_Operation(body,img,body_mask,Clothes_name,img_size):    # 특정조건에서만 실행되도록 조건을 부여하였다
