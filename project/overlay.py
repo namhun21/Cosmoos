@@ -4,7 +4,9 @@ import numpy as np
 import time
 import os
 import Function
+import SelectClothes
 import time_measurement
+import UI_Recommend
 
 prev_x = 0
 prev_y = 0
@@ -101,7 +103,7 @@ def Range_Operation(body,img,body_mask,Clothes_name,img_size):    # 특정조건
         #cv2.rectangle(frame,(prev_x,prev_y),(prev_x+prev_w,prev_y+prev_h),(0,255,255),2)
         #draw_shirt(x,y,w,h)
 
-def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 모아서 처리
+def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수들을 모아서 처리
 
     Clothes_name = Clothes_name
     bodyCascade = cv2.CascadeClassifier('haarcascade_mcs_upperbody.xml')    #학습데이터 읽어오기
@@ -109,12 +111,6 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
     TextPosition = ((540,130),(540,270),(540,390)) # 글씨가 적혀질 위치
     TextPosition1 = ((50,250),(50,370)) # Up, Down 글씨가 적힐 위치
     InfoPosition = ((20, 80),(20, 120),(20, 160)) #옷 브랜드, 사이즈, 가격 순서
-
-
-    backButtonCount = 0  #손이 올렸을 때 바로 클릭인지되지 않도록 20됐을 때 동작 실행하도록하는 변수
-    startcompare = 0   #영상의 프레임과 이미지 비교 시작
-    timeright = 0#100번의 루프를 돌고나서 이미지 찍기 위한 변수
-    timeLeft = 0#100번의 루프를 돌고나서 이미지 찍기 위한 변수
 
     count1 = 0
     count2 = 0
@@ -141,7 +137,7 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
         raise IOError('Unable to load the mouth cascade classifier xml files')
 
     while True:
-        Overlay_startTime = int(round(time.time() * 1000))
+        
         # Capture frame-by-frame
         ret, frame = cap.read()
         #frame = cv2.resize(frame,None,fx=scaling_factor,fy=scaling_factor,interpolation = cv2.INTER_CUBIC)
@@ -198,13 +194,13 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
         if (check == 1):  # 클릭 함수를 실행시킨다
 
             if(frame_number == 1):
-                count1, num1, waiting_time = Function.overlay_Click_Operation(roi, origraysc, waiting_time, count1, num1, 0)
+                count1, num1 = Function.overlay_Click_Operation(roi, origraysc, count1, num1, 0)
             if(frame_number==2):
-                count2, num2, waiting_time = Function.overlay_Click_Operation(roi, origraysc, waiting_time, count2, num2, 1)
+                count2, num2 = Function.overlay_Click_Operation(roi, origraysc, count2, num2, 1)
             if(frame_number==3):
-                count3, num3, waiting_time = Function.overlay_Click_Operation(roi, origraysc, waiting_time, count3, num3, 2)
+                count3, num3 = Function.overlay_Click_Operation(roi, origraysc, count3, num3, 2)
             if(frame_number==4):
-                count4, num4, waiting_time = Function.overlay_Click_Operation(roi, origraysc, waiting_time, count4, num4, 3)
+                count4, num4 = Function.overlay_Click_Operation(roi, origraysc, count4, num4, 3)
 
         cv2.imshow('video', img)
 
@@ -218,10 +214,10 @@ def Full_Overlay(cap,Clothes_name):       #이전에 정의했던 함수들을 �
             count1, count2, count3, count4 = Function.resetCount(count1,count2, count3, count4)
         elif (count3 > 20):
             print("success3")
-            count1, count2, count3, count4 = Function.resetCount(count1,count2, count3, count4)
+            UI_Recommend.Third_Menu(title,cap)
         elif (count4 > 20):
             print("success4")
-            count1, count2, count3, count4 = Function.resetCount(count1,count2, count3, count4)
+            SelectClothes.SelectClothes(title,cap)
 
         if(frame_number <4):
             frame_number = frame_number + 1

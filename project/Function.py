@@ -74,7 +74,7 @@ def Menu_Click_Operation(roi, origraysc, count,Box_number):
     #print((end-start)*1000)
     return count
 
-def overlay_Click_Operation(roi, origraysc, waiting_time, count, num,Box_number):
+def overlay_Click_Operation(roi, origraysc, count, num,Box_number):
     # num1 = 0
     # num2 = 0
     # num3 = 0
@@ -105,7 +105,7 @@ def overlay_Click_Operation(roi, origraysc, waiting_time, count, num,Box_number)
 
 
     #print((end-start)*1000)
-    return count,num,waiting_time
+    return count,num
 
 def Select_Click_Operation(ButtonFrame,pictureButtonFrame,width,height):
     whiteNum = 0

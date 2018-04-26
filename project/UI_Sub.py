@@ -12,6 +12,8 @@ import time_measurement
 
 
 def Second_Menu(title,cap):
+    #cap = cv2.VideoCapture(0)
+    # Icon = ['T-Shirt.jpg','Y-Shirt.png','Hood.jpg']
     #버튼 위치
     bottomLeftCornerOfText_Title = (0,20)
     bottomLeftCornerOfText1 = (460, 70)
@@ -34,6 +36,7 @@ def Second_Menu(title,cap):
     kernel = np.ones((5, 5), np.uint8)
 
     while True:
+        #Sub_startTime = int(round(time.time() * 1000))
         ret, frame = cap.read()
         img = cv2.flip(frame,1)
 
@@ -57,6 +60,13 @@ def Second_Menu(title,cap):
         roi = [roi1, roi2, roi3]
 
         if (check == 0 and waiting_time > 100):    #클릭 구현시 필요한 사진
+            #cap1 = cv2.VideoCapture(0)
+            #ret, ori2 = cap1.read()
+
+            # oriroi1 = ori2[50:80,450:570]
+            # oriroi2 = ori2[50:80,250:370]
+            # oriroi3 = ori2[50:80,50:170]
+
             origray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
             origraysc1 = Function.make_Roi(origray,50 ,80 ,450, 570)
@@ -77,7 +87,7 @@ def Second_Menu(title,cap):
 
 
 
-        print(count3, count2, count1)
+        #print(count3, count2, count1)
 
         if (count1 > 20):               #count1이 20 초과하면 UI_Recommand에 있는 Third_Menu(title)실행
             print("success1")
@@ -98,6 +108,8 @@ def Second_Menu(title,cap):
         waiting_time = waiting_time + 5
         if cv2.waitKey(1) & 0xFF == ord('q'):  # q 입력시 종료
             break
+        #Sub_endTime = int(round(time.time() * 1000))
+        #sum_time,n = time_measurement.measure_UI_Sub(Sub_startTime, Sub_endTime, sum_time, n)
 
         
 

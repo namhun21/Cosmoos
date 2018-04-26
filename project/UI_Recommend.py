@@ -65,15 +65,15 @@ def Third_Menu(title,cap):
 
     while True:
         if(best_color == 'black'):
-            overlay.Full_Overlay(cap, clothes[0])
+            overlay.Full_Overlay(cap, clothes[0], title)
         elif(best_color == 'blue'):
-            overlay.Full_Overlay(cap, clothes[1])
+            overlay.Full_Overlay(cap, clothes[1], title)
         elif(best_color == 'gray'):
-            overlay.Full_Overlay(cap, clothes[2])
+            overlay.Full_Overlay(cap, clothes[2], title)
         elif(best_color == 'white'):
-            overlay.Full_Overlay(cap, clothes[3])
+            overlay.Full_Overlay(cap, clothes[3], title)
         else:
-            overlay.Full_Overlay(cap, clothes[4])
+            overlay.Full_Overlay(cap, clothes[4], title)
         
     cv2.destroyAllWindows()
     cap.release()

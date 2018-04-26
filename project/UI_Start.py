@@ -51,6 +51,13 @@ def First_Menu(cap):
 
         if (check == 0 and waiting_time > 100):  # waiting_time이 100이상이되면 버튼 클릭 인식을 시작한다.
             # 사진을 찍어서 지금 화면과 달라지는 영역을 인식한다.
+            # cap1 = cv2.VideoCapture(0)
+            # ret, ori2 = cap1.read()
+
+            # oriroi1 = ori2[50:80,450:570]
+            # oriroi2 = ori2[50:80,250:370]
+            # oriroi3 = ori2[50:80,50:170]
+
             origray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
             origraysc1 = Function.make_Roi(origray, 50, 80, 450, 570)
@@ -95,6 +102,11 @@ def First_Menu(cap):
         if cv2.waitKey(1) & 0xFF == ord('q'):  # q 입력시 종료
             break
 
+        #First_Menu_endTime = int(round(time.time() * 1000))
+        #t1 = int(round(time.time() * 1000))
+        #sum_time, n = time_measurement.measure_UI_Start(First_Menu_startTime, First_Menu_endTime, sum_time, n)
+        #t2 = int(round(time.time() * 1000))
+        #print(t2-t1)
     cv2.destroyAllWindows()
     cap.release()
 

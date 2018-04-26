@@ -29,6 +29,9 @@ def SelectClothes(title, cap):
     whiteNumLeft = 0#왼쪽 애니메이션  버튼의 흑백 프레임의 흰색 픽셀의 개수
     whiteNumRight = 0#오른쪽 애니메이션  버튼의 흑백 프레임의 흰색 픽셀의 개수
     whiteNumOverlay = 0#가운데 overlay창으로 가기위한 버튼의 흑백 프레임의 흰색픽셀의 개수
+    sum_time = 0
+    n = 0
+    # kinds = title.split("_")[0][0]
     kinds = title[0]
     if(kinds == 'h'):
         clothes = ['hood-t_black_NIKE_M_9800_.png', 'hood-t_blue_NIKE_M_7000_.png', 'hood-t_gray_NIKE_M_7000_.png', 'hood-t_white_NIKE_M_7000_.png', 'hood-t_beige_NIKE_M_7000_.png']
@@ -132,7 +135,7 @@ def SelectClothes(title, cap):
 
         if(overlaycount == 20):#오버레이 창으로 전환
             overlaycount = 0
-            overlay.Full_Overlay(cap,clothes[Clothes_name])
+            overlay.Full_Overlay(cap,clothes[Clothes_name],title)
         if(backcount == 20):
             backcount = 0
             if (kinds == 'h'):
@@ -147,7 +150,6 @@ def SelectClothes(title, cap):
         whiteNumRight = 0#흰색 픽셀의 개수 초기화
         whiteNumLeft = 0#흰색 픽셀의 개수 초기화
         whiteNumOverlay = 0#흰색 픽셀의 개수 초기화
-        whiteNumBack = 0
         if(frame_number <4):
             frame_number = frame_number + 1
         else:
@@ -155,6 +157,9 @@ def SelectClothes(title, cap):
         k = cv2.waitKey(10)
         if k==27:
             break
+
+        #Select_endTime = int(round(time.time() * 1000))
+        #sum_time,n = time_measurement.measure(Select_startTime, Select_endTime, sum_time, n)
 
 
     cv2.destroyAllWindows()
