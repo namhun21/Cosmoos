@@ -5,13 +5,10 @@ import time
 import os
 import UI_Sub
 import Function
-import time_measurement
-
 
 
 def First_Menu(cap):
-    # Icon = ['T-Shirt.jpg','Y-Shirt.png','Hood.jpg']
-    # 버튼 위치
+    
     bottomLeftCornerOfText1 = (460, 70)
     bottomLeftCornerOfText2 = (260, 70)
     bottomLeftCornerOfText3 = (60, 70)
@@ -19,10 +16,9 @@ def First_Menu(cap):
     count1 = 0
     count2 = 0
     count3 = 0
+    
     frame_number = 1
-    num1 = 0
-    num2 = 0
-    num3 = 0
+    
     sum_time = 0
     n = 0
 
@@ -32,10 +28,9 @@ def First_Menu(cap):
 
     while True:
 
-        #First_Menu_startTime = int(round(time.time() * 1000))
         ret, frame = cap.read()
         img = cv2.flip(frame, 1)
-        # frame_copy = frame.copy()
+
 
         # 클릭 버튼 만들기
         Function.draw_Click(img, bottomLeftCornerOfText1, (450, 50), (570, 80), 'T-shirt')
@@ -51,13 +46,7 @@ def First_Menu(cap):
 
         if (check == 0 and waiting_time > 100):  # waiting_time이 100이상이되면 버튼 클릭 인식을 시작한다.
             # 사진을 찍어서 지금 화면과 달라지는 영역을 인식한다.
-            # cap1 = cv2.VideoCapture(0)
-            # ret, ori2 = cap1.read()
-
-            # oriroi1 = ori2[50:80,450:570]
-            # oriroi2 = ori2[50:80,250:370]
-            # oriroi3 = ori2[50:80,50:170]
-
+            
             origray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
             origraysc1 = Function.make_Roi(origray, 50, 80, 450, 570)
@@ -78,10 +67,6 @@ def First_Menu(cap):
                 count3 = Function.Menu_Click_Operation(roi, origraysc, count3, 2)
 
 
-
-
-        #print(count3, count2, count1)
-
         if (count1 > 20):  # count1이 20이 넘으면 UI_Sub에 있는 Second_Menu를 실행시킨다.
             print("success1")
             UI_Sub.Second_Menu('t-shirt', cap)
@@ -96,17 +81,13 @@ def First_Menu(cap):
             frame_number = frame_number + 1
         else:
             frame_number = 1
+            
         cv2.imshow('video', img)
 
         waiting_time = waiting_time + 5
         if cv2.waitKey(1) & 0xFF == ord('q'):  # q 입력시 종료
             break
 
-        #First_Menu_endTime = int(round(time.time() * 1000))
-        #t1 = int(round(time.time() * 1000))
-        #sum_time, n = time_measurement.measure_UI_Start(First_Menu_startTime, First_Menu_endTime, sum_time, n)
-        #t2 = int(round(time.time() * 1000))
-        #print(t2-t1)
     cv2.destroyAllWindows()
     cap.release()
 

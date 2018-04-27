@@ -68,8 +68,6 @@ def Range_Operation(body,img,body_mask,Clothes_name,img_size):    # 특정조건
 
     for (x, y, w, h) in body:
 
-        #print('x = ',x,'y = ',y,'w = ',w,'h = ',h)
-
         if (abs(prev_x-x) < 10) and (abs(prev_y-y) < 10): #이전 x,y 와 현재 x,y의 차이가 별로 나지 않으면 이전 위치의 이미지 출력
             #print('prev_x =', prev_x, 'x = ', x, 'prev_y = ',prev_y, 'y = ', y, 'w= ',prev_w, 'h = ',prev_h)
             continue
@@ -100,8 +98,6 @@ def Range_Operation(body,img,body_mask,Clothes_name,img_size):    # 특정조건
         if (prev_x !=0 and prev_y !=0 and prev_w != 0 and prev_h !=0):
             masked_Operation(prev_x,prev_y,prev_w,prev_h,img,body_mask,Clothes_name,img_size, 0)
 
-        #cv2.rectangle(frame,(prev_x,prev_y),(prev_x+prev_w,prev_y+prev_h),(0,255,255),2)
-        #draw_shirt(x,y,w,h)
 
 def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수들을 모아서 처리
 
@@ -118,11 +114,6 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
     count4 = 0
 
     frame_number = 1
-
-    num1 = 0
-    num2 = 0
-    num3 = 0
-    num4 = 0
 
     waiting_time = 0
     check = 0
@@ -153,7 +144,6 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
 
         Function.draw_Click(img,TextPosition[0],(500,100),(620,150),'Reco')
         Function.draw_Click(img,TextPosition[1],(500,250),(620,300),'List')
-        #Function.draw_Click(img,TextPosition[2],(500,350),(620,420),'Back')
 
         Function.draw_Click(img,TextPosition1[0],(20,230),(120,280),'Up')
         Function.draw_Click(img,TextPosition1[1],(20,350),(120,400),'Down')
@@ -194,17 +184,17 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
         if (check == 1):  # 클릭 함수를 실행시킨다
 
             if(frame_number == 1):
-                count1, num1 = Function.overlay_Click_Operation(roi, origraysc, count1, num1, 0)
+                count1 = Function.overlay_Click_Operation(roi, origraysc, count1, 0)
             if(frame_number==2):
-                count2, num2 = Function.overlay_Click_Operation(roi, origraysc, count2, num2, 1)
+                count2 = Function.overlay_Click_Operation(roi, origraysc, count2, 1)
             if(frame_number==3):
-                count3, num3 = Function.overlay_Click_Operation(roi, origraysc, count3, num3, 2)
+                count3 = Function.overlay_Click_Operation(roi, origraysc, count3, 2)
             if(frame_number==4):
-                count4, num4 = Function.overlay_Click_Operation(roi, origraysc, count4, num4, 3)
+                count4 = Function.overlay_Click_Operation(roi, origraysc, count4, 3)
 
         cv2.imshow('video', img)
 
-        if (count1 > 20):  # count1이 20이 넘으면 UI_Sub에 있는 Second_Menu를 실행시킨다.
+        if (count1 > 20):  
             print("success1")
             Clothes_name, img_size = Function.sizeUp(Clothes_name,img_size)
             count1, count2, count3, count4 = Function.resetCount(count1,count2, count3, count4)
@@ -223,16 +213,13 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
             frame_number = frame_number + 1
         else:
             frame_number = 1
+            
         #print(Clothes_name,img_size)
-
 
         waiting_time = waiting_time + 5
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-        #Overlay_endTime = int(round(time.time() * 1000))
-        #sum_time,n = time_measurement.measure(Overlay_startTime, Overlay_endTime, sum_time, n)
-
 
     cv2.destroyAllWindows()
     cap.release()
