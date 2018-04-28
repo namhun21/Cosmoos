@@ -17,7 +17,7 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,store): # 상�
 
     if x>20:
         x = x-10
-    y_offset = 130    # 이미지 사이즈 조정
+    y_offset = 100    # 이미지 사이즈 조정
 
 
     frame_roi = img[y+y_offset:y+y_offset+img_size, x:x+img_size]
@@ -104,8 +104,8 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
     Clothes_name = Clothes_name
     bodyCascade = cv2.CascadeClassifier('haarcascade_mcs_upperbody.xml')    #학습데이터 읽어오기
 
-    TextPosition = ((540,130),(540,270),(540,390)) # 글씨가 적혀질 위치
-    TextPosition1 = ((50,250),(50,370)) # Up, Down 글씨가 적힐 위치
+    TextPosition = ((510,130),(515,280),(520,390)) # 글씨가 적혀질 위치
+    TextPosition1 = ((80,260),(70,380)) # Up, Down 글씨가 적힐 위치
     InfoPosition = ((20, 80),(20, 120),(20, 160)) #옷 브랜드, 사이즈, 가격 순서
 
     count1 = 0
@@ -142,11 +142,11 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
             flags=cv2.CASCADE_SCALE_IMAGE
         )
 
-        Function.draw_Click(img,TextPosition[0],(500,100),(620,150),'Reco')
-        Function.draw_Click(img,TextPosition[1],(500,250),(620,300),'List')
+        Function.draw_Click(img,TextPosition[0],(500,100),(560,150),'Reco')
+        Function.draw_Click(img,TextPosition[1],(500,250),(560,300),'List')
 
-        Function.draw_Click(img,TextPosition1[0],(20,230),(120,280),'Up')
-        Function.draw_Click(img,TextPosition1[1],(20,350),(120,400),'Down')
+        Function.draw_Click(img,TextPosition1[0],(60,230),(120,280),'Up')
+        Function.draw_Click(img,TextPosition1[1],(60,350),(120,400),'Down')
 
         ClothesBrand = 'Brand: ' + Clothes_name.split("_")[2]
         ClothesSize = 'Size: ' + Clothes_name.split("_")[3]
@@ -161,10 +161,10 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
 
         Range_Operation(body,img,body_mask,Clothes_name,img_size)
 
-        roi1 = Function.make_Roi(gray, 230, 280, 20, 120)
-        roi2 = Function.make_Roi(gray, 350, 400, 20, 120)
-        roi3 = Function.make_Roi(gray, 100, 150, 500, 600)
-        roi4 = Function.make_Roi(gray, 250, 300, 500, 600)
+        roi1 = Function.make_Roi(gray, 230, 280, 60, 120)
+        roi2 = Function.make_Roi(gray, 350, 400, 60, 120)
+        roi3 = Function.make_Roi(gray, 100, 150, 500, 560)
+        roi4 = Function.make_Roi(gray, 250, 300, 500, 560)
         roi = [roi1, roi2, roi3, roi4]
 
         if (check == 0 and waiting_time > 100):  # waiting_time이 100이상이되면 버튼 클릭 인식을 시작한다.
@@ -172,10 +172,10 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
 
             origray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-            origraysc1 = Function.make_Roi(origray, 230, 280, 20, 120)
-            origraysc2 = Function.make_Roi(origray, 350, 400, 20, 120)
-            origraysc3 = Function.make_Roi(origray, 100, 150, 500,600)
-            origraysc4 = Function.make_Roi(origray, 250, 300, 500,600)
+            origraysc1 = Function.make_Roi(origray, 230, 280, 60, 120)
+            origraysc2 = Function.make_Roi(origray, 350, 400, 60, 120)
+            origraysc3 = Function.make_Roi(origray, 100, 150, 500,560)
+            origraysc4 = Function.make_Roi(origray, 250, 300, 500,560)
 
             origraysc = [origraysc1, origraysc2,origraysc3,origraysc4]
 
@@ -204,10 +204,10 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
             count1, count2, count3, count4 = Function.resetCount(count1,count2, count3, count4)
         elif (count3 > 20):
             print("success3")
-            UI_Recommend.Third_Menu(title,cap)
+            #UI_Recommend.Third_Menu(title,cap)
         elif (count4 > 20):
             print("success4")
-            SelectClothes.SelectClothes(title,cap)
+            #SelectClothes.SelectClothes(title,cap)
 
         if(frame_number <4):
             frame_number = frame_number + 1
@@ -227,4 +227,4 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
 
 #cap = cv2.VideoCapture(0)
 #Clothes_name= "hood-t_gray_NIKE_M_7000_.png"
-#Full_Overlay(cap,Clothes_name)
+#Full_Overlay(cap,Clothes_name,"hood-t")

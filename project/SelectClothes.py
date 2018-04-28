@@ -10,9 +10,9 @@ import time
 
 def SelectClothes(title, cap):
     TextLocation1=(50, 230)
-    TextLocation2=(550, 230)
-    TextLocation3=(550, 400)
-    TextLocation4=(50, 400)
+    TextLocation2=(520, 230)
+    TextLocation3=(530, 410)
+    TextLocation4=(60, 410)
     frame_number = 1
     index = 0 #옷의 배열 인덱스
     velocity = 1.8#애니메이션의 속도를 결정함. 0<velocity<2 사이의 값 가능
@@ -47,45 +47,45 @@ def SelectClothes(title, cap):
         img1 = cv2.flip(img,1)
 
 
-        Function.draw_Click(img1,TextLocation1,(10,200),(140,250),"Turn Left")
-        Function.draw_Click(img1,TextLocation2,(510,200),(640,250),"Turn Right")
-        Function.draw_Click(img1,TextLocation3,(510,380),(640,430),"Overlay")
-        Function.draw_Click(img1, TextLocation4, (10, 380), (140, 430), "Back")
+        Function.draw_Click(img1,TextLocation1,(40,200),(140,250),"Turn Left")
+        Function.draw_Click(img1,TextLocation2,(510,200),(610,250),"Turn Right")
+        Function.draw_Click(img1,TextLocation3,(510,380),(610,430),"Overlay")
+        Function.draw_Click(img1, TextLocation4, (40, 380), (140, 430), "Back")
 
         imgray = cv2.cvtColor(img1,cv2.COLOR_BGR2GRAY)
 
         if(startcompare == 0 and waiting_time > 100):#루프를 100번 돌고나서 비교할 이미지 추출
             picturegray = cv2.cvtColor(img1,cv2.COLOR_BGR2GRAY)
-            pictureleftButtonFrame = picturegray[200:250,10:140]#왼쪽 애니메이션 버튼 부분
-            picturerightButtonFrame = picturegray[200:250,510:640]#오른쪽 애니메이션  버튼 부분
-            pictureoverlayButtonFrame = picturegray[380:430,510:640]#가운데 overlay 버튼 부분
-            picturebackButtonFrame = picturegray[380:430,10:140]#뒤로가기 버튼 부분
+            pictureleftButtonFrame = picturegray[200:250,40:140]#왼쪽 애니메이션 버튼 부분
+            picturerightButtonFrame = picturegray[200:250,510:610]#오른쪽 애니메이션  버튼 부분
+            pictureoverlayButtonFrame = picturegray[380:430,510:610]#가운데 overlay 버튼 부분
+            picturebackButtonFrame = picturegray[380:430,40:140]#뒤로가기 버튼 부분
             startcompare = 1 #비교 시작
 
         if(startcompare == 1 and frame_number == 1):#비교하기 위한 이미지 추출
-            rightButtonFrame = imgray[200:250,510:640]
-            whiteNumRight = Function.Select_Click_Operation(rightButtonFrame,picturerightButtonFrame,130,50)
+            rightButtonFrame = imgray[200:250,510:610]
+            whiteNumRight = Function.Select_Click_Operation(rightButtonFrame,picturerightButtonFrame,100,50)
             if(whiteNumRight > 6500 *0.7):
                 LeftOn = 0
                 RightOn = 1
                 move = 1
         if(startcompare == 1 and frame_number == 2):
-            leftButtonFrame = imgray[200:250,10:140]
-            whiteNumLeft = Function.Select_Click_Operation(leftButtonFrame,pictureleftButtonFrame,130,50)
+            leftButtonFrame = imgray[200:250,40:140]
+            whiteNumLeft = Function.Select_Click_Operation(leftButtonFrame,pictureleftButtonFrame,100,50)
             if(whiteNumLeft > 6500*0.7):
                 LeftOn = 1
                 RightOn = 0
                 move = 1
 
         if(startcompare == 1 and frame_number == 3):
-            overlayButtonFrame = imgray[380:430,510:640]
-            whiteNumOverlay = Function.Select_Click_Operation(overlayButtonFrame,pictureoverlayButtonFrame,130,50)
+            overlayButtonFrame = imgray[380:430,510:610]
+            whiteNumOverlay = Function.Select_Click_Operation(overlayButtonFrame,pictureoverlayButtonFrame,100,50)
             if(whiteNumOverlay > 6500 *0.7):
                 overlaycount = overlaycount + 1
 
         if (startcompare == 1 and frame_number == 4):
-            backButtonFrame = imgray[380:430, 10:140]
-            whiteNumBack = Function.Select_Click_Operation(backButtonFrame, picturebackButtonFrame, 130, 50)
+            backButtonFrame = imgray[380:430, 40:140]
+            whiteNumBack = Function.Select_Click_Operation(backButtonFrame, picturebackButtonFrame, 100, 50)
             if (whiteNumBack > 6500 * 0.7):
                 backcount = backcount + 1
 
@@ -164,8 +164,8 @@ def SelectClothes(title, cap):
 
     cv2.destroyAllWindows()
 
-# cap = cv2.VideoCapture(0)
-# SelectClothes('t-shirt', cap)
+#cap = cv2.VideoCapture(0)
+#SelectClothes('t-shirt', cap)
 
 
 

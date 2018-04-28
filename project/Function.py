@@ -60,7 +60,7 @@ def overlay_Click_Operation(roi, origraysc, count, Box_number):
 
     num = 0
     
-    for x in range(100):
+    for x in range(60):
         for y in range(50):
             oricolor = roi[Box_number][y, x]
             roicolor = origraysc[Box_number][y, x]
