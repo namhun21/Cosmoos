@@ -5,6 +5,7 @@ import AnimationLeftCall
 import Function
 import overlay
 import UI_Sub
+import os
 import time_measurement
 import time
 
@@ -23,7 +24,9 @@ def SelectClothes(title, cap):
     startcompare = 0#영상의 프레임과 이미지 비교 시작
     animationUnit = 0#애니메이션 움직임의 가중치(좌표에 더해지는 값)
     waiting_time = 0#100번의 루프를 돌고나서 이미지 찍기 위한 변수
-
+    
+    
+    
 
     move = 0#1일 때 움직임을 허가한다.
     whiteNumLeft = 0#왼쪽 애니메이션  버튼의 흑백 프레임의 흰색 픽셀의 개수
@@ -65,14 +68,14 @@ def SelectClothes(title, cap):
         if(startcompare == 1 and frame_number == 1):#비교하기 위한 이미지 추출
             rightButtonFrame = imgray[200:250,510:610]
             whiteNumRight = Function.Select_Click_Operation(rightButtonFrame,picturerightButtonFrame,100,50)
-            if(whiteNumRight > 6500 *0.7):
+            if(whiteNumRight > 5000 *0.7):
                 LeftOn = 0
                 RightOn = 1
                 move = 1
         if(startcompare == 1 and frame_number == 2):
             leftButtonFrame = imgray[200:250,40:140]
             whiteNumLeft = Function.Select_Click_Operation(leftButtonFrame,pictureleftButtonFrame,100,50)
-            if(whiteNumLeft > 6500*0.7):
+            if(whiteNumLeft > 5000*0.7):
                 LeftOn = 1
                 RightOn = 0
                 move = 1
@@ -80,13 +83,13 @@ def SelectClothes(title, cap):
         if(startcompare == 1 and frame_number == 3):
             overlayButtonFrame = imgray[380:430,510:610]
             whiteNumOverlay = Function.Select_Click_Operation(overlayButtonFrame,pictureoverlayButtonFrame,100,50)
-            if(whiteNumOverlay > 6500 *0.7):
+            if(whiteNumOverlay > 5000 *0.7):
                 overlaycount = overlaycount + 1
 
         if (startcompare == 1 and frame_number == 4):
             backButtonFrame = imgray[380:430, 40:140]
             whiteNumBack = Function.Select_Click_Operation(backButtonFrame, picturebackButtonFrame, 100, 50)
-            if (whiteNumBack > 6500 * 0.7):
+            if (whiteNumBack > 5000 * 0.7):
                 backcount = backcount + 1
 
         if(move == 1):#애니메이션 가동 시작

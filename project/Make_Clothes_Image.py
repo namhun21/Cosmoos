@@ -4,7 +4,7 @@ import time
 
 
 def make_Clothes_Image(clothes,size,y1,y2,x1,x2,frame):
-    maskclo = cv2.imread(clothes)
+    maskclo = cv2.imread('./img/'+clothes)
     mask_small = cv2.resize(maskclo,size,interpolation = cv2.INTER_AREA)
     gray_mask = cv2.cvtColor(mask_small, cv2.COLOR_BGR2GRAY)
     color = clothes.split("_")[1]

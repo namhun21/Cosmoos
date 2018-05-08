@@ -104,9 +104,11 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
     Clothes_name = Clothes_name
     bodyCascade = cv2.CascadeClassifier('haarcascade_mcs_upperbody.xml')    #학습데이터 읽어오기
 
+    #path = os.path.abspath(".\\img")
+    #os.chdir(path)
     TextPosition = ((510,130),(515,280),(520,390)) # 글씨가 적혀질 위치
-    TextPosition1 = ((80,260),(70,380)) # Up, Down 글씨가 적힐 위치
-    InfoPosition = ((20, 80),(20, 120),(20, 160)) #옷 브랜드, 사이즈, 가격 순서
+    TextPosition1 = ((80,130),(70,280)) # Up, Down 글씨가 적힐 위치
+    InfoPosition = ((20, 400),(20, 430),(20, 460)) #옷 브랜드, 사이즈, 가격 순서
 
     count1 = 0
     count2 = 0
@@ -121,7 +123,7 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
     n = 0
     img_size = 260
     body_mask = cv2.imread(Clothes_name)  #애니메이션함수로 부터 이미지의 이름을 받아 이미지 읽어오기
-
+    
     # h_mask, w_mask = body_mask.shape[:2] #이미지 영역
 
     if bodyCascade.empty(): #학습데이터 없을시 에러메세지
@@ -145,8 +147,8 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
         Function.draw_Click(img,TextPosition[0],(500,100),(560,150),'Reco')
         Function.draw_Click(img,TextPosition[1],(500,250),(560,300),'List')
 
-        Function.draw_Click(img,TextPosition1[0],(60,230),(120,280),'Up')
-        Function.draw_Click(img,TextPosition1[1],(60,350),(120,400),'Down')
+        Function.draw_Click(img,TextPosition1[0],(60,100),(120,150),'Up')
+        Function.draw_Click(img,TextPosition1[1],(60,250),(120,300),'Down')
 
         ClothesBrand = 'Brand: ' + Clothes_name.split("_")[2]
         ClothesSize = 'Size: ' + Clothes_name.split("_")[3]
@@ -207,7 +209,7 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
             #UI_Recommend.Third_Menu(title,cap)
         elif (count4 > 20):
             print("success4")
-            #SelectClothes.SelectClothes(title,cap)
+            SelectClothes.SelectClothes(title,cap)
 
         if(frame_number <4):
             frame_number = frame_number + 1
