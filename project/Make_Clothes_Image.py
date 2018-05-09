@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 def make_Clothes_Image(clothes,size,y1,y2,x1,x2,frame):
-    maskclo = cv2.imread('./img/'+clothes)
+    maskclo = cv2.imread('./image/'+clothes)
     mask_small = cv2.resize(maskclo,size,interpolation = cv2.INTER_AREA)
     gray_mask = cv2.cvtColor(mask_small, cv2.COLOR_BGR2GRAY)
     # color = clothes.split("_")[1]
@@ -15,7 +15,7 @@ def make_Clothes_Image(clothes,size,y1,y2,x1,x2,frame):
 
 
 def make_Button_Image(button,size,y1,y2,x1,x2,frame):
-    maskclo = cv2.imread('./img/'+button)
+    maskclo = cv2.imread('./image/'+button)
     mask_small = cv2.resize(maskclo,size,interpolation = cv2.INTER_AREA)
     gray_mask = cv2.cvtColor(mask_small, cv2.COLOR_BGR2GRAY)
     # color = clothes.split("_")[1]
@@ -27,7 +27,7 @@ def make_Button_Image(button,size,y1,y2,x1,x2,frame):
     frame[y1:y2,x1:x2] = cv2.add(masked_body, masked_frame)
 
 def make_Button_Image_Black(button,size,y1,y2,x1,x2,frame):
-    maskclo = cv2.imread('./img/'+button)
+    maskclo = cv2.imread('./image/'+button)
     mask_small = cv2.resize(maskclo,size,interpolation = cv2.INTER_AREA)
     gray_mask = cv2.cvtColor(mask_small, cv2.COLOR_BGR2GRAY)
     # color = clothes.split("_")[1]
