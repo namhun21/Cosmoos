@@ -49,7 +49,7 @@ def SelectClothes(title, cap):
         Make_Clothes_Image.make_Button_Image('left.png', (100, 50), 200, 250, 40, 140, img1)
         Make_Clothes_Image.make_Button_Image('right.png', (100, 50), 200, 250, 510, 610, img1)
         Make_Clothes_Image.make_Button_Image('back(64).png', (50, 50), 380, 430, 60, 110, img1)
-        Make_Clothes_Image.make_Button_Image('clothes.png', (100, 50), 380, 430, 510, 610, img1)
+        Make_Clothes_Image.make_Clothes_Image('clothes.png', (100, 50), 380, 430, 510, 610, img1)
 
 
         imgray = cv2.cvtColor(img1,cv2.COLOR_BGR2GRAY)
@@ -81,7 +81,7 @@ def SelectClothes(title, cap):
         if(startcompare == 1 and frame_number == 3):
             overlayButtonFrame = imgray[380:430,510:610]
             whiteNumOverlay = Function.Select_Click_Operation(overlayButtonFrame,pictureoverlayButtonFrame,100,50)
-            if(whiteNumOverlay > 5000 *0.6):
+            if(whiteNumOverlay > 5000 *0.3):
                 overlaycount = overlaycount + 1
 
         if (startcompare == 1 and frame_number == 4):
