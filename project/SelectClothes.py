@@ -46,9 +46,9 @@ def SelectClothes(title, cap):
 
         ret, img = cap.read()
         img1 = cv2.flip(img,1)
-        Make_Clothes_Image.make_Clothes_Image1('left.png', (100, 50), 200, 250, 40, 140, img1)
-        Make_Clothes_Image.make_Clothes_Image1('right.png', (100, 50), 200, 250, 510, 610, img1)
-        Make_Clothes_Image.make_Clothes_Image1('back(64).png', (50, 50), 380, 430, 60, 110, img1)
+        Make_Clothes_Image.make_Clothes_Image('left.png', (100, 50), 200, 250, 40, 140, img1)
+        Make_Clothes_Image.make_Clothes_Image('right.png', (100, 50), 200, 250, 510, 610, img1)
+        Make_Clothes_Image.make_Clothes_Image('back(64).png', (50, 50), 380, 430, 60, 110, img1)
         Make_Clothes_Image.make_Clothes_Image('clothes.png', (100, 50), 380, 430, 510, 610, img1)
 
 

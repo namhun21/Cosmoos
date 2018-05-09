@@ -232,6 +232,6 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
     cap.release()
 
 
-cap = cv2.VideoCapture(0)
-Clothes_name= "hood-t_gray_NIKE_M_7000_.png"
-Full_Overlay(cap,Clothes_name,"hood-t")
+#cap = cv2.VideoCapture(0)
+#Clothes_name= "hood-t_gray_NIKE_M_7000_.png"
+#Full_Overlay(cap,Clothes_name,"hood-t")
