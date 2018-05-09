@@ -170,8 +170,8 @@ def SelectClothes(title, cap):
 
     cv2.destroyAllWindows()
 
-cap = cv2.VideoCapture(0)
-SelectClothes('t-shirt', cap)
+# cap = cv2.VideoCapture(0)
+# SelectClothes('t-shirt', cap)
 
 
 
