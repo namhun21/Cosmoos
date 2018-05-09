@@ -6,14 +6,12 @@ import Function
 import overlay
 import UI_Sub
 import os
+import Make_Clothes_Image
 import time_measurement
 import time
 
 def SelectClothes(title, cap):
-    TextLocation1=(50, 230)
-    TextLocation2=(520, 230)
-    TextLocation3=(530, 410)
-    TextLocation4=(60, 410)
+
     frame_number = 1
     index = 0 #옷의 배열 인덱스
     velocity = 1.8#애니메이션의 속도를 결정함. 0<velocity<2 사이의 값 가능
@@ -48,12 +46,11 @@ def SelectClothes(title, cap):
 
         ret, img = cap.read()
         img1 = cv2.flip(img,1)
+        Make_Clothes_Image.make_Clothes_Image1('left.png', (100, 50), 200, 250, 40, 140, img1)
+        Make_Clothes_Image.make_Clothes_Image1('right.png', (100, 50), 200, 250, 510, 610, img1)
+        Make_Clothes_Image.make_Clothes_Image1('back(64).png', (50, 50), 380, 430, 60, 110, img1)
+        Make_Clothes_Image.make_Clothes_Image('clothes.png', (100, 50), 380, 430, 510, 610, img1)
 
-
-        Function.draw_Click(img1,TextLocation1,(40,200),(140,250),"Turn Left")
-        Function.draw_Click(img1,TextLocation2,(510,200),(610,250),"Turn Right")
-        Function.draw_Click(img1,TextLocation3,(510,380),(610,430),"Overlay")
-        Function.draw_Click(img1, TextLocation4, (40, 380), (140, 430), "Back")
 
         imgray = cv2.cvtColor(img1,cv2.COLOR_BGR2GRAY)
 
@@ -63,19 +60,20 @@ def SelectClothes(title, cap):
             picturerightButtonFrame = picturegray[200:250,510:610]#오른쪽 애니메이션  버튼 부분
             pictureoverlayButtonFrame = picturegray[380:430,510:610]#가운데 overlay 버튼 부분
             picturebackButtonFrame = picturegray[380:430,40:140]#뒤로가기 버튼 부분
+            cv2.imshow('sadas',picturerightButtonFrame)
             startcompare = 1 #비교 시작
 
         if(startcompare == 1 and frame_number == 1):#비교하기 위한 이미지 추출
             rightButtonFrame = imgray[200:250,510:610]
             whiteNumRight = Function.Select_Click_Operation(rightButtonFrame,picturerightButtonFrame,100,50)
-            if(whiteNumRight > 5000 *0.7):
+            if(whiteNumRight > 5000 *0.3):
                 LeftOn = 0
                 RightOn = 1
                 move = 1
         if(startcompare == 1 and frame_number == 2):
             leftButtonFrame = imgray[200:250,40:140]
             whiteNumLeft = Function.Select_Click_Operation(leftButtonFrame,pictureleftButtonFrame,100,50)
-            if(whiteNumLeft > 5000*0.7):
+            if(whiteNumLeft > 5000*0.3):
                 LeftOn = 1
                 RightOn = 0
                 move = 1
@@ -83,13 +81,13 @@ def SelectClothes(title, cap):
         if(startcompare == 1 and frame_number == 3):
             overlayButtonFrame = imgray[380:430,510:610]
             whiteNumOverlay = Function.Select_Click_Operation(overlayButtonFrame,pictureoverlayButtonFrame,100,50)
-            if(whiteNumOverlay > 5000 *0.7):
+            if(whiteNumOverlay > 5000 *0.6):
                 overlaycount = overlaycount + 1
 
         if (startcompare == 1 and frame_number == 4):
             backButtonFrame = imgray[380:430, 40:140]
             whiteNumBack = Function.Select_Click_Operation(backButtonFrame, picturebackButtonFrame, 100, 50)
-            if (whiteNumBack > 5000 * 0.7):
+            if (whiteNumBack > 5000 * 0.3):
                 backcount = backcount + 1
 
         if(move == 1):#애니메이션 가동 시작
@@ -139,17 +137,22 @@ def SelectClothes(title, cap):
         if(overlaycount == 20):#오버레이 창으로 전환
             overlaycount = 0
             overlay.Full_Overlay(cap,clothes[Clothes_name],title)
+            break
         if(backcount == 20):
             backcount = 0
             if (kinds == 'h'):
                 UI_Sub.Second_Menu('hood-t', cap)
+                break
             if(kinds == 't'):
                 UI_Sub.Second_Menu('t-shirt',cap)
+                break
             else:
                 UI_Sub.Second_Menu('y-shirt', cap)
+                break
 
 
         cv2.imshow('video',img1)
+
         whiteNumRight = 0#흰색 픽셀의 개수 초기화
         whiteNumLeft = 0#흰색 픽셀의 개수 초기화
         whiteNumOverlay = 0#흰색 픽셀의 개수 초기화
@@ -167,8 +170,8 @@ def SelectClothes(title, cap):
 
     cv2.destroyAllWindows()
 
-#cap = cv2.VideoCapture(0)
-#SelectClothes('t-shirt', cap)
+cap = cv2.VideoCapture(0)
+SelectClothes('t-shirt', cap)
 
 
 

@@ -101,7 +101,7 @@ def Range_Operation(body,img,body_mask,Clothes_name,img_size):    # 특정조건
 
 def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수들을 모아서 처리
 
-    Clothes_name = './img/'+Clothes_name
+    Clothes_name = Clothes_name
     bodyCascade = cv2.CascadeClassifier('haarcascade_mcs_upperbody.xml')    #학습데이터 읽어오기
 
     #path = os.path.abspath(".\\img")
