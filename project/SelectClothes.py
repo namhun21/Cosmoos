@@ -46,10 +46,10 @@ def SelectClothes(title, cap):
 
         ret, img = cap.read()
         img1 = cv2.flip(img,1)
-        Make_Clothes_Image.make_Clothes_Image('left.png', (100, 50), 200, 250, 40, 140, img1)
-        Make_Clothes_Image.make_Clothes_Image('right.png', (100, 50), 200, 250, 510, 610, img1)
-        Make_Clothes_Image.make_Clothes_Image('back(64).png', (50, 50), 380, 430, 60, 110, img1)
-        Make_Clothes_Image.make_Clothes_Image('clothes.png', (100, 50), 380, 430, 510, 610, img1)
+        Make_Clothes_Image.make_Button_Image('left.png', (100, 50), 200, 250, 40, 140, img1)
+        Make_Clothes_Image.make_Button_Image('right.png', (100, 50), 200, 250, 510, 610, img1)
+        Make_Clothes_Image.make_Button_Image('back(64).png', (50, 50), 380, 430, 60, 110, img1)
+        Make_Clothes_Image.make_Button_Image('clothes.png', (100, 50), 380, 430, 510, 610, img1)
 
 
         imgray = cv2.cvtColor(img1,cv2.COLOR_BGR2GRAY)
@@ -60,7 +60,7 @@ def SelectClothes(title, cap):
             picturerightButtonFrame = picturegray[200:250,510:610]#오른쪽 애니메이션  버튼 부분
             pictureoverlayButtonFrame = picturegray[380:430,510:610]#가운데 overlay 버튼 부분
             picturebackButtonFrame = picturegray[380:430,40:140]#뒤로가기 버튼 부분
-            cv2.imshow('sadas',picturerightButtonFrame)
+           # cv2.imshow('sadas',picturerightButtonFrame)
             startcompare = 1 #비교 시작
 
         if(startcompare == 1 and frame_number == 1):#비교하기 위한 이미지 추출
