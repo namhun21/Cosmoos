@@ -79,6 +79,7 @@ def Second_Menu(title,cap):
         elif (count2 > 20):
             print("success2")
             SelectClothes.SelectClothes(title,cap)  #list로 이동
+            break
         elif (count3 > 20):
             print("success3")
             UI_Start.First_Menu(cap)

@@ -8,11 +8,11 @@ def animationright(firstindex,secondindex,thirdindex,fourthindex,move,frame,titl
     #millis_start = int(round(time.time() * 1000))
     kinds = title.split("_")[0][0]
     if(kinds == 'h'):
-        clothes = ['hood-t_black_NIKE_M_9800_down.png', 'hood-t_blue_NIKE_M_7000_down.png', 'hood-t_gray_NIKE_M_7000_down.png', 'hood-t_white_NIKE_M_7000_down.png', 'hood-t_beige_NIKE_M_7000_down.png']
+        clothes = ['hood-t_black_NIKE_M_7000_dot_down.png', 'hood-t_black_NIKE_M_7000_printing_down.png', 'hood-t_blue_NIKE_M_7000_printing_down.png', 'hood-t_gray_NIKE_M_7000_basic_down.png', 'hood-t_white_NIKE_M_7000_basic_down.png']
     elif(kinds == 't'):
-        clothes = ['t-shirt_black_ADIDAS_M_8500_down.png', 't-shirt_blue_NIKE_M_7000_down.png', 't-shirt_gray_NIKE_M_7000_down.png', 't-shirt_white_NIKE_M_7000_down.png', 't-shirt_beige_NIKE_M_7000_down.png']
+        clothes = ['t-shirt_beige_NIKE_M_7000_basic_down.png', 't-shirt_beige_NIKE_M_7000_printing_down.png', 't-shirt_beige_NIKE_M_7000_stripe_down.png', 't-shirt_black_NIKE_M_7000_stripe_down.png', 't-shirt_gray_NIKE_M_7000_dot_down.png','t-shirt_gray_NIKE_M_7000_printing_down.png','t-shirt_gray_NIKE_M_7000_stripe_down.png','t-shirt_white_NIKE_M_7000_printing_down.png']
     else:
-        clothes = ['y-shirt_black_GUZZI_M_7500_down.png', 'y-shirt_blue_NIKE_M_7000_down.png', 'y-shirt_gray_NIKE_M_7000_down.png', 'y-shirt_white_NIKE_M_7000_down.png', 'y-shirt_beige_NIKE_M_7000_down.png']
+        clothes = ['y-shirt_beige_NIKE_M_7000_dot_down.png', 'y-shirt_black_GUZZI_M_7500_basic_down.png', 'y-shirt_blue_NIKE_M_7000_basic_down.png', 'y-shirt_blue_NIKE_M_7000_dot_down.png', 'y-shirt_blue_NIKE_M_7000_stripe_down.png','y-shirt_white_NIKE_M_7000_dot_down.png','y-shirt_white_NIKE_M_7000_stripe_down.png']
 
 
     y=[int(round(3+3*move)),int(round(3+3*move))+int(round(10+10*move)),int(round(30+5*move)),int(round(30+5*move))+int(round(100+7+2*move)),int(round(75-5*move)),int(round(75-5*move))+int(round(125-7-2*move)),int(round(30-3*move)),int(round(30-3*move))+int(round(100-11*move))]

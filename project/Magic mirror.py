@@ -14,4 +14,3 @@ UI_Start.First_Menu(cap)    #첫번째 화면을 실행한다.
 
 
 
-
