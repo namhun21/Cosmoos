@@ -6,7 +6,6 @@ import os
 import UI_Start 
 
 
-
 cap = cv2.VideoCapture(0)
 
 

@@ -70,12 +70,15 @@ def First_Menu(cap):
         if (count1 > 20):  # count1이 20이 넘으면 UI_Sub에 있는 Second_Menu를 실행시킨다.
             print("success1")
             UI_Sub.Second_Menu('t-shirt', cap)
+            break
         elif (count2 > 20):
             print("success2")
             UI_Sub.Second_Menu('y-shirt', cap)
+            break
         elif (count3 > 20):
             print("success3")
             UI_Sub.Second_Menu('hood-t', cap)
+            break
 
         if(frame_number <3):
             frame_number = frame_number + 1
