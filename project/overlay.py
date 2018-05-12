@@ -20,7 +20,6 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,store): # 상�
         x = x-10
     y_offset = 100    # 이미지 사이즈 조정
 
-
     frame_roi = img[y+y_offset:y+y_offset+img_size, x:x+img_size]
     if(store == 0):
         cv2.imshow('video2',frame_roi)
@@ -28,19 +27,10 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,store): # 상�
     body_mask_small = cv2.resize(body_mask,(img_size,img_size),interpolation = cv2.INTER_CUBIC) # 옷이미지 키우기
     gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)# 키운 이미지의 gray처리 (BGR->Gray)
 
-    color = Clothes_name.split("_")[1]
-    Clothes_type = Clothes_name.split("_")[5]
-    # if((color == "black") or (color == "blue")):
-    #     ret, mask = cv2.threshold(gray_mask, 200,255, cv2.THRESH_BINARY_INV)
-    #     if(type == "stripe"):
-    #         ret, mask = cv2.threshold(gray_mask, 249, 255, cv2.THRESH_BINARY_INV)
-    # elif(color == "gray"):
-    #     ret, mask = cv2.threshold(gray_mask, 230,255, cv2.THRESH_BINARY_INV)
+    Clothes_pattern = Clothes_name.split("_")[5]
 
-    # else:
-    #     ret, mask = cv2.threshold(gray_mask, 1,255, cv2.THRESH_BINARY)
-
-    ret2, mask = Function.Decision_mask(Clothes_name,gray_mask)
+    mask = Function.Decision_mask(Clothes_name, gray_mask)
+        
     mask_inv = cv2.bitwise_not(mask)
 
     try:        # bitwise_and부분에서 error가 발생하는 경우가 있기때문에 그경우에는 Error를 출력하게 하고 그외에는 그대로 실행시킨다.
@@ -137,7 +127,7 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
     while True:
         
         # Capture frame-by-frame
-        ret1, frame = cap.read()
+        ret, frame = cap.read()
         #frame = cv2.resize(frame,None,fx=scaling_factor,fy=scaling_factor,interpolation = cv2.INTER_CUBIC)
         img = cv2.flip(frame,1)  #카메라 반전
 
@@ -203,6 +193,7 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
             if(frame_number==4):
                 count4 = Function.overlay_Click_Operation(roi, origraysc, count4, 3)
 
+        print(count1,count2,count3,count4)
         cv2.imshow('video', img)
 
         if (count1 > 20):  
@@ -213,12 +204,12 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
             print("success2")
             Clothes_name, img_size = Function.sizeDown(Clothes_name,img_size)
             count1, count2, count3, count4 = Function.resetCount(count1,count2, count3, count4)
-        elif (count3 > 20):
-            print("success3")
+        #elif (count3 > 20):
+          #  print("success3")
             #UI_Recommend.Third_Menu(title,cap)
-        elif (count4 > 20):
-            print("success4")
-            SelectClothes.SelectClothes(title,cap)
+        #elif (count4 > 20):
+         #   print("success4")
+            #SelectClothes.SelectClothes(title,cap)
 
         if(frame_number <4):
             frame_number = frame_number + 1
@@ -236,6 +227,6 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
     cap.release()
 
 
-# cap = cv2.VideoCapture(0)
-# Clothes_name= "t-shirt_gray_NIKE_M_7000_stripe_.png"
-# Full_Overlay(cap,Clothes_name,"t-shirt")
+cap = cv2.VideoCapture(0)
+Clothes_name= "hood-t_blue_NIKE_M_7000_printing_.png"
+Full_Overlay(cap,Clothes_name,"t-shirt")
