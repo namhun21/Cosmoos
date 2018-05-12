@@ -93,44 +93,91 @@ def SelectClothes(title, cap):
         if(move == 1):#애니메이션 가동 시작
             animationUnit = animationUnit + velocity#가중치를 증가
 
-        if(index == 0):#가운데 이미지의 배열 인덱스가 0일 시의 예외 처리
-            if(RightOn == 1):
-                Clothes_name = AnimationRightCall.animationright(index+3,index+4,index,index+1,animationUnit,img1,title)
-            else:
-                Clothes_name = AnimationLeftCall.animationleft(index+4,index,index+1,index+2,animationUnit,img1,title)   #hm
-
-        elif(index == 4):#가운데 이미지의 배열 인덱스가 4일 시의 예외 처리
-            if(RightOn == 1):
-                Clothes_name = AnimationRightCall.animationright(index-2,index-1,index,index-4,animationUnit,img1,title)
-            else:
-                Clothes_name = AnimationLeftCall.animationleft(index-1,index,index-4,index-3,animationUnit,img1,title)
-        elif(index == 1 and RightOn == 1):#가운데 이미지의 배열 인덱스가 1일 시의 예외 처리
-            Clothes_name=AnimationRightCall.animationright(index+3,index-1,index,index+1,animationUnit,img1,title)
-        elif(index == 3 and LeftOn == 1):#가운데 이미지의 배열 인덱스가 3일 시의 예외 처리
-            Clothes_name=AnimationLeftCall.animationleft(index-1,index,index+1,index-3,animationUnit,img1,title)
-        else:#예외를 제외한 나머지 부분의 애니메이션 함수
-            if(RightOn == 1):
-                Clothes_name=AnimationRightCall.animationright(index-2,index-1,index,index+1,animationUnit,img1,title)
-            else:
-                Clothes_name=AnimationLeftCall.animationleft(index-1,index,index+1,index+2,animationUnit,img1,title)   #hm
-        if(abs(animationUnit - 9) <= 1):#애니메이션 완료 시
-            if(index == 0 and RightOn == 1):#가운데 이미지 인덱스가 0일 때 오른쪽 애니메이션 가동 중지
-                index = 4
-
-
-            elif(index == 4 and LeftOn == 1):#가운데 이미지 인덱스가 4일 때 왼쪽  애니메이션 가동 중지
-                index = 0
-
-            else:#예외를 제외한 애니메이션 가동 중지
+        if(kinds == 'h'):
+            if(index == 0):#가운데 이미지의 배열 인덱스가 0일 시의 예외 처리
                 if(RightOn == 1):
-                    index = index -1
+                    Clothes_name = AnimationRightCall.animationright(index+3,index+4,index,index+1,animationUnit,img1,title)
+                else:
+                    Clothes_name = AnimationLeftCall.animationleft(index+4,index,index+1,index+2,animationUnit,img1,title)   #hm
+
+            elif(index == 4):#가운데 이미지의 배열 인덱스가 4일 시의 예외 처리
+                if(RightOn == 1):
+                    Clothes_name = AnimationRightCall.animationright(index-2,index-1,index,index-4,animationUnit,img1,title)
+                else:
+                    Clothes_name = AnimationLeftCall.animationleft(index-1,index,index-4,index-3,animationUnit,img1,title)
+            elif(index == 1 and RightOn == 1):#가운데 이미지의 배열 인덱스가 1일 시의 예외 처리
+                Clothes_name=AnimationRightCall.animationright(index+3,index-1,index,index+1,animationUnit,img1,title)
+            elif(index == 3 and LeftOn == 1):#가운데 이미지의 배열 인덱스가 3일 시의 예외 처리
+                Clothes_name=AnimationLeftCall.animationleft(index-1,index,index+1,index-3,animationUnit,img1,title)
+            else:#예외를 제외한 나머지 부분의 애니메이션 함수
+                if(RightOn == 1):
+                    Clothes_name=AnimationRightCall.animationright(index-2,index-1,index,index+1,animationUnit,img1,title)
+                else:
+                    Clothes_name=AnimationLeftCall.animationleft(index-1,index,index+1,index+2,animationUnit,img1,title)   #hm
+            if(abs(animationUnit - 9) <= 1):#애니메이션 완료 시
+                if(index == 0 and RightOn == 1):#가운데 이미지 인덱스가 0일 때 오른쪽 애니메이션 가동 중지
+                    index = 4
 
 
-                if(LeftOn == 1):
-                    index = index +1
+                elif(index == 4 and LeftOn == 1):#가운데 이미지 인덱스가 4일 때 왼쪽  애니메이션 가동 중지
+                    index = 0
 
-            animationUnit = 0
-            move = 0
+                else:#예외를 제외한 애니메이션 가동 중지
+                    if(RightOn == 1):
+                        index = index -1
+
+
+                    if(LeftOn == 1):
+                        index = index +1
+
+                animationUnit = 0
+                move = 0
+        else:
+            if (index == 0):  # 가운데 이미지의 배열 인덱스가 0일 시의 예외 처리
+                if (RightOn == 1):
+                    Clothes_name = AnimationRightCall.animationright(index + 5, index + 6, index, index + 1,
+                                                                     animationUnit, img1, title)
+                else:
+                    Clothes_name = AnimationLeftCall.animationleft(index + 6, index, index + 1, index + 2,
+                                                                   animationUnit, img1, title)  # hm
+
+            elif (index == 6):  # 가운데 이미지의 배열 인덱스가 4일 시의 예외 처리
+                if (RightOn == 1):
+                    Clothes_name = AnimationRightCall.animationright(index - 2, index - 1, index, index - 6,
+                                                                     animationUnit, img1, title)
+                else:
+                    Clothes_name = AnimationLeftCall.animationleft(index - 1, index, index - 6, index - 5,
+                                                                   animationUnit, img1, title)
+            elif (index == 1 and RightOn == 1):  # 가운데 이미지의 배열 인덱스가 1일 시의 예외 처리
+                Clothes_name = AnimationRightCall.animationright(index + 5, index - 1, index, index + 1, animationUnit,
+                                                                 img1, title)
+            elif (index == 5 and LeftOn == 1):  # 가운데 이미지의 배열 인덱스가 3일 시의 예외 처리
+                Clothes_name = AnimationLeftCall.animationleft(index - 1, index, index + 1, index - 5, animationUnit,
+                                                               img1, title)
+            else:  # 예외를 제외한 나머지 부분의 애니메이션 함수
+                if (RightOn == 1):
+                    Clothes_name = AnimationRightCall.animationright(index - 2, index - 1, index, index + 1,
+                                                                     animationUnit, img1, title)
+                else:
+                    Clothes_name = AnimationLeftCall.animationleft(index - 1, index, index + 1, index + 2,
+                                                                   animationUnit, img1, title)  # hm
+            if (abs(animationUnit - 9) <= 1):  # 애니메이션 완료 시
+                if (index == 0 and RightOn == 1):  # 가운데 이미지 인덱스가 0일 때 오른쪽 애니메이션 가동 중지
+                    index = 6
+
+
+                elif (index == 6 and LeftOn == 1):  # 가운데 이미지 인덱스가 4일 때 왼쪽  애니메이션 가동 중지
+                    index = 0
+
+                else:  # 예외를 제외한 애니메이션 가동 중지
+                    if (RightOn == 1):
+                        index = index - 1
+
+                    if (LeftOn == 1):
+                        index = index + 1
+
+                animationUnit = 0
+                move = 0
 
         waiting_time = waiting_time + 5#비교할 프레임을 찍기위한 시간 체크변수 5증가(100때 이미지 비교 시작)
 
