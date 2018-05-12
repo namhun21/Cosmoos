@@ -40,7 +40,7 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,store): # 상�
     # else:
     #     ret, mask = cv2.threshold(gray_mask, 1,255, cv2.THRESH_BINARY)
 
-    ret, mask = Function.Decision_mask(Clothes_name,gray_mask)
+    ret2, mask = Function.Decision_mask(Clothes_name,gray_mask)
     mask_inv = cv2.bitwise_not(mask)
 
     try:        # bitwise_and부분에서 error가 발생하는 경우가 있기때문에 그경우에는 Error를 출력하게 하고 그외에는 그대로 실행시킨다.
@@ -137,7 +137,7 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
     while True:
         
         # Capture frame-by-frame
-        ret, frame = cap.read()
+        ret1, frame = cap.read()
         #frame = cv2.resize(frame,None,fx=scaling_factor,fy=scaling_factor,interpolation = cv2.INTER_CUBIC)
         img = cv2.flip(frame,1)  #카메라 반전
 
