@@ -156,6 +156,12 @@ def Decision_mask(Clothes_name,gray_mask):
         ret, mask = cv2.threshold(gray_mask, 253, 255, cv2.THRESH_BINARY_INV)
     elif (Clothes_name == "t-shirt_gray_NIKE_M_7000_stripe_.png"):
         ret, mask = cv2.threshold(gray_mask, 20 , 255, cv2.THRESH_BINARY)
+    elif (Clothes_name == "y-shirt_white_NIKE_M_7000_dot_.png"):
+        ret, mask = cv2.threshold(gray_mask, 250, 255, cv2.THRESH_BINARY_INV)
+    elif (Clothes_name == "y-shirt_blue_NIKE_M_7000_dot_.png"):
+        ret, mask = cv2.threshold(gray_mask, 175, 255, cv2.THRESH_BINARY_INV)
+    elif (Clothes_name == "y-shirt_beige_NIKE_M_7000_dot_.png"):
+        ret, mask = cv2.threshold(gray_mask, 223, 255, cv2.THRESH_BINARY_INV)
 
     return ret,mask
         
