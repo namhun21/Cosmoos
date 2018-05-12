@@ -39,6 +39,16 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,store): # ÏÉÅÏ≤
 
     # else:
     #     ret, mask = cv2.threshold(gray_mask, 1,255, cv2.THRESH_BINARY)
+    if(Clothes_name == "hood-t_gray_NIKE_M_7000_basic_.png"):
+        ret, mask = cv2.threshold(gray_mask, 230,255, cv2.THRESH_BINARY_INV)
+    if(Clothes_name == "hood-t_white_NIKE_M_7000_basic_.png"):
+        ret, mask = cv2.threshold(gray_mask, 1,255, cv2.THRESH_BINARY)
+    if(Clothes_name == "t-shirt_beige_NIKE_M_7000_basic_.png"):
+        ret, mask = cv2.threshold(gray_mask, 1,255, cv2.THRESH_BINARY)
+    if(Clothes_name == "y-shirt_black_GUZZI_M_7500_basic_.png"):
+        ret, mask = cv2.threshold(gray_mask, 200,255, cv2.THRESH_BINARY_INV)
+    if(Clothes_name == "y-shirt_blue_NIKE_M_7000_basic_.png"):
+        ret, mask = cv2.threshold(gray_mask, 200,255, cv2.THRESH_BINARY_INV)
     if(Clothes_name == "t-shirt_black_NIKE_M_7000_stripe_.png"):
         ret, mask = cv2.threshold(gray_mask, 1, 255, cv2.THRESH_BINARY)
     if(Clothes_name == "y-shirt_blue_NIKE_M_7000_stripe_.png"):
