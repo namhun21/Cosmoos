@@ -29,7 +29,7 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,store): # 상�
     gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)# 키운 이미지의 gray처리 (BGR->Gray)
 
     color = Clothes_name.split("_")[1]
-    type = Clothes_name.split("_")[5]
+    Clothes_type = Clothes_name.split("_")[5]
     # if((color == "black") or (color == "blue")):
     #     ret, mask = cv2.threshold(gray_mask, 200,255, cv2.THRESH_BINARY_INV)
     #     if(type == "stripe"):
@@ -39,26 +39,8 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,store): # 상�
 
     # else:
     #     ret, mask = cv2.threshold(gray_mask, 1,255, cv2.THRESH_BINARY)
-    if(Clothes_name == "hood-t_gray_NIKE_M_7000_basic_.png"):
-        ret, mask = cv2.threshold(gray_mask, 230,255, cv2.THRESH_BINARY_INV)
-    if(Clothes_name == "hood-t_white_NIKE_M_7000_basic_.png"):
-        ret, mask = cv2.threshold(gray_mask, 1,255, cv2.THRESH_BINARY)
-    if(Clothes_name == "t-shirt_beige_NIKE_M_7000_basic_.png"):
-        ret, mask = cv2.threshold(gray_mask, 1,255, cv2.THRESH_BINARY)
-    if(Clothes_name == "y-shirt_black_GUZZI_M_7500_basic_.png"):
-        ret, mask = cv2.threshold(gray_mask, 200,255, cv2.THRESH_BINARY_INV)
-    if(Clothes_name == "y-shirt_blue_NIKE_M_7000_basic_.png"):
-        ret, mask = cv2.threshold(gray_mask, 200,255, cv2.THRESH_BINARY_INV)
-    if(Clothes_name == "t-shirt_black_NIKE_M_7000_stripe_.png"):
-        ret, mask = cv2.threshold(gray_mask, 1, 255, cv2.THRESH_BINARY)
-    if(Clothes_name == "y-shirt_blue_NIKE_M_7000_stripe_.png"):
-        ret, mask = cv2.threshold(gray_mask, 249, 255, cv2.THRESH_BINARY_INV)
-    if (Clothes_name == "t-shirt_beige_NIKE_M_7000_stripe_.png"):
-        ret, mask = cv2.threshold(gray_mask, 252, 255, cv2.THRESH_BINARY_INV)
-    if (Clothes_name == "hood-t_black_NIKE_M_7000_dot_.png"):
-        ret, mask = cv2.threshold(gray_mask, 250, 255, cv2.THRESH_BINARY_INV)
-    if (Clothes_name == "t-shirt_gray_NIKE_M_7000_dot_.png"):
-        ret, mask = cv2.threshold(gray_mask, 245, 255, cv2.THRESH_BINARY_INV)
+
+    ret, mask = Function.Decision_mask(Clothes_name,gray_mask)
     mask_inv = cv2.bitwise_not(mask)
 
     try:        # bitwise_and부분에서 error가 발생하는 경우가 있기때문에 그경우에는 Error를 출력하게 하고 그외에는 그대로 실행시킨다.

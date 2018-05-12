@@ -120,3 +120,38 @@ def sizeDown(Clothes_name,img_size):  #옷의 이미지 줄이기 위한 함수
         Clothes_name = Clothes_name.replace('L','M')
         img_size = img_size - 20
         return Clothes_name, img_size
+
+def Decision_mask(Clothes_name,gray_mask):
+    if(Clothes_name == "hood-t_gray_NIKE_M_7000_basic_.png"):
+        ret, mask = cv2.threshold(gray_mask, 230,255, cv2.THRESH_BINARY_INV)
+    elif(Clothes_name == "hood-t_white_NIKE_M_7000_basic_.png"):
+        ret, mask = cv2.threshold(gray_mask, 1,255, cv2.THRESH_BINARY)
+    elif(Clothes_name == "t-shirt_beige_NIKE_M_7000_basic_.png"):
+        ret, mask = cv2.threshold(gray_mask, 1,255, cv2.THRESH_BINARY)
+    elif(Clothes_name == "y-shirt_black_GUZZI_M_7500_basic_.png"):
+        ret, mask = cv2.threshold(gray_mask, 200,255, cv2.THRESH_BINARY_INV)
+    elif(Clothes_name == "y-shirt_blue_NIKE_M_7000_basic_.png"):
+        ret, mask = cv2.threshold(gray_mask, 200,255, cv2.THRESH_BINARY_INV)
+    elif(Clothes_name == "t-shirt_black_NIKE_M_7000_stripe_.png"):
+        ret, mask = cv2.threshold(gray_mask, 1, 255, cv2.THRESH_BINARY)
+    elif(Clothes_name == "y-shirt_blue_NIKE_M_7000_stripe_.png"):
+        ret, mask = cv2.threshold(gray_mask, 249, 255, cv2.THRESH_BINARY_INV)
+    elif (Clothes_name == "t-shirt_beige_NIKE_M_7000_stripe_.png"):
+        ret, mask = cv2.threshold(gray_mask, 252, 255, cv2.THRESH_BINARY_INV)
+    elif (Clothes_name == "hood-t_black_NIKE_M_7000_dot_.png"):
+        ret, mask = cv2.threshold(gray_mask, 250, 255, cv2.THRESH_BINARY_INV)
+    elif (Clothes_name == "t-shirt_gray_NIKE_M_7000_dot_.png"):
+        ret, mask = cv2.threshold(gray_mask, 245, 255, cv2.THRESH_BINARY_INV)
+    elif (Clothes_name == "hood-t_black_NIKE_M_7000_printing_.png"):
+        ret, mask = cv2.threshold(gray_mask, 200, 255, cv2.THRESH_BINARY_INV)
+    elif (Clothes_name == "hood-t_blue_NIKE_M_7000_printing_.png"):
+        ret, mask = cv2.threshold(gray_mask, 254, 255, cv2.THRESH_BINARY_INV)
+    elif (Clothes_name == "t-shirt_beige_NIKE_M_7000_printing_.png"):
+        ret, mask = cv2.threshold(gray_mask, 40, 255, cv2.THRESH_BINARY)
+    elif (Clothes_name == "t-shirt_white_NIKE_M_7000_printing_.png"):
+        ret, mask = cv2.threshold(gray_mask, 1, 255, cv2.THRESH_BINARY)
+    elif (Clothes_name == "t-shirt_gray_NIKE_M_7000_printing_.png"):
+        ret, mask = cv2.threshold(gray_mask, 220, 255, cv2.THRESH_BINARY_INV)
+
+    return ret,mask
+        
