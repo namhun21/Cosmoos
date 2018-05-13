@@ -168,5 +168,70 @@ def Decision_mask(Clothes_name,gray_mask):
         ret, mask = cv2.threshold(gray_mask, 20 , 255, cv2.THRESH_BINARY)
     
     return mask
+
+def Decision_sizeOffset(Clothes_name,y_offset, img_size):
+
+    Clothes_type = Clothes_name.split("_")[5]
+    color = Clothes_name.split("_")[1]
+    
+    if(Clothes_type == 'basic'and color == 'gray'):
+        y_offset = 100
         
-        
+    elif( Clothes_type == 'basic'and color == 'white'):
+        y_offset = 100
+
+    elif(Clothes_type == 'basic' and color == 'beige'):
+        y_offset = 100
+
+    elif(Clothes_type == 'basic'and color == 'black'):
+        y_offset = 100
+
+    elif(Clothes_type == 'basic'and color == 'blue'):
+        y_offset = 100
+
+    elif(Clothes_type == 'stripe'and color =='black'):
+        y_offset = 100
+
+    elif(Clothes_type == 'stripe'and color == 'blue'):
+        y_offset = 100
+
+    elif (Clothes_type == 'stripe'and color =='beige'):
+        y_offset = 100
+
+    elif (Clothes_type == 'dot'and color =='black'):
+        y_offset = 100
+
+    elif (Clothes_type == 'dot'and color =='gray'):
+        y_offset = 100
+
+    elif (Clothes_type == 'dot'and color =='white'):
+        y_offset = 100
+
+    elif (Clothes_type == 'dot'and color =='blue'):
+        y_offset = 100
+
+    elif (Clothes_type == 'dot'and color =='beige'):
+        y_offset = 100
+
+    elif (Clothes_type == 'printing'and color == 'black'):
+        y_offset = 100
+
+    elif (Clothes_type == 'printing'and color == 'blue'):
+        y_offset = 100
+
+    elif (Clothes_type == 'printing'and color == 'beige'):
+        y_offset = 100
+
+    elif (Clothes_type == 'printing'and color == 'white'):
+        y_offset = 100
+
+    elif (Clothes_type == 'printing'and color == 'gray'):
+        y_offset = 100
+
+    elif (Clothes_type == 'stripe'and color =='white'):
+        y_offset = 100
+
+    elif (Clothes_type == 'stripe'and color == 'gray'):
+        y_offset = 100
+
+    return y_offset,img_size
