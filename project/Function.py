@@ -187,6 +187,8 @@ def Decision_sizeOffset(Clothes_name,x,y_offset, img_size):
 
     elif(Clothes_type == 'basic'and color == 'black'):
         y_offset = 100
+        img_size = img_size + 50
+        x = x-20
 
     elif(Clothes_type == 'basic'and color == 'blue'):
         y_offset = 100
