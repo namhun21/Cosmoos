@@ -73,7 +73,7 @@ def overlay_Click_Operation(roi, origraysc, count, Box_number):
                 num = num + 1
                
 
-    if (num > 3000 * 0.4):      # 1번 영역에서 달라졌다고 인식한 수가 전체의 40%가 넘으면 그 영역 count를 1 더한다.
+    if (num > 3000 * 0.7):      # 1번 영역에서 달라졌다고 인식한 수가 전체의 40%가 넘으면 그 영역 count를 1 더한다.
         count = count + 1
 
     return count
