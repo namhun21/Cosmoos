@@ -17,6 +17,7 @@ def Third_Menu(title,cap):
     clothes = ['hood-t_black_NIKE_M_7000_dot_.png', 'hood-t_black_NIKE_M_7000_printing_.png', 'hood-t_blue_NIKE_M_7000_printing_.png', 'hood-t_gray_NIKE_M_7000_basic_.png', 'hood-t_white_NIKE_M_7000_basic_.png','t-shirt_beige_NIKE_M_7000_basic_.png', 't-shirt_beige_NIKE_M_7000_printing_.png', 't-shirt_beige_NIKE_M_7000_stripe_.png', 't-shirt_black_NIKE_M_7000_stripe_.png', 't-shirt_gray_NIKE_M_7000_dot_.png','t-shirt_gray_NIKE_M_7000_printing_.png','t-shirt_gray_NIKE_M_7000_stripe_.png','t-shirt_white_NIKE_M_7000_printing_.png','y-shirt_beige_NIKE_M_7000_dot_.png', 'y-shirt_black_GUZZI_M_7500_basic_.png', 'y-shirt_blue_NIKE_M_7000_basic_.png', 'y-shirt_blue_NIKE_M_7000_dot_.png', 'y-shirt_blue_NIKE_M_7000_stripe_.png','y-shirt_white_NIKE_M_7000_dot_.png','y-shirt_white_NIKE_M_7000_stripe_.png']
     check = 0
     re = 0
+    best_clothes = 'default'
     my_q = queue.Queue()
     while True:
         ret, frame = cap.read()
@@ -44,9 +45,11 @@ def Third_Menu(title,cap):
             re = my_q.get()
             print(re)   #추천결과
             
-            check = 2   #오버레이로 이동
-            #overlay.Fulloverlay
-        
+            for i in range(20) :   #오버레이로 이동
+                if(clothes[i].split("_")[1] == re):                          #overlay.Fulloverlay
+                    best_clothes = clothes[i]
+            print(best_clothes)
+            overlay.Full_Overlay(cap,best_clothes,title)
     cv2.destroyAllWindows()
     cap.release()
                                  
