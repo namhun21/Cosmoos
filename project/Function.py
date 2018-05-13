@@ -123,42 +123,48 @@ def sizeDown(Clothes_name,img_size):  #옷의 이미지 줄이기 위한 함수
 
 def Decision_mask(Clothes_name,gray_mask):
 
-    Clothes_type = Clothes_name.split("_")[0]
+    Clothes_type = Clothes_name.split("_")[5]
     color = Clothes_name.split("_")[1]
     
-    if(Clothes_type == 'hood-t'and color == 'gray'):
+    if(Clothes_type == 'basic'and color == 'gray'):
         ret, mask = cv2.threshold(gray_mask, 230,255, cv2.THRESH_BINARY_INV)
-    elif( Clothes_type == 'hood-t'and color == 'white'):
+    elif( Clothes_type == 'basic'and color == 'white'):
         ret, mask = cv2.threshold(gray_mask, 1,255, cv2.THRESH_BINARY)
-    elif(Clothes_type == 't-shirt' and color == 'beige'):
+    elif(Clothes_type == 'basic' and color == 'beige'):
         ret, mask = cv2.threshold(gray_mask, 1,255, cv2.THRESH_BINARY)
-    elif(Clothes_type == 'y-shirt'and color == 'black'):
+    elif(Clothes_type == 'basic'and color == 'black'):
         ret, mask = cv2.threshold(gray_mask, 200,255, cv2.THRESH_BINARY_INV)
-    elif(Clothes_type == 'y-shirt'and color == 'blue'):
+    elif(Clothes_type == 'basic'and color == 'blue'):
         ret, mask = cv2.threshold(gray_mask, 200,255, cv2.THRESH_BINARY_INV)
-    elif(Clothes_type == 't-shirt'and color =='black'):
+    elif(Clothes_type == 'stripe'and color =='black'):
         ret, mask = cv2.threshold(gray_mask, 1, 255, cv2.THRESH_BINARY)
-    elif(Clothes_type == 'y-shirt'and color == 'blue'):
+    elif(Clothes_type == 'stripe'and color == 'blue'):
         ret, mask = cv2.threshold(gray_mask, 249, 255, cv2.THRESH_BINARY_INV)
-    elif (Clothes_type == 't-shirt'and color =='beige'):
+    elif (Clothes_type == 'stripe'and color =='beige'):
         ret, mask = cv2.threshold(gray_mask, 252, 255, cv2.THRESH_BINARY_INV)
-    elif (Clothes_type == 'hood-t'and color =='black'):
+    elif (Clothes_type == 'dot'and color =='black'):
         ret, mask = cv2.threshold(gray_mask, 250, 255, cv2.THRESH_BINARY_INV)
-    elif (Clothes_type == 't-shirt'and color =='gray'):
+    elif (Clothes_type == 'dot'and color =='gray'):
         ret, mask = cv2.threshold(gray_mask, 245, 255, cv2.THRESH_BINARY_INV)
-    elif (Clothes_type == 'hood-t'and color == 'black'):
+    elif (Clothes_type == 'dot'and color =='white'):
+        ret, mask = cv2.threshold(gray_mask, 250, 255, cv2.THRESH_BINARY_INV)
+    elif (Clothes_type == 'dot'and color =='blue'):
+        ret, mask = cv2.threshold(gray_mask, 175, 255, cv2.THRESH_BINARY_INV)
+    elif (Clothes_type == 'dot'and color =='beige'):
+        ret, mask = cv2.threshold(gray_mask, 223, 255, cv2.THRESH_BINARY_INV)
+    elif (Clothes_type == 'printing'and color == 'black'):
         ret, mask = cv2.threshold(gray_mask, 200, 255, cv2.THRESH_BINARY_INV)
-    elif (Clothes_type == 'hood-t'and color == 'blue'):
+    elif (Clothes_type == 'printing'and color == 'blue'):
         ret, mask = cv2.threshold(gray_mask, 254, 255, cv2.THRESH_BINARY_INV)
-    elif (Clothes_type == 't-shirt'and color == 'beige'):
+    elif (Clothes_type == 'printing'and color == 'beige'):
         ret, mask = cv2.threshold(gray_mask, 40, 255, cv2.THRESH_BINARY)
-    elif (Clothes_type == 't-shirt'and color == 'white'):
+    elif (Clothes_type == 'printing'and color == 'white'):
         ret, mask = cv2.threshold(gray_mask, 1, 255, cv2.THRESH_BINARY)
-    elif (Clothes_type == 't-shirt'and color == 'gray'):
+    elif (Clothes_type == 'printing'and color == 'gray'):
         ret, mask = cv2.threshold(gray_mask, 220, 255, cv2.THRESH_BINARY_INV)
-    elif (Clothes_type == 'y-shirt'and color =='white'):
+    elif (Clothes_type == 'stripe'and color =='white'):
         ret, mask = cv2.threshold(gray_mask, 253, 255, cv2.THRESH_BINARY_INV)
-    elif (Clothes_type == 't-shirt'and color == 'gray'):
+    elif (Clothes_type == 'stripe'and color == 'gray'):
         ret, mask = cv2.threshold(gray_mask, 20 , 255, cv2.THRESH_BINARY)
     
     return mask

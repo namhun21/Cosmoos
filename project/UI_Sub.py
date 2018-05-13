@@ -90,7 +90,7 @@ def Second_Menu(title,cap):
         else:
             frame_number = 1
         cv2.imshow('video', img)
-        waiting_time = waiting_time + 5
+        waiting_time = waiting_time + 2
         if cv2.waitKey(1) & 0xFF == ord('q'):  # q 입력시 종료
             break
 

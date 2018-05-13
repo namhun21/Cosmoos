@@ -54,7 +54,7 @@ def SelectClothes(title, cap):
 
         imgray = cv2.cvtColor(img1,cv2.COLOR_BGR2GRAY)
 
-        if(startcompare == 0 and waiting_time > 100):#루프를 100번 돌고나서 비교할 이미지 추출
+        if(startcompare == 0 and waiting_time > 300):#루프를 100번 돌고나서 비교할 이미지 추출
             picturegray = cv2.cvtColor(img1,cv2.COLOR_BGR2GRAY)
             pictureleftButtonFrame = picturegray[200:250,40:140]#왼쪽 애니메이션 버튼 부분
             picturerightButtonFrame = picturegray[200:250,510:610]#오른쪽 애니메이션  버튼 부분
@@ -66,14 +66,14 @@ def SelectClothes(title, cap):
         if(startcompare == 1 and frame_number == 1):#비교하기 위한 이미지 추출
             rightButtonFrame = imgray[200:250,510:610]
             whiteNumRight = Function.Select_Click_Operation(rightButtonFrame,picturerightButtonFrame,100,50)
-            if(whiteNumRight > 5000 *0.3):
+            if(whiteNumRight > 5000 *0.4):
                 LeftOn = 0
                 RightOn = 1
                 move = 1
         if(startcompare == 1 and frame_number == 2):
             leftButtonFrame = imgray[200:250,40:140]
             whiteNumLeft = Function.Select_Click_Operation(leftButtonFrame,pictureleftButtonFrame,100,50)
-            if(whiteNumLeft > 5000*0.3):
+            if(whiteNumLeft > 5000*0.4):
                 LeftOn = 1
                 RightOn = 0
                 move = 1
@@ -81,13 +81,13 @@ def SelectClothes(title, cap):
         if(startcompare == 1 and frame_number == 3):
             overlayButtonFrame = imgray[380:430,510:610]
             whiteNumOverlay = Function.Select_Click_Operation(overlayButtonFrame,pictureoverlayButtonFrame,100,50)
-            if(whiteNumOverlay > 5000 *0.3):
+            if(whiteNumOverlay > 5000 *0.5):
                 overlaycount = overlaycount + 1
 
         if (startcompare == 1 and frame_number == 4):
             backButtonFrame = imgray[380:430, 40:140]
             whiteNumBack = Function.Select_Click_Operation(backButtonFrame, picturebackButtonFrame, 100, 50)
-            if (whiteNumBack > 5000 * 0.3):
+            if (whiteNumBack > 5000 * 0.5):
                 backcount = backcount + 1
 
         if(move == 1):#애니메이션 가동 시작
