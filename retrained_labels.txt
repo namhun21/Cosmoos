@@ -1,0 +1,5 @@
+blue
+black
+white
+beige
+gray
