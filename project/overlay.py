@@ -20,7 +20,7 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,store): # 상�
         x = x-10
     y_offset = 100    # 이미지 사이즈 조정
     
-    y_offset, img_size = Function.Decision_sizeOffset(Clothes_name, y_offset, img_size)
+    x, y_offset, img_size = Function.Decision_sizeOffset(Clothes_name, x, y_offset, img_size)
     
     frame_roi = img[y+y_offset:y+y_offset+img_size, x:x+img_size]
     if(store == 0):

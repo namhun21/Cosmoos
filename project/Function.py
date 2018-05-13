@@ -169,7 +169,7 @@ def Decision_mask(Clothes_name,gray_mask):
     
     return mask
 
-def Decision_sizeOffset(Clothes_name,y_offset, img_size):
+def Decision_sizeOffset(Clothes_name,x,y_offset, img_size):
 
     Clothes_type = Clothes_name.split("_")[5]
     color = Clothes_name.split("_")[1]
@@ -178,7 +178,9 @@ def Decision_sizeOffset(Clothes_name,y_offset, img_size):
         y_offset = 100
         
     elif( Clothes_type == 'basic'and color == 'white'):
-        y_offset = 100
+        y_offset = y_offset - 20
+        img_size = img_size + 70
+        x = x-20
 
     elif(Clothes_type == 'basic' and color == 'beige'):
         y_offset = 100
@@ -234,4 +236,4 @@ def Decision_sizeOffset(Clothes_name,y_offset, img_size):
     elif (Clothes_type == 'stripe'and color == 'gray'):
         y_offset = 100
 
-    return y_offset,img_size
+    return x, y_offset,img_size
