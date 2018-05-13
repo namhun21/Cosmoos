@@ -23,8 +23,8 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,store): # 상�
     x, y_offset, img_size = Function.Decision_sizeOffset(Clothes_name, x, y_offset, img_size)
     
     frame_roi = img[y+y_offset:y+y_offset+img_size, x:x+img_size]
-    if(store == 0):
-        cv2.imshow('video2',frame_roi)
+    #if(store == 0):
+        #cv2.imshow('video2',frame_roi)
 
     body_mask_small = cv2.resize(body_mask,(img_size,img_size),interpolation = cv2.INTER_CUBIC) # 옷이미지 키우기
     gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)# 키운 이미지의 gray처리 (BGR->Gray)
