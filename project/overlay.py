@@ -20,13 +20,13 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,store): # 상�
         x = x-10
     y_offset = 100    # 이미지 사이즈 조정
     
-    x, y_offset, img_size = Function.Decision_sizeOffset(Clothes_name, x, y_offset, img_size)
+    x, col, y_offset, img_size = Function.Decision_sizeOffset(Clothes_name, x, y_offset, img_size)
     
-    frame_roi = img[y+y_offset:y+y_offset+img_size, x:x+img_size]
+    frame_roi = img[y+y_offset:y+y_offset+col, x:x+img_size]
     #if(store == 0):
         #cv2.imshow('video2',frame_roi)
 
-    body_mask_small = cv2.resize(body_mask,(img_size,img_size),interpolation = cv2.INTER_CUBIC) # 옷이미지 키우기
+    body_mask_small = cv2.resize(body_mask,(img_size,col),interpolation = cv2.INTER_CUBIC) # 옷이미지 키우기
     gray_mask = cv2.cvtColor(body_mask_small, cv2.COLOR_BGR2GRAY)# 키운 이미지의 gray처리 (BGR->Gray)
 
     Clothes_pattern = Clothes_name.split("_")[5]
@@ -38,7 +38,7 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,store): # 상�
     try:        # bitwise_and부분에서 error가 발생하는 경우가 있기때문에 그경우에는 Error를 출력하게 하고 그외에는 그대로 실행시킨다.
         masked_body = cv2.bitwise_and(body_mask_small,body_mask_small, mask = mask) # 오버레이되는 부분만 남게된다.
         masked_frame = cv2.bitwise_and(frame_roi, frame_roi, mask = mask_inv) #배경만 남게된다
-        img[y+y_offset:y+y_offset+img_size, x:x+img_size] = cv2.add(masked_body, masked_frame) # 화면에 이미지 오버레이
+        img[y+y_offset:y+y_offset+col, x:x+img_size] = cv2.add(masked_body, masked_frame) # 화면에 이미지 오버레이
         
             
     except:

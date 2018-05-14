@@ -161,7 +161,7 @@ def Decision_mask(Clothes_name,gray_mask):
     elif (Clothes_type == 'printing'and color == 'white'):
         ret, mask = cv2.threshold(gray_mask, 1, 255, cv2.THRESH_BINARY)
     elif (Clothes_type == 'printing'and color == 'gray'):
-        ret, mask = cv2.threshold(gray_mask, 220, 255, cv2.THRESH_BINARY_INV)
+        ret, mask = cv2.threshold(gray_mask, 30, 255, cv2.THRESH_BINARY)
     elif (Clothes_type == 'stripe'and color =='white'):
         ret, mask = cv2.threshold(gray_mask, 253, 255, cv2.THRESH_BINARY_INV)
     elif (Clothes_type == 'stripe'and color == 'gray'):
@@ -175,67 +175,118 @@ def Decision_sizeOffset(Clothes_name,x,y_offset, img_size):
     color = Clothes_name.split("_")[1]
     
     if(Clothes_type == 'basic'and color == 'gray'):
+        col = img_size
         y_offset = 100
         
     elif( Clothes_type == 'basic'and color == 'white'):
+        x = x-20
         y_offset = y_offset - 20
         img_size = img_size + 70
-        x = x-20
+        col = img_size
+        
 
     elif(Clothes_type == 'basic' and color == 'beige'):
+        col = img_size
         y_offset = 100
 
     elif(Clothes_type == 'basic'and color == 'black'):
         y_offset = 100
         img_size = img_size + 50
         x = x-20
+        col = img_size
 
     elif(Clothes_type == 'basic'and color == 'blue'):
-        y_offset = 100
-
-    elif(Clothes_type == 'stripe'and color =='black'):
-        y_offset = 100
-
-    elif(Clothes_type == 'stripe'and color == 'blue'):
-        y_offset = 100
-
-    elif (Clothes_type == 'stripe'and color =='beige'):
+        col = img_size
         y_offset = 100
 
     elif (Clothes_type == 'dot'and color =='black'):
+        x = x + 15
         y_offset = 100
+        img_size = img_size - 40
+        col = img_size
 
     elif (Clothes_type == 'dot'and color =='gray'):
-        y_offset = 100
+        x = x + 15
+        y_offset = 90
+        img_size = img_size - 35
+        col = img_size
 
     elif (Clothes_type == 'dot'and color =='white'):
-        y_offset = 100
+        x = x + 20
+        y_offset = 95
+        img_size = img_size - 40
+        col = img_size
 
     elif (Clothes_type == 'dot'and color =='blue'):
-        y_offset = 100
+        x = x + 10
+        y_offset = 110
+        img_size = img_size - 40
+        col = img_size
 
     elif (Clothes_type == 'dot'and color =='beige'):
-        y_offset = 100
+        x = x + 5
+        y_offset = 105
+        col = img_size
 
     elif (Clothes_type == 'printing'and color == 'black'):
-        y_offset = 100
+        x = x-10 
+        y_offset = 70
+        img_size = img_size + 30
+        col = img_size + 70
 
     elif (Clothes_type == 'printing'and color == 'blue'):
-        y_offset = 100
+        x = x-23 
+        y_offset = 90
+        img_size = img_size + 50
+        col = img_size + 20
 
     elif (Clothes_type == 'printing'and color == 'beige'):
-        y_offset = 100
+        x = x-25
+        y_offset = 90
+        img_size = img_size + 40
+        col = img_size + 20
 
     elif (Clothes_type == 'printing'and color == 'white'):
+        x = x - 10
         y_offset = 100
+        img_size = img_size + 20
+        col = img_size + 20
 
     elif (Clothes_type == 'printing'and color == 'gray'):
-        y_offset = 100
+        x = x - 22
+        y_offset = 90
+        img_size = img_size + 50
+        col = img_size + 20
 
     elif (Clothes_type == 'stripe'and color =='white'):
+        x = x - 3
         y_offset = 100
+        img_size = img_size - 40
+        col = img_size
 
     elif (Clothes_type == 'stripe'and color == 'gray'):
-        y_offset = 100
+        x = x + 5
+        y_offset = 85
+        img_size = img_size - 30
+        col = img_size
+        
+    elif(Clothes_type == 'stripe'and color =='black'):
+        x = x+5
+        y_offset = 95
+        img_size = img_size - 50
+        col = img_size
 
-    return x, y_offset,img_size
+    elif(Clothes_type == 'stripe'and color == 'blue'):
+        x = x -3
+        y_offset = 100
+        img_size = img_size -5
+        col = img_size
+
+    elif (Clothes_type == 'stripe'and color =='beige'):
+        x = x+5
+        y_offset = 95
+        img_size = img_size - 50
+        col = img_size
+
+
+    return x, col, y_offset,img_size
