@@ -4,7 +4,7 @@ import sys
 import tensorflow as tf
 
 
-def ChuCheon(frame, faceList, my_q):
+def Suggest(frame, faceList, my_q):
     framegray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
 
     for (x, y, w, h) in faceList:

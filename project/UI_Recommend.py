@@ -8,7 +8,7 @@ import Function
 import overlay
 import threading
 import queue
-import ChuCheon
+import Suggest
 
 
 def Third_Menu(title,cap):
@@ -25,7 +25,7 @@ def Third_Menu(title,cap):
         faceList = face_pattern.detectMultiScale(gray, 1.5)
 
         if check == 0:
-            t = threading.Thread(target = ChuCheon.ChuCheon, args=(frame,faceList, my_q))
+            t = threading.Thread(target = Suggest.Suggest, args=(frame,faceList, my_q))
             t.start()   #추천시스템 쓰레드
             check = 1
         img = cv2.flip(frame,1)
