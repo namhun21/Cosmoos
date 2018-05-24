@@ -179,7 +179,7 @@ def SelectClothes(title, cap):
                 animationUnit = 0
                 move = 0
 
-        waiting_time = waiting_time + 5#비교할 프레임을 찍기위한 시간 체크변수 5증가(100때 이미지 비교 시작)
+        waiting_time = waiting_time + 3#비교할 프레임을 찍기위한 시간 체크변수 5증가(100때 이미지 비교 시작)
 
         if(overlaycount == 20):#오버레이 창으로 전환
             overlaycount = 0
