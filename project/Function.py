@@ -38,7 +38,7 @@ def Menu_Click_Operation(roi, origraysc, count, Box_number):
 
     num = 0
     
-    for x in range(120):
+    for x in range(100):
         for y in range(30):
             oricolor = roi[Box_number][y, x]
             roicolor = origraysc[Box_number][y, x]
@@ -51,7 +51,7 @@ def Menu_Click_Operation(roi, origraysc, count, Box_number):
                 num = num + 1
                 
 
-    if (num > 3600 * 0.5):      # 1번 영역에서 달라졌다고 인식한 수가 전체의 50%가 넘으면 그 영역 count를 1 더한다.
+    if (num > 3000 * 0.5):      # 1번 영역에서 달라졌다고 인식한 수가 전체의 50%가 넘으면 그 영역 count를 1 더한다.
         count = count + 1
 
     return count

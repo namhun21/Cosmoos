@@ -4,7 +4,7 @@ import AnimationRightCall
 import AnimationLeftCall
 import Function
 import overlay
-import UI_Sub
+import UI_Start
 import os
 import Make_Clothes_Image
 import time_measurement
@@ -187,16 +187,7 @@ def SelectClothes(title, cap):
             break
         if(backcount == 20):
             backcount = 0
-            if (kinds == 'h'):
-                UI_Sub.Second_Menu('hood-t', cap)
-                break
-            if(kinds == 't'):
-                UI_Sub.Second_Menu('t-shirt',cap)
-                break
-            else:
-                UI_Sub.Second_Menu('y-shirt', cap)
-                break
-
+            UI_Start.First_Menu(cap)
 
         cv2.imshow('video',img1)
 
