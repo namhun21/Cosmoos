@@ -1,0 +1,4 @@
+print
+stripe
+basic
+dot
