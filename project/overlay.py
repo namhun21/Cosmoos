@@ -94,7 +94,7 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
     #os.chdir(path)
     
     InfoPosition = ((20, 400),(20, 430),(20, 460)) #옷 브랜드, 사이즈, 가격 순서
-    TextPosition = ((510,130),(515,280),(520,390)) # 글씨가 적혀질 위치
+    #TextPosition = ((510,130),(515,280),(520,390)) # 글씨가 적혀질 위치
     
     count1 = 0
     count2 = 0
@@ -131,10 +131,11 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
         )
         Make_Clothes_Image.make_Button_Image_Black('SizeUp.png', (60, 50), 100, 150, 60, 120, img)
         Make_Clothes_Image.make_Button_Image_Black('SizeDown.png', (60, 50), 250, 300, 60, 120, img)
-        Make_Clothes_Image.make_Button_Image('List.png', (60, 50), 250, 300, 500, 560, img)
+        Make_Clothes_Image.make_Clothes_Image('List.png', (60, 50), 250, 300, 500, 560, img)
+        Make_Clothes_Image.make_Clothes_Image('Recommend.png',(60,50), 100, 150, 500, 560, img)
         
 
-        Function.draw_Click(img,TextPosition[0],(500,100),(560,150),'Reco')
+        #Function.draw_Click(img,TextPosition[0],(500,100),(560,150),'Reco')
         #Function.draw_Click(img,TextPosition[1],(500,250),(560,300),'List')
 
         #Function.draw_Click(img,TextPosition1[0],(60,100),(120,150),'Up')
@@ -195,12 +196,12 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
             print("success2")
             Clothes_name, img_size = Function.sizeDown(Clothes_name,img_size)
             count1, count2, count3, count4 = Function.resetCount(count1,count2, count3, count4)
-        #elif (count3 > 20):
-          #  print("success3")
-            #UI_Recommend.Third_Menu(title,cap)
-        #elif (count4 > 20):
-         #   print("success4")
-            #SelectClothes.SelectClothes(title,cap)
+        elif (count3 > 20):
+            print("success3")
+            UI_Recommend.Third_Menu(title,cap)
+        elif (count4 > 20):
+            print("success4")
+            SelectClothes.SelectClothes(title,cap)
 
         if(frame_number <4):
             frame_number = frame_number + 1
@@ -218,6 +219,6 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
     cap.release()
 
 
-# cap = cv2.VideoCapture(0)
-# Clothes_name= "y-sshirt_blue_NIKE_M_7000_basic_.png"
-# Full_Overlay(cap,Clothes_name,"t-shirt")
+#cap = cv2.VideoCapture(0)
+#Clothes_name= "y-shirt_blue_NIKE_M_7000_basic_.png"
+#Full_Overlay(cap,Clothes_name,"t-shirt")
