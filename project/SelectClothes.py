@@ -46,48 +46,48 @@ def SelectClothes(title, cap):
 
         ret, img = cap.read()
         img1 = cv2.flip(img,1)
-        Make_Clothes_Image.make_Button_Image('left.png', (100, 50), 200, 250, 40, 140, img1)
-        Make_Clothes_Image.make_Button_Image('right.png', (100, 50), 200, 250, 510, 610, img1)
-        Make_Clothes_Image.make_Button_Image('back(64).png', (50, 50), 380, 430, 60, 110, img1)
-        Make_Clothes_Image.make_Clothes_Image('clothes.png', (100, 50), 380, 430, 510, 610, img1)
+        Make_Clothes_Image.make_Button_Image('left.png', (40, 40), 200, 240, 60, 100, img1)
+        Make_Clothes_Image.make_Button_Image('right.png', (40, 40), 200, 240, 510, 550, img1)
+        Make_Clothes_Image.make_Button_Image('back(64).png', (30, 30), 300, 330, 90, 120, img1)
+        Make_Clothes_Image.make_Clothes_Image('clothes.png', (30, 30), 300, 330, 510, 540, img1)
 
 
         imgray = cv2.cvtColor(img1,cv2.COLOR_BGR2GRAY)
 
         if(startcompare == 0 and waiting_time > 300):#루프를 100번 돌고나서 비교할 이미지 추출
             picturegray = cv2.cvtColor(img1,cv2.COLOR_BGR2GRAY)
-            pictureleftButtonFrame = picturegray[200:250,40:140]#왼쪽 애니메이션 버튼 부분
-            picturerightButtonFrame = picturegray[200:250,510:610]#오른쪽 애니메이션  버튼 부분
-            pictureoverlayButtonFrame = picturegray[380:430,510:610]#가운데 overlay 버튼 부분
-            picturebackButtonFrame = picturegray[380:430,40:140]#뒤로가기 버튼 부분
+            pictureleftButtonFrame = picturegray[200:240,60:100]#왼쪽 애니메이션 버튼 부분
+            picturerightButtonFrame = picturegray[200:240,510:550]#오른쪽 애니메이션  버튼 부분
+            pictureoverlayButtonFrame = picturegray[300:330,510:540]#가운데 overlay 버튼 부분
+            picturebackButtonFrame = picturegray[290:340,80:130]#뒤로가기 버튼 부분
            # cv2.imshow('sadas',picturerightButtonFrame)
             startcompare = 1 #비교 시작
 
         if(startcompare == 1 and frame_number == 1):#비교하기 위한 이미지 추출
-            rightButtonFrame = imgray[200:250,510:610]
-            whiteNumRight = Function.Select_Click_Operation(rightButtonFrame,picturerightButtonFrame,100,50)
-            if(whiteNumRight > 5000 *0.4):
+            rightButtonFrame = imgray[200:240,510:550]
+            whiteNumRight = Function.Select_Click_Operation(rightButtonFrame,picturerightButtonFrame,40,40)
+            if(whiteNumRight > 1600 *0.3):
                 LeftOn = 0
                 RightOn = 1
                 move = 1
         if(startcompare == 1 and frame_number == 2):
-            leftButtonFrame = imgray[200:250,40:140]
-            whiteNumLeft = Function.Select_Click_Operation(leftButtonFrame,pictureleftButtonFrame,100,50)
-            if(whiteNumLeft > 5000*0.4):
+            leftButtonFrame = imgray[200:240,60:100]
+            whiteNumLeft = Function.Select_Click_Operation(leftButtonFrame,pictureleftButtonFrame,40,40)
+            if(whiteNumLeft > 1600*0.3):
                 LeftOn = 1
                 RightOn = 0
                 move = 1
 
         if(startcompare == 1 and frame_number == 3):
-            overlayButtonFrame = imgray[380:430,510:610]
-            whiteNumOverlay = Function.Select_Click_Operation(overlayButtonFrame,pictureoverlayButtonFrame,100,50)
-            if(whiteNumOverlay > 5000 *0.5):
+            overlayButtonFrame = imgray[300:330,510:540]
+            whiteNumOverlay = Function.Select_Click_Operation(overlayButtonFrame,pictureoverlayButtonFrame,30,30)
+            if(whiteNumOverlay > 900 *0.4):
                 overlaycount = overlaycount + 1
 
         if (startcompare == 1 and frame_number == 4):
-            backButtonFrame = imgray[380:430, 40:140]
-            whiteNumBack = Function.Select_Click_Operation(backButtonFrame, picturebackButtonFrame, 100, 50)
-            if (whiteNumBack > 5000 * 0.5):
+            backButtonFrame = imgray[290:340,80:130]
+            whiteNumBack = Function.Select_Click_Operation(backButtonFrame, picturebackButtonFrame, 50, 50)
+            if (whiteNumBack > 2500 * 0.3):
                 backcount = backcount + 1
 
         if(move == 1):#애니메이션 가동 시작
@@ -179,13 +179,13 @@ def SelectClothes(title, cap):
                 animationUnit = 0
                 move = 0
 
-        waiting_time = waiting_time + 3#비교할 프레임을 찍기위한 시간 체크변수 5증가(100때 이미지 비교 시작)
+        waiting_time = waiting_time + 4#비교할 프레임을 찍기위한 시간 체크변수 5증가(100때 이미지 비교 시작)
 
-        if(overlaycount == 20):#오버레이 창으로 전환
+        if(overlaycount == 10):#오버레이 창으로 전환
             overlaycount = 0
             overlay.Full_Overlay(cap,clothes[Clothes_name],title)
             break
-        if(backcount == 20):
+        if(backcount == 10):
             backcount = 0
             UI_Start.First_Menu(cap)
 
