@@ -3,7 +3,6 @@ import sys
 import numpy as np
 import time
 import os
-import UI_Sub
 import Function
 import overlay
 import threading
@@ -39,13 +38,20 @@ def Third_Menu(cap):
             t.start()   #추천시스템 쓰레드
             check = 1
         img = cv2.flip(frame,1)
-
-        cv2.putText(img,'Loading```````',
-                bottomLeftCornerOfText_Title,
-                cv2.FONT_HERSHEY_SIMPLEX,
-                1.5,
-                (255,0,0),
-                2)
+        if(count == 1):
+            cv2.putText(img,'finding face...',
+                    bottomLeftCornerOfText_Title,
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    1.5,
+                    (255,0,0),
+                    2)
+        else:
+            cv2.putText(img,'selecting clothes...',
+                    bottomLeftCornerOfText_Title,
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    1.5,
+                    (255,0,0),
+                    2)
 
         cv2.imshow('video', img)
         print('Main')
