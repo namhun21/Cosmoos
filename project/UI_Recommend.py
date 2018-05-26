@@ -13,19 +13,28 @@ import Suggest_Pattern
 
 
 def Third_Menu(cap):
-    bottomLeftCornerOfText_Title = (100,200)
+    bottomLeftCornerOfText_Title = (0,100)
     face_pattern = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-    clothes = ['hood-t_black_NIKE_M_7000_dot_.png', 'hood-t_black_NIKE_M_7000_printing_.png', 'hood-t_blue_NIKE_M_7000_printing_.png', 'hood-t_gray_NIKE_M_7000_basic_.png', 'hood-t_white_NIKE_M_7000_basic_.png','t-shirt_beige_NIKE_M_7000_basic_.png', 't-shirt_beige_NIKE_M_7000_printing_.png', 't-shirt_beige_NIKE_M_7000_stripe_.png', 't-shirt_black_NIKE_M_7000_stripe_.png', 't-shirt_gray_NIKE_M_7000_dot_.png','t-shirt_gray_NIKE_M_7000_printing_.png','t-shirt_gray_NIKE_M_7000_stripe_.png','t-shirt_white_NIKE_M_7000_printing_.png','y-shirt_beige_NIKE_M_7000_dot_.png', 'y-shirt_black_GUZZI_M_7500_basic_.png', 'y-shirt_blue_NIKE_M_7000_basic_.png', 'y-shirt_blue_NIKE_M_7000_dot_.png', 'y-shirt_blue_NIKE_M_7000_stripe_.png','y-shirt_white_NIKE_M_7000_dot_.png','y-shirt_white_NIKE_M_7000_stripe_.png']
+    clothes = ['hood-t_black_NIKE_M_7000_dot_.png', 'hood-t_black_NIKE_M_7000_print_.png', 'hood-t_blue_NIKE_M_7000_print_.png', 'hood-t_gray_NIKE_M_7000_basic_.png', 'hood-t_white_NIKE_M_7000_basic_.png','t-shirt_beige_NIKE_M_7000_basic_.png', 't-shirt_beige_NIKE_M_7000_print_.png', 't-shirt_beige_NIKE_M_7000_stripe_.png', 't-shirt_black_NIKE_M_7000_stripe_.png', 't-shirt_gray_NIKE_M_7000_dot_.png','t-shirt_gray_NIKE_M_7000_print_.png','t-shirt_gray_NIKE_M_7000_stripe_.png','t-shirt_white_NIKE_M_7000_print_.png','y-shirt_beige_NIKE_M_7000_dot_.png', 'y-shirt_black_GUZZI_M_7500_basic_.png', 'y-shirt_blue_NIKE_M_7000_basic_.png', 'y-shirt_blue_NIKE_M_7000_dot_.png', 'y-shirt_blue_NIKE_M_7000_stripe_.png','y-shirt_white_NIKE_M_7000_dot_.png','y-shirt_white_NIKE_M_7000_stripe_.png']
     check = 0
-    re = 0
     best_clothes = 'default'
     my_q = queue.Queue()
+    count = 1
     while True:
         ret, frame = cap.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         faceList = face_pattern.detectMultiScale(gray, 1.5)
+        framegray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+        
+        if(count == 1):
+            for (x, y, w, h) in faceList:
+                cv2.imwrite('face_original.png', framegray[y-70:y+h+20, x-20:x+w+20])
+                 
+                print('take a picture')
+                count = 2
+        
 
-        if check == 0:
+        if check == 0 and count == 2:
             t = threading.Thread(target = Suggest_Color.Suggest_color, args=(frame, faceList, my_q))
             t.start()   #추천시스템 쓰레드
             check = 1
@@ -34,8 +43,8 @@ def Third_Menu(cap):
         cv2.putText(img,'Loading```````',
                 bottomLeftCornerOfText_Title,
                 cv2.FONT_HERSHEY_SIMPLEX,
-                0.5,
-                (255,255,255),
+                1.5,
+                (255,0,0),
                 2)
 
         cv2.imshow('video', img)

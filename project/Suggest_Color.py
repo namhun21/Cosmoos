@@ -5,15 +5,8 @@ import tensorflow as tf
 
 
 def Suggest_color(frame, faceList, my_q):
-    framegray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
-
-    for (x, y, w, h) in faceList:
-        cv2.imwrite('face_original.png', framegray[y-70:y+h+20, x-20:x+w+20])
-             
-        print('finish1')
-    total = 0
-    for i in range(1, 10000000):
-        total += i
+    
+    
         
     image_path = 'face_original.png'
 
