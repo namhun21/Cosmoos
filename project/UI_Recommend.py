@@ -27,7 +27,7 @@ def Third_Menu(cap):
         
         if(count == 1):
             for (x, y, w, h) in faceList:
-                cv2.imwrite('face_original.png', framegray[y-70:y+h+20, x-20:x+w+20])
+                cv2.imwrite('face_original.png', framegray[y:y+h+20, x-5:x+w+5])
                  
                 print('take a picture')
                 count = 2
