@@ -88,7 +88,7 @@ def First_Menu(cap):
             break
         elif (count4 > 20):
             print("success4")
-            UI_Recommend.Third_Menu('t-shirt' ,cap)
+            UI_Recommend.Third_Menu(cap)
             break
 
         if(frame_number < 4):
