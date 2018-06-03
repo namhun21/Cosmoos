@@ -10,6 +10,3 @@ cap = cv2.VideoCapture(0)
 
 
 UI_Start.First_Menu(cap)    #첫번째 화면을 실행한다.
-
-
-

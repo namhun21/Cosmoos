@@ -71,7 +71,7 @@ def SelectClothes(title, cap):
                 LeftOn = 0
                 RightOn = 1
                 move = 1
-        if(startcompare == 1 and frame_number == 2 and go == 1):
+        if(startcompare == 1 and frame_number == 2):
             leftButtonFrame = imgray[200:240,60:100]
             whiteNumLeft = Function.Select_Click_Operation(leftButtonFrame,pictureleftButtonFrame,40,40)
             cv2.imshow('2', leftButtonFrame)
@@ -84,14 +84,14 @@ def SelectClothes(title, cap):
             overlayButtonFrame = imgray[300:330,510:540]
             whiteNumOverlay = Function.Select_Click_Operation(overlayButtonFrame,pictureoverlayButtonFrame,30,30)
             cv2.imshow('3', overlayButtonFrame)
-            if(whiteNumOverlay > 900 *0.4):
+            if(whiteNumOverlay > 900 *0.3):
                 overlaycount = overlaycount + 1
 
         if (startcompare == 1 and frame_number == 4):
             backButtonFrame = imgray[290:340,80:130]
             whiteNumBack = Function.Select_Click_Operation(backButtonFrame, picturebackButtonFrame, 50, 50)
             cv2.imshow('4', backButtonFrame)
-            if (whiteNumBack > 2500 * 0.5):
+            if (whiteNumBack > 2500 * 0.3):
                 backcount = backcount + 1
 
         if(move == 1):#애니메이션 가동 시작
@@ -210,17 +210,17 @@ def SelectClothes(title, cap):
         #Select_endTime = int(round(time.time() * 1000))
         #sum_time,n = time_measurement.measure(Select_startTime, Select_endTime, sum_time, n)
 
-        if(waiting_time > 500):
-            waiting_time = 0
-            overlaycount = 0
-            backcount = 0
-            go = 1
+        # if(waiting_time > 500):
+        #     waiting_time = 0
+        #     overlaycount = 0
+        #     backcount = 0
+        #     go = 1
 
 
     cv2.destroyAllWindows()
 
-cap = cv2.VideoCapture(0)
-SelectClothes('t-shirt', cap)
+# cap = cv2.VideoCapture(0)
+# SelectClothes('t-shirt', cap)
 
 
 

@@ -160,7 +160,7 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
         roi4 = Function.make_Roi(gray, 250, 300, 500, 560)  #List
         roi = [roi1, roi2, roi3, roi4]
 
-        if (check == 0 and waiting_time > 100):  # waiting_time이 100이상이되면 버튼 클릭 인식을 시작한다.
+        if (check == 0 and waiting_time > 300):  # waiting_time이 100이상이되면 버튼 클릭 인식을 시작한다.
             # 사진을 찍어서 지금 화면과 달라지는 영역을 인식한다.
 
             origray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -184,6 +184,12 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
                 count3 = Function.overlay_Click_Operation(roi, origraysc, count3, 2)
             if(frame_number==4):
                 count4 = Function.overlay_Click_Operation(roi, origraysc, count4, 3)
+
+
+        # cv2.imshow('1',roi[0])
+        # cv2.imshow('2', roi[1])
+        # cv2.imshow('3', roi[2])
+        # cv2.imshow('4', roi[3])
 
         print(count1,count2,count3,count4)
         cv2.imshow('video', img)
@@ -219,6 +225,6 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
     cap.release()
 
 
-#cap = cv2.VideoCapture(0)
-#Clothes_name= "y-shirt_blue_NIKE_M_7000_basic_.png"
-#Full_Overlay(cap,Clothes_name,"t-shirt")
+# cap = cv2.VideoCapture(0)
+# Clothes_name= "y-shirt_blue_NIKE_M_7000_basic_.png"
+# Full_Overlay(cap,Clothes_name,"t-shirt")
