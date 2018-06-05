@@ -22,7 +22,7 @@ def SelectClothes(title, cap):
     startcompare = 0#영상의 프레임과 이미지 비교 시작
     animationUnit = 0#애니메이션 움직임의 가중치(좌표에 더해지는 값)
     waiting_time = 0#100번의 루프를 돌고나서 이미지 찍기 위한 변수
-    
+    go = 0
     
     
 
@@ -66,13 +66,15 @@ def SelectClothes(title, cap):
         if(startcompare == 1 and frame_number == 1):#비교하기 위한 이미지 추출
             rightButtonFrame = imgray[200:240,510:550]
             whiteNumRight = Function.Select_Click_Operation(rightButtonFrame,picturerightButtonFrame,40,40)
-            if(whiteNumRight > 1600 *0.3):
+            cv2.imshow('1', rightButtonFrame)
+            if(whiteNumRight > 1600 *0.3 and go == 1):
                 LeftOn = 0
                 RightOn = 1
                 move = 1
         if(startcompare == 1 and frame_number == 2):
             leftButtonFrame = imgray[200:240,60:100]
             whiteNumLeft = Function.Select_Click_Operation(leftButtonFrame,pictureleftButtonFrame,40,40)
+            cv2.imshow('2', leftButtonFrame)
             if(whiteNumLeft > 1600*0.3):
                 LeftOn = 1
                 RightOn = 0
@@ -81,12 +83,14 @@ def SelectClothes(title, cap):
         if(startcompare == 1 and frame_number == 3):
             overlayButtonFrame = imgray[300:330,510:540]
             whiteNumOverlay = Function.Select_Click_Operation(overlayButtonFrame,pictureoverlayButtonFrame,30,30)
-            if(whiteNumOverlay > 900 *0.4):
+            cv2.imshow('3', overlayButtonFrame)
+            if(whiteNumOverlay > 900 *0.3):
                 overlaycount = overlaycount + 1
 
         if (startcompare == 1 and frame_number == 4):
             backButtonFrame = imgray[290:340,80:130]
             whiteNumBack = Function.Select_Click_Operation(backButtonFrame, picturebackButtonFrame, 50, 50)
+            cv2.imshow('4', backButtonFrame)
             if (whiteNumBack > 2500 * 0.3):
                 backcount = backcount + 1
 
@@ -181,15 +185,16 @@ def SelectClothes(title, cap):
 
         waiting_time = waiting_time + 4#비교할 프레임을 찍기위한 시간 체크변수 5증가(100때 이미지 비교 시작)
 
-        if(overlaycount == 10):#오버레이 창으로 전환
+        if(overlaycount == 10 and waiting_time > 500):#오버레이 창으로 전환
             overlaycount = 0
             overlay.Full_Overlay(cap,clothes[Clothes_name],title)
             break
-        if(backcount == 10):
+        if(backcount == 10 and waiting_time > 500):
             backcount = 0
             UI_Start.First_Menu(cap)
 
         cv2.imshow('video',img1)
+
 
         whiteNumRight = 0#흰색 픽셀의 개수 초기화
         whiteNumLeft = 0#흰색 픽셀의 개수 초기화
@@ -204,6 +209,12 @@ def SelectClothes(title, cap):
 
         #Select_endTime = int(round(time.time() * 1000))
         #sum_time,n = time_measurement.measure(Select_startTime, Select_endTime, sum_time, n)
+
+        # if(waiting_time > 500):
+        #     waiting_time = 0
+        #     overlaycount = 0
+        #     backcount = 0
+        #     go = 1
 
 
     cv2.destroyAllWindows()
