@@ -86,5 +86,5 @@ def Third_Menu(cap):
                                  
     
 
-cap = cv2.VideoCapture(0)
-Third_Menu(cap)
+#cap = cv2.VideoCapture(0)
+#Third_Menu(cap)

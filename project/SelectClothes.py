@@ -195,7 +195,6 @@ def SelectClothes(title, cap):
 
         cv2.imshow('video',img1)
 
-
         whiteNumRight = 0#흰색 픽셀의 개수 초기화
         whiteNumLeft = 0#흰색 픽셀의 개수 초기화
         whiteNumOverlay = 0#흰색 픽셀의 개수 초기화
