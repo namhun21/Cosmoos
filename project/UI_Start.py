@@ -5,15 +5,11 @@ import time
 import os
 import Function
 import SelectClothes
+import Make_Clothes_Image
 import UI_Recommend
 
 
 def First_Menu(cap):
-    
-    bottomLeftCornerOfText1 = (340, 70)
-    bottomLeftCornerOfText2 = (190, 70)
-    bottomLeftCornerOfText3 = (40, 70)
-    bottomLeftCornerOfText4 = (480,70)
 
     count1 = 0
     count2 = 0
@@ -36,17 +32,17 @@ def First_Menu(cap):
 
 
         # 클릭 버튼 만들기
-        Function.draw_Click(img, bottomLeftCornerOfText1, (330, 50), (430, 80), 'T-shirt')
-        Function.draw_Click(img, bottomLeftCornerOfText2, (180, 50), (280, 80), 'Y-shirt')
-        Function.draw_Click(img, bottomLeftCornerOfText3, (30, 50), (130, 80), 'Hood')
-        Function.draw_Click(img, bottomLeftCornerOfText4, (480, 50), (580,80), 'Recommend')
+        Make_Clothes_Image.make_Clothes_Image('hood.png', (70, 70), 30, 100, 30, 100, img)
+        Make_Clothes_Image.make_Clothes_Image('yshirt.png', (70, 70), 30, 100, 190, 260, img)
+        Make_Clothes_Image.make_Clothes_Image('tshirt.png', (70, 70), 30, 100, 350, 420, img)
+        Make_Clothes_Image.make_Clothes_Image('Recommend.png', (70, 70), 30, 100, 510, 580, img)
 
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-        roi1 = Function.make_Roi(gray, 50, 80, 330, 430)
-        roi2 = Function.make_Roi(gray, 50, 80, 180, 280)
-        roi3 = Function.make_Roi(gray, 50, 80, 30, 130)
-        roi4 = Function.make_Roi(gray, 50, 80, 480, 580)
+        roi1 = Function.make_Roi(gray, 30, 80, 30, 80)
+        roi2 = Function.make_Roi(gray, 30, 80, 180, 230)
+        roi3 = Function.make_Roi(gray, 30, 80, 330, 380)
+        roi4 = Function.make_Roi(gray, 30, 80, 480, 530)
         roi = [roi1, roi2, roi3, roi4]
 
         if (check == 0 and waiting_time > 100):  # waiting_time이 100이상이되면 버튼 클릭 인식을 시작한다.
@@ -54,10 +50,10 @@ def First_Menu(cap):
             
             origray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-            origraysc1 = Function.make_Roi(origray, 50, 80, 330,430)
-            origraysc2 = Function.make_Roi(origray, 50, 80, 180,280)
-            origraysc3 = Function.make_Roi(origray, 50, 80, 30, 130)
-            origraysc4 = Function.make_Roi(origray, 50,80,480,580)
+            origraysc1 = Function.make_Roi(origray, 30, 80, 30,80)
+            origraysc2 = Function.make_Roi(origray, 30, 80, 180,230)
+            origraysc3 = Function.make_Roi(origray, 30, 80, 330, 380)
+            origraysc4 = Function.make_Roi(origray, 30,80,480,530)
 
             origraysc = [origraysc1, origraysc2, origraysc3, origraysc4]
 
@@ -71,7 +67,7 @@ def First_Menu(cap):
                 count2 = Function.Menu_Click_Operation(roi, origraysc, count2, 1)
             if(frame_number == 3):
                 count3 = Function.Menu_Click_Operation(roi, origraysc, count3, 2)
-            if (frame_number == 3):
+            if(frame_number == 4):
                 count4 = Function.Menu_Click_Operation(roi, origraysc, count4, 3)
 
         if (count1 > 20):  # count1이 20이 넘으면 UI_Sub에 있는 Second_Menu를 실행시킨다.
