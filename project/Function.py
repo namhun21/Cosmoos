@@ -38,8 +38,8 @@ def Menu_Click_Operation(roi, origraysc, count, Box_number):
 
     num = 0
     
-    for x in range(70):
-        for y in range(70):
+    for x in range(100):
+        for y in range(30):
             oricolor = roi[Box_number][y, x]
             roicolor = origraysc[Box_number][y, x]
 
@@ -51,7 +51,7 @@ def Menu_Click_Operation(roi, origraysc, count, Box_number):
                 num = num + 1
                 
 
-    if (num > 4900 * 0.5):      # 1번 영역에서 달라졌다고 인식한 수가 전체의 50%가 넘으면 그 영역 count를 1 더한다.
+    if (num > 3000 * 0.5):      # 1번 영역에서 달라졌다고 인식한 수가 전체의 50%가 넘으면 그 영역 count를 1 더한다.
         count = count + 1
 
     return count
@@ -92,34 +92,38 @@ def Select_Click_Operation(ButtonFrame,pictureButtonFrame,width,height):
 
     return whiteNum
 
-def sizeUp(Clothes_name,img_size):  #옷의 이미지 크기 늘이기 위한 함수
+def sizeUp(Clothes_name,img_size,Flag):  #옷의 이미지 크기 늘이기 위한 함수
 
     if Clothes_name.split("_")[3] == 'L':
         print('사이즈업 불가')
-        return Clothes_name,img_size
+        return Clothes_name,img_size, Flag
 
     elif Clothes_name.split("_")[3] =='M':
         Clothes_name = Clothes_name.replace('M','L')
         img_size = img_size + 20
-        return Clothes_name, img_size
+        Flag = 1
+        return Clothes_name, img_size, Flag 
     elif Clothes_name.split("_")[3] =='S':
         Clothes_name = Clothes_name.replace('S','M')
         img_size = img_size + 20
-        return Clothes_name,img_size
+        Flag = 1
+        return Clothes_name,img_size, Flag
 
-def sizeDown(Clothes_name,img_size):  #옷의 이미지 줄이기 위한 함수
+def sizeDown(Clothes_name,img_size,Flag):  #옷의 이미지 줄이기 위한 함수
 
     if Clothes_name.split("_")[3] == 'S':
         print('사이즈다운 불가')
-        return Clothes_name,img_size
+        return Clothes_name,img_size, Flag
     elif Clothes_name.split("_")[3] =='M':
         Clothes_name = Clothes_name.replace('M','S')
         img_size = img_size - 20
-        return Clothes_name, img_size
+        Flag = 2
+        return Clothes_name, img_size, Flag
     elif Clothes_name.split("_")[3] =='L':
         Clothes_name = Clothes_name.replace('L','M')
         img_size = img_size - 20
-        return Clothes_name, img_size
+        Flag = 2
+        return Clothes_name, img_size, Flag
 
 def Decision_mask(Clothes_name,gray_mask):
 

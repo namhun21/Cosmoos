@@ -14,10 +14,16 @@ prev_y = 0
 prev_w = 0
 prev_h = 0
 
-def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size): # 상체 ROI의 범위를 정하고 이미지를 해당 영역에 덮어씌운다
+def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,Flag): # 상체 ROI의 범위를 정하고 이미지를 해당 영역에 덮어씌운다
 
     if x>20:
         x = x-10
+
+    if Flag == 1:
+        x = x-10
+    elif Flag == 2:
+        x = x+10
+        
     y_offset = 100    # 이미지 사이즈 조정
     
     x, col, y_offset, img_size = Function.Decision_sizeOffset(Clothes_name, x, y_offset, img_size)
@@ -45,7 +51,7 @@ def masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size): # 상체 ROI�
         print('Error')
 
 
-def Range_Operation(body,img,body_mask,Clothes_name,img_size):    # 특정조건에서만 실행되도록 조건을 부여하였다
+def Range_Operation(body,img,body_mask,Clothes_name,img_size,Flag):    # 특정조건에서만 실행되도록 조건을 부여하였다
     count = 0
     global prev_x
     global prev_y
@@ -74,7 +80,7 @@ def Range_Operation(body,img,body_mask,Clothes_name,img_size):    # 특정조건
         prev_h = h
 
         if  (x>20 and x<520):     # 특정 영역을 벗어나지 않으면 오버레이
-            masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size)
+            masked_Operation(x,y,w,h,img,body_mask,Clothes_name,img_size,Flag)
 
         else:
             continue
@@ -82,7 +88,7 @@ def Range_Operation(body,img,body_mask,Clothes_name,img_size):    # 특정조건
 
     if (count == 0):   # 이동 전, 후 차이가 적으면 이전 오버레이위치 출력
         if (prev_x !=0 and prev_y !=0 and prev_w != 0 and prev_h !=0):
-            masked_Operation(prev_x,prev_y,prev_w,prev_h,img,body_mask,Clothes_name,img_size)
+            masked_Operation(prev_x,prev_y,prev_w,prev_h,img,body_mask,Clothes_name,img_size,Flag)
 
 
 def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수들을 모아서 처리
@@ -101,6 +107,7 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
     count3 = 0
     count4 = 0
 
+    Flag = 0
     frame_number = 1
 
     waiting_time = 0
@@ -152,7 +159,7 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
 
 
 
-        Range_Operation(body,img,body_mask,Clothes_name,img_size)
+        Range_Operation(body,img,body_mask,Clothes_name,img_size,Flag)
 
         roi1 = Function.make_Roi(gray, 100, 150, 60, 120)   #Up
         roi2 = Function.make_Roi(gray, 250, 300, 60, 120)   #Down
@@ -196,11 +203,11 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
 
         if (count1 > 20):  
             print("success1")
-            Clothes_name, img_size = Function.sizeUp(Clothes_name,img_size)
+            Clothes_name, img_size, Flag= Function.sizeUp(Clothes_name,img_size, Flag)
             count1, count2, count3, count4 = Function.resetCount(count1,count2, count3, count4)
         elif (count2 > 20):
             print("success2")
-            Clothes_name, img_size = Function.sizeDown(Clothes_name,img_size)
+            Clothes_name, img_size, Flag = Function.sizeDown(Clothes_name,img_size, Flag)
             count1, count2, count3, count4 = Function.resetCount(count1,count2, count3, count4)
         elif (count3 > 20):
             print("success3")
@@ -225,6 +232,6 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
     cap.release()
 
 
-# cap = cv2.VideoCapture(0)
-# Clothes_name= "y-shirt_blue_NIKE_M_7000_basic_.png"
-# Full_Overlay(cap,Clothes_name,"t-shirt")
+cap = cv2.VideoCapture(0)
+Clothes_name= "y-shirt_blue_NIKE_M_7000_basic_.png"
+Full_Overlay(cap,Clothes_name,"t-shirt")
