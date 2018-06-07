@@ -204,7 +204,7 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
             count1, count2, count3, count4 = Function.resetCount(count1,count2, count3, count4)
         elif (count3 > 20):
             print("success3")
-            UI_Recommend.Third_Menu(title,cap)
+            UI_Recommend.Third_Menu(cap)
         elif (count4 > 20):
             print("success4")
             SelectClothes.SelectClothes(title,cap)
