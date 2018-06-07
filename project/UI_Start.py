@@ -92,6 +92,8 @@ def First_Menu(cap):
         else:
             frame_number = 1
 
+        cv2.namedWindow('video', cv2.WND_PROP_FULLSCREEN)
+        cv2.setWindowProperty("video", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN);
         cv2.imshow('video', img)
 
         waiting_time = waiting_time + 5

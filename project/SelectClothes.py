@@ -66,7 +66,7 @@ def SelectClothes(title, cap):
         if(startcompare == 1 and frame_number == 1):#비교하기 위한 이미지 추출
             rightButtonFrame = imgray[200:240,510:550]
             whiteNumRight = Function.Select_Click_Operation(rightButtonFrame,picturerightButtonFrame,40,40)
-            cv2.imshow('1', rightButtonFrame)
+            # cv2.imshow('1', rightButtonFrame)
             if(whiteNumRight > 1600 *0.3 and go == 1):
                 LeftOn = 0
                 RightOn = 1
@@ -74,7 +74,7 @@ def SelectClothes(title, cap):
         if(startcompare == 1 and frame_number == 2):
             leftButtonFrame = imgray[200:240,60:100]
             whiteNumLeft = Function.Select_Click_Operation(leftButtonFrame,pictureleftButtonFrame,40,40)
-            cv2.imshow('2', leftButtonFrame)
+            # cv2.imshow('2', leftButtonFrame)
             if(whiteNumLeft > 1600*0.3):
                 LeftOn = 1
                 RightOn = 0
@@ -83,14 +83,14 @@ def SelectClothes(title, cap):
         if(startcompare == 1 and frame_number == 3):
             overlayButtonFrame = imgray[300:330,510:540]
             whiteNumOverlay = Function.Select_Click_Operation(overlayButtonFrame,pictureoverlayButtonFrame,30,30)
-            cv2.imshow('3', overlayButtonFrame)
+            # cv2.imshow('3', overlayButtonFrame)
             if(whiteNumOverlay > 900 *0.3):
                 overlaycount = overlaycount + 1
 
         if (startcompare == 1 and frame_number == 4):
             backButtonFrame = imgray[290:340,80:130]
             whiteNumBack = Function.Select_Click_Operation(backButtonFrame, picturebackButtonFrame, 50, 50)
-            cv2.imshow('4', backButtonFrame)
+            # cv2.imshow('4', backButtonFrame)
             if (whiteNumBack > 2500 * 0.3):
                 backcount = backcount + 1
 
