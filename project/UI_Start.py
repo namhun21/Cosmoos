@@ -39,10 +39,10 @@ def First_Menu(cap):
 
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-        roi1 = Function.make_Roi(gray, 30, 80, 30, 80)
-        roi2 = Function.make_Roi(gray, 30, 80, 180, 230)
-        roi3 = Function.make_Roi(gray, 30, 80, 330, 380)
-        roi4 = Function.make_Roi(gray, 30, 80, 480, 530)
+        roi1 = Function.make_Roi(gray, 30, 100, 30, 100)
+        roi2 = Function.make_Roi(gray, 30, 100, 190, 260)
+        roi3 = Function.make_Roi(gray, 30, 100, 350, 420)
+        roi4 = Function.make_Roi(gray, 30, 100, 510, 580)
         roi = [roi1, roi2, roi3, roi4]
 
         if (check == 0 and waiting_time > 100):  # waiting_time이 100이상이되면 버튼 클릭 인식을 시작한다.
@@ -50,10 +50,10 @@ def First_Menu(cap):
             
             origray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-            origraysc1 = Function.make_Roi(origray, 30, 80, 30,80)
-            origraysc2 = Function.make_Roi(origray, 30, 80, 180,230)
-            origraysc3 = Function.make_Roi(origray, 30, 80, 330, 380)
-            origraysc4 = Function.make_Roi(origray, 30,80,480,530)
+            origraysc1 = Function.make_Roi(origray, 30, 100, 30,100)
+            origraysc2 = Function.make_Roi(origray, 30, 100, 190,260)
+            origraysc3 = Function.make_Roi(origray, 30, 100, 350, 420)
+            origraysc4 = Function.make_Roi(origray, 30,100,510,580)
 
             origraysc = [origraysc1, origraysc2, origraysc3, origraysc4]
 
@@ -72,7 +72,7 @@ def First_Menu(cap):
 
         if (count1 > 20):  # count1이 20이 넘으면 UI_Sub에 있는 Second_Menu를 실행시킨다.
             print("success1")
-            SelectClothes.SelectClothes('t-shirt', cap)
+            SelectClothes.SelectClothes('hood-t', cap)
             break
         elif (count2 > 20):
             print("success2")
@@ -80,7 +80,7 @@ def First_Menu(cap):
             break
         elif (count3 > 20):
             print("success3")
-            SelectClothes.SelectClothes('hood-t', cap)
+            SelectClothes.SelectClothes('t-shirt', cap)
             break
         elif (count4 > 20):
             print("success4")
@@ -91,7 +91,7 @@ def First_Menu(cap):
             frame_number = frame_number + 1
         else:
             frame_number = 1
-            
+
         cv2.imshow('video', img)
 
         waiting_time = waiting_time + 5
