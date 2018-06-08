@@ -201,18 +201,18 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
         print(count1,count2,count3,count4)
         cv2.imshow('video', img)
 
-        if (count1 > 20):  
+        if (count1 > 10):  
             print("success1")
             Clothes_name, img_size, Flag= Function.sizeUp(Clothes_name,img_size, Flag)
             count1, count2, count3, count4 = Function.resetCount(count1,count2, count3, count4)
-        elif (count2 > 20):
+        elif (count2 > 10):
             print("success2")
             Clothes_name, img_size, Flag = Function.sizeDown(Clothes_name,img_size, Flag)
             count1, count2, count3, count4 = Function.resetCount(count1,count2, count3, count4)
-        elif (count3 > 20):
+        elif (count3 > 10):
             print("success3")
             UI_Recommend.Third_Menu(cap)
-        elif (count4 > 20):
+        elif (count4 > 10):
             print("success4")
             SelectClothes.SelectClothes(title,cap)
 
