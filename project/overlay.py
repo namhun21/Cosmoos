@@ -198,7 +198,7 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
         # cv2.imshow('3', roi[2])
         # cv2.imshow('4', roi[3])
 
-        print(count1,count2,count3,count4)
+        #print(count1,count2,count3,count4)
         cv2.imshow('video', img)
 
         if (count1 > 10):  
