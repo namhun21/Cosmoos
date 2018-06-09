@@ -115,6 +115,7 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
     sum_time = 0
     n = 0
     img_size = 260
+    col = img_size
     body_mask = cv2.imread('./image/'+ Clothes_name)  #애니메이션함수로 부터 이미지의 이름을 받아 이미지 읽어오기
     
     # h_mask, w_mask = body_mask.shape[:2] #이미지 영역
