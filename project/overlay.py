@@ -167,7 +167,7 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
         roi4 = Function.make_Roi(gray, 250, 300, 500, 560)  #List
         roi = [roi1, roi2, roi3, roi4]
 
-        if (check == 0 and waiting_time > 300):  # waiting_time이 100이상이되면 버튼 클릭 인식을 시작한다.
+        if (check == 0 and waiting_time > 100):  # waiting_time이 100이상이되면 버튼 클릭 인식을 시작한다.
             # 사진을 찍어서 지금 화면과 달라지는 영역을 인식한다.
 
             origray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
