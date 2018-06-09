@@ -62,8 +62,8 @@ def overlay_Click_Operation(roi, origraysc, count, Box_number):
     
     for x in range(60):
         for y in range(50):
-            oricolor = roi[Box_number][y, x]
-            roicolor = origraysc[Box_number][y, x]
+            oricolor = origraysc[Box_number][y, x]
+            roicolor = roi[Box_number][y, x]
 
             if (oricolor - roicolor < 60):    #달라진 정도가 30 미만이면 인식하지않는다
                 roi[Box_number][y, x] = 0
@@ -73,7 +73,7 @@ def overlay_Click_Operation(roi, origraysc, count, Box_number):
                 num = num + 1
                
 
-    if (num > 3000 * 0.75):      # 1번 영역에서 달라졌다고 인식한 수가 전체의 40%가 넘으면 그 영역 count를 1 더한다.
+    if (num > 3000 * 0.3):      # 1번 영역에서 달라졌다고 인식한 수가 전체의 40%가 넘으면 그 영역 count를 1 더한다.
         count = count + 1
 
     return count
@@ -94,7 +94,7 @@ def Select_Click_Operation(ButtonFrame,pictureButtonFrame,width,height):
     dilation = cv2.dilate(ButtonFrame,kernel,iterations=1)
     for x in range(width):
         for y in range(height):
-            if(ButtonFrame[y,x] ==1):
+            if(ButtonFrame[y,x] ==255):
                 whiteNum = whiteNum + 1
 
     return whiteNum
