@@ -80,6 +80,7 @@ def overlay_Click_Operation(roi, origraysc, count, Box_number):
 
 def Select_Click_Operation(ButtonFrame,pictureButtonFrame,width,height):
     whiteNum = 0
+    kernel = np.ones((3,3),np.uint8)
     for x in range(width):
         for y in range(height):
            picturecolor = ButtonFrame[y,x]#현재 프레임의 오른쪽 버튼 부분
@@ -88,7 +89,13 @@ def Select_Click_Operation(ButtonFrame,pictureButtonFrame,width,height):
                 ButtonFrame[y,x] = 0#흑색으로 변환
            else:
                 ButtonFrame[y,x] = 255#백색으로 변환
-                whiteNum = whiteNum+1#오른쪽 부분의 흰색 픽셀 개수 증가
+                # whiteNum = whiteNum+1#오른쪽 부분의 흰색 픽셀 개수 증가
+    erosion = cv2.erode(ButtonFrame,kernel,iterations=1)
+    dilation = cv2.dilate(ButtonFrame,kernel,iterations=1)
+    for x in range(width):
+        for y in range(height):
+            if(ButtonFrame[y,x] ==1):
+                whiteNum = whiteNum + 1
 
     return whiteNum
 
