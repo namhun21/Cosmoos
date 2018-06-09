@@ -4,7 +4,6 @@ import numpy as np
 import time
 import os
 import UI_Start 
-import Click_Function
 
 os.system("sudo modprobe bcm2835-v4l2")
 
