@@ -84,6 +84,9 @@ def Select_Click_Operation(name, ButtonFrame,pictureButtonFrame,width,height):
     diff_image = cv2.absdiff(ButtonFrame, pictureButtonFrame)
     thresh, im_bw = cv2.threshold(diff_image, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
 
+    
+    
+
     # kernel = np.ones((3,3),np.uint8)
     # for x in range(width):
     #     for y in range(height):
