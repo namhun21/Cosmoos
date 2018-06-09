@@ -34,59 +34,59 @@ def make_Roi(gray, y1, y2, x1, x2):     #일정 영역을 gray한다
 
 #클릭하는 동작
 #지금화면과 이전화면을 비교하여 달라진 영역을 계산하여 일정 수준 이상 달라져 있으면 클릭이 되게한다
-def Menu_Click_Operation(roi, origraysc, count, Box_number):
+def Menu_Click_Operation(name,roi, origraysc, count, Box_number):
 
     num = 0
-    
-    for x in range(70):
-        for y in range(70):
-            oricolor = roi[Box_number][y, x]
-            roicolor = origraysc[Box_number][y, x]
+    diff_image = cv2.absdiff(roi[Box_number],origraysc[Box_number])
+    thresh, im_bw = cv2.threshold(diff_image,64,255,cv2.THRESH_BINARY)
+    # for x in range(70):
+    #     for y in range(70):
+    #         oricolor = roi[Box_number][y, x]
+    #         roicolor = origraysc[Box_number][y, x]
+    #
+    #         if (oricolor - roicolor < 30):    #달라진 정도가 30 미만이면 인식하지않는다
+    #             roi[Box_number][y, x] = 0
+    #
+    #         else:
+    #             roi[Box_number][y, x] = 255              #달라진 정도가 30 이상이면 인식한다
+    #             num = num + 1
 
-            if (oricolor - roicolor < 30):    #달라진 정도가 30 미만이면 인식하지않는다
-                roi[Box_number][y, x] = 0
-
-            else:
-                roi[Box_number][y, x] = 255              #달라진 정도가 30 이상이면 인식한다
-                num = num + 1
-                
-
+    cv2.imshow(name,im_bw)
+    num = cv2.countNonZero(im_bw)
     if (num > 4900 * 0.5):      # 1번 영역에서 달라졌다고 인식한 수가 전체의 50%가 넘으면 그 영역 count를 1 더한다.
         count = count + 1
 
     return count
 
-def overlay_Click_Operation(roi, origraysc, count, Box_number):
+def overlay_Click_Operation(name,roi, origraysc, count, Box_number):
 
     num = 0
-    
-    for x in range(60):
-        for y in range(50):
-            oricolor = roi[Box_number][y, x]
-            roicolor = origraysc[Box_number][y, x]
+    diff_image = cv2.absdiff(roi[Box_number],origraysc[Box_number])
+    thresh, im_bw = cv2.threshold(diff_image,64,255,cv2.THRESH_BINARY)
 
-            if (oricolor - roicolor < 60):    #달라진 정도가 30 미만이면 인식하지않는다
-                roi[Box_number][y, x] = 0
-
-            else:
-                roi[Box_number][y, x] = 255              #달라진 정도가 30 이상이면 인식한다
-                num = num + 1
-               
-
+    # for x in range(60):
+    #     for y in range(50):
+    #         oricolor = roi[Box_number][y, x]
+    #         roicolor = origraysc[Box_number][y, x]
+    #
+    #         if (oricolor - roicolor < 60):    #달라진 정도가 30 미만이면 인식하지않는다
+    #             roi[Box_number][y, x] = 0
+    #
+    #         else:
+    #             roi[Box_number][y, x] = 255              #달라진 정도가 30 이상이면 인식한다
+    #             num = num + 1
+    # cv2.imshow(name,im_bw)
+    num = cv2.countNonZero(im_bw)
     if (num > 3000 * 0.75):      # 1번 영역에서 달라졌다고 인식한 수가 전체의 40%가 넘으면 그 영역 count를 1 더한다.
         count = count + 1
 
     return count
 
-def Select_Click_Operation(name, ButtonFrame,pictureButtonFrame,width,height):
+def Select_Click_Operation(name, ButtonFrame,pictureButtonFrame):
     whiteNum = 0
 
     diff_image = cv2.absdiff(ButtonFrame, pictureButtonFrame)
-    thresh, im_bw = cv2.threshold(diff_image, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
-
-    
-    
-
+    thresh, im_bw = cv2.threshold(diff_image, 64, 255, cv2.THRESH_BINARY)
     # kernel = np.ones((3,3),np.uint8)
     # for x in range(width):
     #     for y in range(height):
@@ -106,8 +106,8 @@ def Select_Click_Operation(name, ButtonFrame,pictureButtonFrame,width,height):
     #             whiteNum = whiteNum + 1
     # if(cv2.countNonZero(im_bw) > width * height * 0.8):
     whiteNum = cv2.countNonZero(im_bw)
-    if name is not None:
-        cv2.imshow(name, im_bw)
+    # if name is not None:
+        # cv2.imshow(name, im_bw)
 
     return whiteNum
 

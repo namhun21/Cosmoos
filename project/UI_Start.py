@@ -62,13 +62,13 @@ def First_Menu(cap):
         if (check == 1):  # 클릭 함수를 실행시킨다
 
             if(frame_number == 1):
-                count1 = Function.Menu_Click_Operation(roi, origraysc, count1, 0)
+                count1 = Function.Menu_Click_Operation("hood-t", roi, origraysc, count1, 0)
             if(frame_number==2):
-                count2 = Function.Menu_Click_Operation(roi, origraysc, count2, 1)
+                count2 = Function.Menu_Click_Operation("y-shirt",roi, origraysc, count2, 1)
             if(frame_number == 3):
-                count3 = Function.Menu_Click_Operation(roi, origraysc, count3, 2)
+                count3 = Function.Menu_Click_Operation("t-shirt",roi, origraysc, count3, 2)
             if(frame_number == 4):
-                count4 = Function.Menu_Click_Operation(roi, origraysc, count4, 3)
+                count4 = Function.Menu_Click_Operation("recommend",roi, origraysc, count4, 3)
 
         if (count1 > 20):  # count1이 20이 넘으면 UI_Sub에 있는 Second_Menu를 실행시킨다.
             print("success1")
@@ -92,8 +92,8 @@ def First_Menu(cap):
         else:
             frame_number = 1
 
-        #cv2.namedWindow('video', cv2.WND_PROP_FULLSCREEN)
-        #cv2.setWindowProperty("video", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN);
+        # cv2.namedWindow('video', cv2.WND_PROP_FULLSCREEN)
+        # cv2.setWindowProperty("video", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN);
         cv2.imshow('video', img)
 
         waiting_time = waiting_time + 5

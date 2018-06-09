@@ -190,22 +190,22 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
         if (check == 1):  # 클릭 함수를 실행시킨다
             #cv2.imshow('ori1', origraysc1)
             #cv2.imshow('ori2', origraysc2)
-            if(frame_number == 1):
-                count1 = Function.overlay_Click_Operation(roi, origraysc, count1, 0)
+            if(frame_number==1):
+                count1 = Function.overlay_Click_Operation("sizeup",roi, origraysc, count1, 0)
             if(frame_number==2):
-                count2 = Function.overlay_Click_Operation(roi, origraysc, count2, 1)
+                count2 = Function.overlay_Click_Operation("sizedown",roi, origraysc, count2, 1)
             if(frame_number==3):
-                count3 = Function.overlay_Click_Operation(roi, origraysc, count3, 2)
+                count3 = Function.overlay_Click_Operation("recommend",roi, origraysc, count3, 2)
             if(frame_number==4):
-                count4 = Function.overlay_Click_Operation(roi, origraysc, count4, 3)
+                count4 = Function.overlay_Click_Operation("gotoselect",roi, origraysc, count4, 3)
 
 
-        cv2.imshow('1',roi[0])
-        cv2.imshow('2', roi[1])
+        # cv2.imshow('1',roi[0])
+        # cv2.imshow('2', roi[1])
         
         # cv2.imshow('3', roi[2])
         # cv2.imshow('4', roi[3])
-        print(count1,count2)
+        # print(count1,count2)
         #print(count1,count2,count3,count4)
         cv2.imshow('video', img)
 

@@ -65,7 +65,7 @@ def SelectClothes(title, cap):
 
         if(startcompare == 1 and frame_number == 1):#비교하기 위한 이미지 추출
             rightButtonFrame = imgray[200:240,510:550]
-            whiteNumRight = Function.Select_Click_Operation("1",rightButtonFrame,picturerightButtonFrame,40,40)
+            whiteNumRight = Function.Select_Click_Operation("right",rightButtonFrame,picturerightButtonFrame)
             # cv2.imshow('1', rightButtonFrame)
             if(whiteNumRight > 1600 *0.35):
                 LeftOn = 0
@@ -73,23 +73,22 @@ def SelectClothes(title, cap):
                 move = 1
         if(startcompare == 1 and frame_number == 2):
             leftButtonFrame = imgray[200:240,60:100]
-            whiteNumLeft = Function.Select_Click_Operation("2",leftButtonFrame,pictureleftButtonFrame,40,40)
+            whiteNumLeft = Function.Select_Click_Operation("left",leftButtonFrame,pictureleftButtonFrame)
             # cv2.imshow('2', leftButtonFrame)
             if(whiteNumLeft > 1600*0.35):
                 LeftOn = 1
                 RightOn = 0
                 move = 1
-
         if(startcompare == 1 and frame_number == 3):
             overlayButtonFrame = imgray[300:330,510:540]
-            whiteNumOverlay = Function.Select_Click_Operation("3",overlayButtonFrame,pictureoverlayButtonFrame,30,30)
+            whiteNumOverlay = Function.Select_Click_Operation("overlay",overlayButtonFrame,pictureoverlayButtonFrame)
             # cv2.imshow('3', overlayButtonFrame)
             if(whiteNumOverlay > 900 *0.5):
                 overlaycount = overlaycount + 1
-            print(overlaycount)
+            # print(overlaycount)
         if (startcompare == 1 and frame_number == 4):
             backButtonFrame = imgray[290:340,80:130]
-            whiteNumBack = Function.Select_Click_Operation("4",backButtonFrame, picturebackButtonFrame, 50, 50)
+            whiteNumBack = Function.Select_Click_Operation("back",backButtonFrame, picturebackButtonFrame)
             # cv2.imshow('4', backButtonFrame)
             if (whiteNumBack > 2500 * 0.6):
                 backcount = backcount + 1
@@ -218,8 +217,8 @@ def SelectClothes(title, cap):
 
     cv2.destroyAllWindows()
 
-#cap = cv2.VideoCapture(0)
-#SelectClothes('t-shirt', cap)
+# cap = cv2.VideoCapture(0)
+# SelectClothes('t-shirt', cap)
 
 
 
