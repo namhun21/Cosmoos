@@ -186,8 +186,10 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
 
             if(frame_number == 1):
                 count1 = Function.overlay_Click_Operation(roi, origraysc, count1, 0)
+                cv2.imshow('ang',roi1)
             if(frame_number==2):
                 count2 = Function.overlay_Click_Operation(roi, origraysc, count2, 1)
+                cv2.imshow('ang', roi2)
             if(frame_number==3):
                 count3 = Function.overlay_Click_Operation(roi, origraysc, count3, 2)
             if(frame_number==4):
@@ -198,7 +200,7 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
         # cv2.imshow('2', roi[1])
         # cv2.imshow('3', roi[2])
         # cv2.imshow('4', roi[3])
-
+        print(count1,count2)
         #print(count1,count2,count3,count4)
         cv2.imshow('video', img)
 

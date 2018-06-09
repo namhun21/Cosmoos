@@ -65,7 +65,7 @@ def overlay_Click_Operation(roi, origraysc, count, Box_number):
             oricolor = roi[Box_number][y, x]
             roicolor = origraysc[Box_number][y, x]
 
-            if (oricolor - roicolor < 30):    #달라진 정도가 30 미만이면 인식하지않는다
+            if (oricolor - roicolor < 60):    #달라진 정도가 30 미만이면 인식하지않는다
                 roi[Box_number][y, x] = 0
 
             else:
@@ -73,7 +73,7 @@ def overlay_Click_Operation(roi, origraysc, count, Box_number):
                 num = num + 1
                
 
-    if (num > 3000 * 0.7):      # 1번 영역에서 달라졌다고 인식한 수가 전체의 40%가 넘으면 그 영역 count를 1 더한다.
+    if (num > 3000 * 0.75):      # 1번 영역에서 달라졌다고 인식한 수가 전체의 40%가 넘으면 그 영역 count를 1 더한다.
         count = count + 1
 
     return count
@@ -84,7 +84,7 @@ def Select_Click_Operation(ButtonFrame,pictureButtonFrame,width,height):
         for y in range(height):
            picturecolor = ButtonFrame[y,x]#현재 프레임의 오른쪽 버튼 부분
            ButtonFrameColor = pictureButtonFrame[y,x]#찍어놓은 이미지의 오른쪽 버튼 부분
-           if(picturecolor- ButtonFrameColor < 30):#비교해서 색의 차가 30 미만일 때
+           if(picturecolor- ButtonFrameColor < 100):#비교해서 색의 차가 30 미만일 때
                 ButtonFrame[y,x] = 0#흑색으로 변환
            else:
                 ButtonFrame[y,x] = 255#백색으로 변환

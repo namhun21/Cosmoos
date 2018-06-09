@@ -83,14 +83,14 @@ def SelectClothes(title, cap):
         if(startcompare == 1 and frame_number == 3):
             overlayButtonFrame = imgray[300:330,510:540]
             whiteNumOverlay = Function.Select_Click_Operation(overlayButtonFrame,pictureoverlayButtonFrame,30,30)
-            # cv2.imshow('3', overlayButtonFrame)
-            if(whiteNumOverlay > 900 *0.4):
+            cv2.imshow('3', overlayButtonFrame)
+            if(whiteNumOverlay > 900 *0.5):
                 overlaycount = overlaycount + 1
-
+            print(overlaycount)
         if (startcompare == 1 and frame_number == 4):
             backButtonFrame = imgray[290:340,80:130]
             whiteNumBack = Function.Select_Click_Operation(backButtonFrame, picturebackButtonFrame, 50, 50)
-            # cv2.imshow('4', backButtonFrame)
+            cv2.imshow('4', backButtonFrame)
             if (whiteNumBack > 2500 * 0.6):
                 backcount = backcount + 1
 
