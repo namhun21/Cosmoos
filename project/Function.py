@@ -166,7 +166,7 @@ def Decision_mask(Clothes_name,gray_mask):
     elif (Clothes_type == 'stripe'and color =='beige'):
         ret, mask = cv2.threshold(gray_mask, 252, 255, cv2.THRESH_BINARY_INV)
     elif (Clothes_type == 'dot'and color =='black'):
-        ret, mask = cv2.threshold(gray_mask, 250, 255, cv2.THRESH_BINARY_INV)
+        ret, mask = cv2.threshold(gray_mask, 10, 255, cv2.THRESH_BINARY)
     elif (Clothes_type == 'dot'and color =='gray'):
         ret, mask = cv2.threshold(gray_mask, 245, 255, cv2.THRESH_BINARY_INV)
     elif (Clothes_type == 'dot'and color =='white'):
