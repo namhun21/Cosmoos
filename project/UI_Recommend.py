@@ -14,7 +14,7 @@ import Suggest_Pattern
 def Third_Menu(cap):
     bottomLeftCornerOfText_Title = (0,100)
     face_pattern = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-    clothes = ['hood-t_black_NIKE_M_7000_dot_.png', 'hood-t_black_NIKE_M_7000_print_.png', 'hood-t_blue_NIKE_M_7000_print_.png', 'hood-t_gray_NIKE_M_7000_basic_.png', 'hood-t_white_NIKE_M_7000_basic_.png','t-shirt_beige_NIKE_M_7000_basic_.png', 't-shirt_beige_NIKE_M_7000_print_.png', 't-shirt_beige_NIKE_M_7000_stripe_.png', 't-shirt_black_NIKE_M_7000_stripe_.png', 't-shirt_gray_NIKE_M_7000_dot_.png','t-shirt_gray_NIKE_M_7000_print_.png','t-shirt_gray_NIKE_M_7000_stripe_.png','t-shirt_white_NIKE_M_7000_print_.png','y-shirt_beige_NIKE_M_7000_dot_.png', 'y-shirt_black_GUZZI_M_7500_basic_.png', 'y-shirt_blue_NIKE_M_7000_basic_.png', 'y-shirt_blue_NIKE_M_7000_dot_.png', 'y-shirt_blue_NIKE_M_7000_stripe_.png','y-shirt_white_NIKE_M_7000_dot_.png','y-shirt_white_NIKE_M_7000_stripe_.png']
+    clothes = ['hood-t_black_NIKE_M_7000_dot_.png', 'hood-t_black_NIKE_M_7000_printing_.png', 'hood-t_blue_NIKE_M_7000_printing_.png', 'hood-t_gray_NIKE_M_7000_basic_.png', 'hood-t_white_NIKE_M_7000_basic_.png','t-shirt_beige_NIKE_M_7000_basic_.png', 't-shirt_beige_NIKE_M_7000_printing_.png', 't-shirt_beige_NIKE_M_7000_stripe_.png', 't-shirt_black_NIKE_M_7000_stripe_.png', 't-shirt_gray_NIKE_M_7000_dot_.png','t-shirt_gray_NIKE_M_7000_printing_.png','t-shirt_gray_NIKE_M_7000_stripe_.png','t-shirt_white_NIKE_M_7000_printing_.png','y-shirt_beige_NIKE_M_7000_dot_.png', 'y-shirt_black_GUZZI_M_7500_basic_.png', 'y-shirt_blue_NIKE_M_7000_basic_.png', 'y-shirt_blue_NIKE_M_7000_dot_.png', 'y-shirt_blue_NIKE_M_7000_stripe_.png','y-shirt_white_NIKE_M_7000_dot_.png','y-shirt_white_NIKE_M_7000_stripe_.png']
     check = 0
     best_clothes = 'default'
     my_q = queue.Queue()
@@ -68,13 +68,17 @@ def Third_Menu(cap):
             pattern = my_q.get()
             print(color)   #추천결과
             print(pattern)
-            
+
+            if pattern in "print":
+                pattern = "printing"
+            print(pattern)
             for i in range(20) :   #오버레이로 이동
                 if(clothes[i].split("_")[1] == color and clothes[i].split("_")[5] == pattern):                          #overlay.Fulloverlay
                     best_clothes = clothes[i]
             print(best_clothes)
             title = best_clothes.split("_")[0]
             print(title)
+            
             overlay.Full_Overlay(cap,best_clothes,title)
     cv2.destroyAllWindows()
     cap.release()
