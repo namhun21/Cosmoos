@@ -8,7 +8,7 @@ def Suggest_pattern(frame, faceList, my_q):
     
     
         
-    image_path = 'face_original.png'
+    image_path = 'face_original.jpeg'
 
     image_data = tf.gfile.FastGFile(image_path, 'rb').read()
 
@@ -41,4 +41,4 @@ def Suggest_pattern(frame, faceList, my_q):
 
     
     my_q.put(best_pattern)
-    print('finish_pattern')
+    print("finish_pattern")
