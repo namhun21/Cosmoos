@@ -220,14 +220,15 @@ def Decision_sizeOffset(Clothes_name,x,y_offset, img_size):
         col = img_size
 
     elif(Clothes_type == 'basic'and color == 'blue'):
-        col = img_size + 50
+        img_size = img_size - 40
+        col = img_size + 40
         y_offset = 100
 
     elif (Clothes_type == 'dot'and color =='black'):
         x = x + 30
         y_offset = 100
-        img_size = img_size - 60
-        col = img_size + 15
+        img_size = img_size - 30
+        col = img_size + 40
 
     elif (Clothes_type == 'dot'and color =='gray'):
         x = x + 15
@@ -262,13 +263,13 @@ def Decision_sizeOffset(Clothes_name,x,y_offset, img_size):
         x = x-21
         y_offset = 90
         img_size = img_size + 60
-        col = img_size + 20
+        col = img_size
 
     elif (Clothes_type == 'printing'and color == 'beige'):
-        x = x-25
-        y_offset = 90
-        img_size = img_size + 40
-        col = img_size + 60
+        x = x + 15
+        y_offset = 80
+        img_size = img_size - 40
+        col = img_size + 80
 
     elif (Clothes_type == 'printing'and color == 'white'):
         x = x - 10
