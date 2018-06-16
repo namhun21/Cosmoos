@@ -72,18 +72,34 @@ def First_Menu(cap):
 
         if (count1 > 20):  # count1이 20이 넘으면 UI_Sub에 있는 Second_Menu를 실행시킨다.
             print("success1")
+            cv2.destroyWindow("hood-t")
+            cv2.destroyWindow("y-shirt")
+            cv2.destroyWindow("t-shirt")
+            cv2.destroyWindow("recommend")
             SelectClothes.SelectClothes('hood-t', cap)
             break
         elif (count2 > 20):
             print("success2")
+            cv2.destroyWindow("hood-t")
+            cv2.destroyWindow("y-shirt")
+            cv2.destroyWindow("t-shirt")
+            cv2.destroyWindow("recommend")
             SelectClothes.SelectClothes('y-shirt', cap)
             break
         elif (count3 > 20):
             print("success3")
+            cv2.destroyWindow("hood-t")
+            cv2.destroyWindow("y-shirt")
+            cv2.destroyWindow("t-shirt")
+            cv2.destroyWindow("recommend")
             SelectClothes.SelectClothes('t-shirt', cap)
             break
         elif (count4 > 20):
             print("success4")
+            cv2.destroyWindow("hood-t")
+            cv2.destroyWindow("y-shirt")
+            cv2.destroyWindow("t-shirt")
+            cv2.destroyWindow("recommend")
             UI_Recommend.Third_Menu(cap)
             break
 

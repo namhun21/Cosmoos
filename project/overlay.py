@@ -211,17 +211,33 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
 
         if (count1 > 10):  
             print("success1")
+            cv2.destroyWindow("sizeup")
+            cv2.destroyWindow("sizedown")
+            cv2.destroyWindow("recommend")
+            cv2.destroyWindow("gotoselect")
             Clothes_name, img_size, Flag= Function.sizeUp(Clothes_name,img_size, Flag)
             count1, count2, count3, count4 = Function.resetCount(count1,count2, count3, count4)
         elif (count2 > 10):
             print("success2")
+            cv2.destroyWindow("sizeup")
+            cv2.destroyWindow("sizedown")
+            cv2.destroyWindow("recommend")
+            cv2.destroyWindow("gotoselect")
             Clothes_name, img_size, Flag = Function.sizeDown(Clothes_name,img_size, Flag)
             count1, count2, count3, count4 = Function.resetCount(count1,count2, count3, count4)
         elif (count3 > 10):
             print("success3")
+            cv2.destroyWindow("sizeup")
+            cv2.destroyWindow("sizedown")
+            cv2.destroyWindow("recommend")
+            cv2.destroyWindow("gotoselect")
             UI_Recommend.Third_Menu(cap)
         elif (count4 > 10):
             print("success4")
+            cv2.destroyWindow("sizeup")
+            cv2.destroyWindow("sizedown")
+            cv2.destroyWindow("recommend")
+            cv2.destroyWindow("gotoselect")
             SelectClothes.SelectClothes(title,cap)
 
         if(frame_number <4):

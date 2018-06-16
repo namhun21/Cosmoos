@@ -232,10 +232,18 @@ def SelectClothes(title, cap):
 
         if(overlaycount == 10 and waiting_time > 500):#오버레이 창으로 전환
             overlaycount = 0
+            cv2.destroyWindow("right")
+            cv2.destroyWindow("left")
+            cv2.destroyWindow("overlay")
+            cv2.destroyWindow("back")
             overlay.Full_Overlay(cap,clothes[Clothes_name],title)
             break
         if(backcount == 10 and waiting_time > 500):
             backcount = 0
+            cv2.destroyWindow("right")
+            cv2.destroyWindow("left")
+            cv2.destroyWindow("overlay")
+            cv2.destroyWindow("back")
             UI_Start.First_Menu(cap)
 
         cv2.imshow('video',img1)
