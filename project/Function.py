@@ -38,7 +38,7 @@ def Menu_Click_Operation(name,roi, origraysc, count, Box_number):
 
     num = 0
     diff_image = cv2.absdiff(roi[Box_number],origraysc[Box_number])
-    thresh, im_bw = cv2.threshold(diff_image,64,255,cv2.THRESH_BINARY)
+    thresh, im_bw = cv2.threshold(diff_image,32,255,cv2.THRESH_BINARY)
     # for x in range(70):
     #     for y in range(70):
     #         oricolor = roi[Box_number][y, x]
@@ -51,7 +51,7 @@ def Menu_Click_Operation(name,roi, origraysc, count, Box_number):
     #             roi[Box_number][y, x] = 255              #달라진 정도가 30 이상이면 인식한다
     #             num = num + 1
 
-    cv2.imshow(name,im_bw)
+    #cv2.imshow(name,im_bw)
     num = cv2.countNonZero(im_bw)
     if (num > 4900 * 0.5):      # 1번 영역에서 달라졌다고 인식한 수가 전체의 50%가 넘으면 그 영역 count를 1 더한다.
         count = count + 1
@@ -75,7 +75,7 @@ def overlay_Click_Operation(name,roi, origraysc, count, Box_number):
     #         else:
     #             roi[Box_number][y, x] = 255              #달라진 정도가 30 이상이면 인식한다
     #             num = num + 1
-    cv2.imshow(name,im_bw)
+    #cv2.imshow(name,im_bw)
     num = cv2.countNonZero(im_bw)
     if (num > 3000 * 0.4):      # 1번 영역에서 달라졌다고 인식한 수가 전체의 40%가 넘으면 그 영역 count를 1 더한다.
         count = count + 1
@@ -86,7 +86,7 @@ def Select_Click_Operation(name, ButtonFrame,pictureButtonFrame):
     whiteNum = 0
 
     diff_image = cv2.absdiff(ButtonFrame, pictureButtonFrame)
-    thresh, im_bw = cv2.threshold(diff_image, 64, 255, cv2.THRESH_BINARY)
+    thresh, im_bw = cv2.threshold(diff_image, 30, 255, cv2.THRESH_BINARY)
     # kernel = np.ones((3,3),np.uint8)
     # for x in range(width):
     #     for y in range(height):
@@ -220,8 +220,9 @@ def Decision_sizeOffset(Clothes_name,x,y_offset, img_size):
         col = img_size
 
     elif(Clothes_type == 'basic'and color == 'blue'):
-        img_size = img_size - 40
-        col = img_size + 40
+        x = x + 10
+        img_size = img_size - 20
+        col = img_size + 50
         y_offset = 100
 
     elif (Clothes_type == 'dot'and color =='black'):
