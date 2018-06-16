@@ -37,7 +37,7 @@ def SelectClothes(title, cap):
     if(kinds == 'h'):
         clothes = ['hood-t_black_NIKE_M_7000_dot_.png', 'hood-t_black_NIKE_M_7000_printing_.png', 'hood-t_blue_NIKE_M_7000_printing_.png', 'hood-t_gray_NIKE_M_7000_basic_.png', 'hood-t_white_NIKE_M_7000_basic_.png']
     elif(kinds == 't'):
-        clothes = ['t-shirt_beige_NIKE_M_7000_basic_.png', 't-shirt_beige_NIKE_M_7000_printing_.png', 't-shirt_beige_NIKE_M_7000_stripe_.png', 't-shirt_black_NIKE_M_7000_stripe_.png', 't-shirt_gray_NIKE_M_7000_dot_.png','t-shirt_gray_NIKE_M_7000_printing_.png','t-shirt_gray_NIKE_M_7000_stripe_.png','t-shirt_white_NIKE_M_7000_printing_.png']
+        clothes = ['t-shirt_beige_NIKE_M_7000_basic_.png','t-shirt_white_NIKE_M_7000_printing_.png','t-shirt_beige_NIKE_M_7000_printing_.png', 't-shirt_beige_NIKE_M_7000_stripe_.png', 't-shirt_black_NIKE_M_7000_stripe_.png', 't-shirt_gray_NIKE_M_7000_dot_.png','t-shirt_gray_NIKE_M_7000_printing_.png','t-shirt_gray_NIKE_M_7000_stripe_.png','t-shirt_white_NIKE_M_7000_printing_.png']
     else:
         clothes = ['y-shirt_beige_NIKE_M_7000_dot_.png', 'y-shirt_black_GUZZI_M_7500_basic_.png', 'y-shirt_blue_NIKE_M_7000_basic_.png', 'y-shirt_blue_NIKE_M_7000_dot_.png', 'y-shirt_blue_NIKE_M_7000_stripe_.png','y-shirt_white_NIKE_M_7000_dot_.png','y-shirt_white_NIKE_M_7000_stripe_.png']
 
@@ -132,6 +132,52 @@ def SelectClothes(title, cap):
 
                     if(LeftOn == 1):
                         index = index +1
+
+                animationUnit = 0
+                move = 0
+        if (kinds == 't'):
+            if (index == 0):  # 가운데 이미지의 배열 인덱스가 0일 시의 예외 처리
+                if (RightOn == 1):
+                    Clothes_name = AnimationRightCall.animationright(index + 6, index + 7, index, index + 1,
+                                                                     animationUnit, img1, title)
+                else:
+                    Clothes_name = AnimationLeftCall.animationleft(index + 7, index, index + 1, index + 2,
+                                                                   animationUnit, img1, title)  # hm
+
+            elif (index == 7):  # 가운데 이미지의 배열 인덱스가 4일 시의 예외 처리
+                if (RightOn == 1):
+                    Clothes_name = AnimationRightCall.animationright(index - 2, index - 1, index, index - 7,
+                                                                     animationUnit, img1, title)
+                else:
+                    Clothes_name = AnimationLeftCall.animationleft(index - 1, index, index - 7, index - 6,
+                                                                   animationUnit, img1, title)
+            elif (index == 1 and RightOn == 1):  # 가운데 이미지의 배열 인덱스가 1일 시의 예외 처리
+                Clothes_name = AnimationRightCall.animationright(index + 6, index - 1, index, index + 1, animationUnit,
+                                                                 img1, title)
+            elif (index == 6 and LeftOn == 1):  # 가운데 이미지의 배열 인덱스가 3일 시의 예외 처리
+                Clothes_name = AnimationLeftCall.animationleft(index - 1, index, index + 1, index - 6, animationUnit,
+                                                               img1, title)
+            else:  # 예외를 제외한 나머지 부분의 애니메이션 함수
+                if (RightOn == 1):
+                    Clothes_name = AnimationRightCall.animationright(index - 2, index - 1, index, index + 1,
+                                                                     animationUnit, img1, title)
+                else:
+                    Clothes_name = AnimationLeftCall.animationleft(index - 1, index, index + 1, index + 2,
+                                                                   animationUnit, img1, title)  # hm
+            if (abs(animationUnit - 9) <= 1):  # 애니메이션 완료 시
+                if (index == 0 and RightOn == 1):  # 가운데 이미지 인덱스가 0일 때 오른쪽 애니메이션 가동 중지
+                    index = 7
+
+
+                elif (index == 7 and LeftOn == 1):  # 가운데 이미지 인덱스가 4일 때 왼쪽  애니메이션 가동 중지
+                    index = 0
+
+                else:  # 예외를 제외한 애니메이션 가동 중지
+                    if (RightOn == 1):
+                        index = index - 1
+
+                    if (LeftOn == 1):
+                        index = index + 1
 
                 animationUnit = 0
                 move = 0

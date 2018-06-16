@@ -10,7 +10,7 @@ def animationleft(firstindex,secondindex,thirdindex,fourthindex,move,frame,title
     if(kinds == 'h'):
         clothes = ['hood-t_black_NIKE_M_7000_dot_down.png', 'hood-t_black_NIKE_M_7000_printing_down.png', 'hood-t_blue_NIKE_M_7000_printing_down.png', 'hood-t_gray_NIKE_M_7000_basic_down.png', 'hood-t_white_NIKE_M_7000_basic_down.png']
     elif(kinds == 't'):
-        clothes = ['t-shirt_beige_NIKE_M_7000_basic_down.png', 't-shirt_beige_NIKE_M_7000_printing_down.png', 't-shirt_beige_NIKE_M_7000_stripe_down.png', 't-shirt_black_NIKE_M_7000_stripe_down.png', 't-shirt_gray_NIKE_M_7000_dot_down.png','t-shirt_gray_NIKE_M_7000_printing_down.png','t-shirt_gray_NIKE_M_7000_stripe_down.png','t-shirt_white_NIKE_M_7000_printing_down.png']
+        clothes = ['t-shirt_beige_NIKE_M_7000_basic_down.png', 't-shirt_white_NIKE_M_7000_printing_down.png','t-shirt_beige_NIKE_M_7000_printing_down.png', 't-shirt_beige_NIKE_M_7000_stripe_down.png', 't-shirt_black_NIKE_M_7000_stripe_down.png', 't-shirt_gray_NIKE_M_7000_dot_down.png','t-shirt_gray_NIKE_M_7000_printing_down.png','t-shirt_gray_NIKE_M_7000_stripe_down.png','t-shirt_white_NIKE_M_7000_printing_down.png']
     else:
         clothes = ['y-shirt_beige_NIKE_M_7000_dot_down.png', 'y-shirt_black_GUZZI_M_7500_basic_down.png', 'y-shirt_blue_NIKE_M_7000_basic_down.png', 'y-shirt_blue_NIKE_M_7000_dot_down.png', 'y-shirt_blue_NIKE_M_7000_stripe_down.png','y-shirt_white_NIKE_M_7000_dot_down.png','y-shirt_white_NIKE_M_7000_stripe_down.png']
 
