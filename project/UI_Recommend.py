@@ -29,7 +29,7 @@ def Third_Menu(cap):
         if(count == 1):
             faceList = face_pattern.detectMultiScale(gray, 1.5)
             for (x, y, w, h) in faceList:
-                cv2.imwrite('./face_original.jpeg', gray[y:y+h+20, x-5:x+w+5])
+                cv2.imwrite('./face_original.jpeg', gray[y:y+h, x:x+w])
                 print("take a picture")
                 count = 2
         

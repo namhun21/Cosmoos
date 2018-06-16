@@ -51,7 +51,7 @@ def Menu_Click_Operation(name,roi, origraysc, count, Box_number):
     #             roi[Box_number][y, x] = 255              #달라진 정도가 30 이상이면 인식한다
     #             num = num + 1
 
-    #cv2.imshow(name,im_bw)
+    cv2.imshow(name,im_bw)
     num = cv2.countNonZero(im_bw)
     if (num > 4900 * 0.5):      # 1번 영역에서 달라졌다고 인식한 수가 전체의 50%가 넘으면 그 영역 count를 1 더한다.
         count = count + 1
@@ -75,7 +75,7 @@ def overlay_Click_Operation(name,roi, origraysc, count, Box_number):
     #         else:
     #             roi[Box_number][y, x] = 255              #달라진 정도가 30 이상이면 인식한다
     #             num = num + 1
-    #cv2.imshow(name,im_bw)
+    cv2.imshow(name,im_bw)
     num = cv2.countNonZero(im_bw)
     if (num > 3000 * 0.4):      # 1번 영역에서 달라졌다고 인식한 수가 전체의 40%가 넘으면 그 영역 count를 1 더한다.
         count = count + 1
@@ -106,8 +106,8 @@ def Select_Click_Operation(name, ButtonFrame,pictureButtonFrame):
     #             whiteNum = whiteNum + 1
     # if(cv2.countNonZero(im_bw) > width * height * 0.8):
     whiteNum = cv2.countNonZero(im_bw)
-    # if name is not None:
-        # cv2.imshow(name, im_bw)
+    if name is not None:
+        cv2.imshow(name, im_bw)
 
     return whiteNum
 
