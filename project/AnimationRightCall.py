@@ -3,6 +3,8 @@ import numpy as np
 import Make_Clothes_Image
 import time
 
+#정재진 학생이 작성하였습니다.
+#김남훈 학생이 코드를 구조화하였습니다.
 def animationright(firstindex,secondindex,thirdindex,fourthindex,move,frame,title):
 
     #millis_start = int(round(time.time() * 1000))

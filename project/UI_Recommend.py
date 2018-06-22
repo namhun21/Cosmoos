@@ -11,6 +11,7 @@ import Suggest_Color
 import Suggest_Pattern
 
 
+#김동균 학생이 코드를 작성하였습니다.
 def Third_Menu(cap):
     bottomLeftCornerOfText_Title = (0,100)
     face_pattern = cv2.CascadeClassifier('haarcascade_mcs_upperbody.xml')

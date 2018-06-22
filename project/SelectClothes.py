@@ -10,6 +10,8 @@ import Make_Clothes_Image
 import time_measurement
 import time
 
+#정재진 학생이 작성하였습니다.
+
 def SelectClothes(title, cap):
 
     frame_number = 1

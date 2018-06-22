@@ -2,6 +2,8 @@ import cv2
 import os
 import time
 
+#차재성 학생이 작성하였습니다.
+#텐서플로우 작업을 하는데 있어서 필요한 작업입니다.
 def crop_image(color):
     select_color = os.listdir('./{}'.format(color))
     print(select_color)

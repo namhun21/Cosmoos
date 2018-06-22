@@ -9,6 +9,11 @@ import Make_Clothes_Image
 import time_measurement
 import UI_Recommend
 
+#overlay에 관한 기초적인 코드는 다 같이 작성하였고 그 외 masked_operation과
+#range_operation은 김남훈 학생이 작성하였습니다. 코드의 구조화 역시 김남훈
+#학생이 진행하였습니다.
+
+
 prev_x = 0
 prev_y = 0
 prev_w = 0

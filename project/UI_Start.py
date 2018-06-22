@@ -8,6 +8,8 @@ import SelectClothes
 import Make_Clothes_Image
 import UI_Recommend
 
+#이부분 코딩은 다 같이 함께 했습니다. 기본적 구조를 김동균 학생이 설계하였고 김남훈 학생이 코드의 구조화를 진행하였고
+#정재진 학생과 김남훈 학생이 코드를 좀 더 효율적으로 돌아가게 발전 시켰습니다. 차재성 학생은 코드를 세밀하게 만들었습니다.
 
 def First_Menu(cap):
 

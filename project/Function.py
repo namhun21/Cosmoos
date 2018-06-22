@@ -5,6 +5,9 @@ import time
 import os
 import timeit
 
+#김남훈 학생이 기본적인 구조를 만들었고 옷의 위치와 쓰레스 홀드를 정하는 코드는
+#다같이 자세한 내용의 코드를 작성하였습니다.
+
 def resetCount(*n):  # 가변인자를 이용하여 count들을 0으로 초기화 해주는 함수
     list1=[]
     for i in n:

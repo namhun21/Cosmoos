@@ -3,7 +3,8 @@ import cv2
 import sys
 import tensorflow as tf
 
-
+#텐서와 관련된 기본적 구조를 차재성 학생이 작성하였고 김동균 학생이
+#추천 시스템에 맞게 코드를 작성하였습니다.
 def Suggest_color(frame, faceList, my_q):
     
     
