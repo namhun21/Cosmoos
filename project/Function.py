@@ -199,28 +199,30 @@ def Decision_sizeOffset(Clothes_name,x,y_offset, img_size):
     
     if(Clothes_type == 'basic'and color == 'gray'):
         x = x- 3
-        col = img_size
+        img_size = img_size + 30
+        col = img_size + 10
+    
         y_offset = 100
         
     elif( Clothes_type == 'basic'and color == 'white'):
-        x = x-10
-        y_offset = y_offset - 20
-        img_size = img_size + 80
-        col = img_size + 40
+        x = x-20
+        y_offset = y_offset - 30
+        img_size = img_size + 70
+        col = img_size + 30
 
     elif(Clothes_type == 'basic' and color == 'beige'):
-        img_size =img_size + 5
-        col = img_size+50
+        img_size =img_size + 10
+        col = img_size+55
         y_offset = 100
 
     elif(Clothes_type == 'basic'and color == 'black'):
-        y_offset = 100
+        y_offset = 90
         img_size = img_size + 50
         x = x-20
         col = img_size
 
     elif(Clothes_type == 'basic'and color == 'blue'):
-        x = x + 10
+        x = x + 20
         img_size = img_size - 20
         col = img_size + 50
         y_offset = 100
@@ -232,87 +234,88 @@ def Decision_sizeOffset(Clothes_name,x,y_offset, img_size):
         col = img_size + 40
 
     elif (Clothes_type == 'dot'and color =='gray'):
-        x = x + 15
-        y_offset = 90
-        img_size = img_size - 50
-        col = img_size + 45
-
-    elif (Clothes_type == 'dot'and color =='white'):
-        x = x + 20
+        x = x + 25
         y_offset = 100
         img_size = img_size - 40
-        col = img_size
+        col = img_size + 55
+
+    elif (Clothes_type == 'dot'and color =='white'):
+        x = x + 30
+        y_offset = 110
+        img_size = img_size
+        col = img_size + 20
 
     elif (Clothes_type == 'dot'and color =='blue'):
         x = x + 10
         y_offset = 110
-        img_size = img_size - 40
-        col = img_size
+        img_size = img_size - 20
+        col = img_size + 20
 
     elif (Clothes_type == 'dot'and color =='beige'):
         x = x + 5
-        y_offset = 90
-        col = img_size
+        y_offset = 100
+        img_size = img_size + 30
+        col = img_size + 30
 
     elif (Clothes_type == 'printing'and color == 'black'):
         x = x-10 
-        y_offset = 65
-        img_size = img_size + 30
-        col = img_size + 80
+        y_offset = 55
+        img_size = img_size + 15
+        col = img_size + 75
 
     elif (Clothes_type == 'printing'and color == 'blue'):
         x = x-21
-        y_offset = 90
-        img_size = img_size + 60
-        col = img_size
+        y_offset = 80
+        img_size = img_size + 50
+        col = img_size -10
 
     elif (Clothes_type == 'printing'and color == 'beige'):
-        x = x + 15
+        x = x + 20
         y_offset = 80
-        img_size = img_size - 40
-        col = img_size + 80
+        img_size = img_size - 30
+        col = img_size + 85
 
     elif (Clothes_type == 'printing'and color == 'white'):
-        x = x - 10
-        y_offset = 100
-        img_size = img_size + 20
+        x = x +5
+        y_offset = 122
+        img_size = img_size - 10
         col = img_size + 20
 
     elif (Clothes_type == 'printing'and color == 'gray'):
-        x = x - 22
+        x = x - 12
         y_offset = 90
-        img_size = img_size + 50
+        img_size = img_size + 30
         col = img_size + 20
 
     elif (Clothes_type == 'stripe'and color =='white'):
-        x = x + 10
-        y_offset = 100
-        img_size = img_size - 30
-        col = img_size + 10
+        x = x + 20
+        y_offset = 120
+        img_size = img_size 
+        col = img_size - 10
 
     elif (Clothes_type == 'stripe'and color == 'gray'):
         x = x + 15
-        y_offset = 85
-        img_size = img_size - 40
-        col = img_size + 30
+        y_offset = 95
+        img_size = img_size - 15
+        col = img_size + 55
         
     elif(Clothes_type == 'stripe'and color =='black'):
         x = x+20
         y_offset = 95
-        img_size = img_size - 40
-        col = img_size + 20
+        img_size = img_size
+        col = img_size + 50
 
     elif(Clothes_type == 'stripe'and color == 'blue'):
         x = x +3
         y_offset = 100
-        img_size = img_size + 5
-        col = img_size
+        img_size = img_size + 15
+        col = img_size + 10
 
     elif (Clothes_type == 'stripe'and color =='beige'):
         x = x+20
         y_offset = 90
-        img_size = img_size - 50
-        col = img_size + 40
+        img_size = img_size-20
+        col = img_size + 50
 
 
     return x, col, y_offset,img_size

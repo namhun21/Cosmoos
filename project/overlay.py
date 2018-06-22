@@ -256,6 +256,11 @@ def Full_Overlay(cap,Clothes_name,title):       #이전에 정의했던 함수�
     cap.release()
 
 
-# cap = cv2.VideoCapture(0)
-# Clothes_name= "y-shirt_black_GUZZI_M_7500_basic_.png"
-# Full_Overlay(cap,Clothes_name,"y-shirt")
+os.system("sudo modprobe bcm2835-v4l2")
+
+cap = cv2.VideoCapture(0)
+print('width:{0},height:{1}'.format(cap.get(3),cap.get(4)))
+cap.set(3,640)
+cap.set(4,480)
+Clothes_name= "y-shirt_white_NIKE_M_7000_stripe_.png"
+Full_Overlay(cap,Clothes_name,"y-shirt")
